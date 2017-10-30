@@ -1,4 +1,4 @@
-/label ~user_story
+/label ~USER-STORY
 #### Description
 
 (Please describe the user story here)
