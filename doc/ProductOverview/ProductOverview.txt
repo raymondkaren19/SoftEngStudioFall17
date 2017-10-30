@@ -113,7 +113,8 @@ this project.
 
 -   The Accredited Standards Committee. (n.d.). What is EDI? In
     > *Frequently Asked Questions* (A2). Retrieved October 23rd, 2017,
-    > from *http://www.x12.org/about/faqs.cfm\#a1*
+    > from
+    > [*http://www.x12.org/about/faqs.cfm\#a1*](http://www.x12.org/about/faqs.cfm#a1)
 
 -   W3Schools. (n.d.). Introduction to XML. In *XML Tutorial* (XML
     > Introduction). Retrieved October 23rd, 2017, from
@@ -429,7 +430,7 @@ No safety requirements have been identified for the current system.
 6.1. User Interfaces
 --------------------
 
--   The systems provide a client to add and remove items from the
+-   The systems provide a web client to add and remove items from the
     store's inventory.
 
 -   The systems provide online reports on the client side of:
@@ -461,7 +462,7 @@ No safety requirements have been identified for the current system.
 
     -   checking integrity of the database
 
-    -   see past transitions
+    -   see past transactions
 
     -   check logged in users and logs.
 
@@ -480,7 +481,9 @@ Figure 3. IMS UI for purchase orders.
 
 -   Program is written in Java programming language.
 
--   The system uses XML as its main form of interchanging data.
+-   The system uses XML as its main form of interchanging data. (Note:
+    Can XML be encrypted? Is XML interchange the same thing as
+    “exporting data”?)
 
 -   Input of data
 
@@ -520,18 +523,29 @@ Figure 3. IMS UI for purchase orders.
 -   Valid date (Daylight saving accommodations, International orders
     etc.)
 
+    -   This will be accomplished by storing dates in a standard form
+        (such as UTC) with adjustment for local settings.
+
 -   Unit validator. (Rounding Errors preventions)
 
+    -   Note: If the system uses floating point calculations, this can
+        be quite challenging.
+
+    -   A solution would be to provide a limit of accuracy
+
 -   Money Validator (Rounding Error Preventions)
+
+    -   Note: If international orders are allowed, will multiple
+        currencies be supported?
 
 6.3. Communication Interfaces
 -----------------------------
 
 -   The system shall leverage existing Web Service technologies. The
-    communication among software component would be performed through
-    message parsing over the IP network.
+    communication among software component would be performed through an
+    XML or JSON API.
 
--   Client on internet will be using HTTP/HTTPS protocol to get latest
+-   Client on internet will be using HTTP protocol to get latest
     transaction updates from the server.
 
 7.    Appendix
@@ -555,3 +569,5 @@ Figure 3. IMS UI for purchase orders.
   UPC        Universal Product Code
   X12        One type of EDI Format
   XML        eXtensible Markup Language
+
+
