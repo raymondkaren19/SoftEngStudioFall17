@@ -1,0 +1,557 @@
+Title Page
+
+Document Name: Inventory Management Product Overview
+
+Project Name: Team Assignment 1
+
+Authors: Damon Fowler, Jose Jimenez, Karen Raymond, Lakshmi Mannem,
+Thomas Wester
+
+Course Name: Software Engineering Studio, RSEG127
+
+Instructor Name: Erik Hemdal
+
+Date: 10/24/2017
+
+**PRODUCT OVERVIEW SPECIFICATION**
+
+**PROJECT INVENTORY MANAGER**
+
+**INVENTORY MANAGEMENT SYSTEM**
+
+**Rev. 1.0**
+
+**Change History**
+
+   
+
+  **Revision**   **Date**     **Author**       **Changes**
+  -------------- ------------ ---------------- -----------------------------------------------------------------------------------------------------------
+  0.1            10/22/2017   Lakshmi Mannem   Initial Revision
+  0.2            10/23/2017   Thomas Wester    Added requirements for Section 4.1
+  0.3            10/23/2017   Lakshmi Mannem   Added requirements for Sec 4.2 and 4.4
+  0.4            10/23/2017   Damon Fowler     Added requirements for Section 4.5, 51, 5.3, 5.4, and 5.5. Context diagram for Section 3. And partial 4.6
+  0.5            10/23/2017   Lakshmi Mannem   Added System Admin and Security requirements (Section 4.7)
+  0.6            10/23/2017   Thomas Wester    Added Section 2.x
+  0.7            10/23/2017   Karen Raymond    Added Sections 1.0, 1.1, 1.2, 1.2.1, and 1.3. Requirements for section 4.3
+  0.8            10/24/2017   Damon Fowler     Modified Section 5.4 and acronyms list.
+  0.9            10/24/2017   Karen Raymond    Added Section 1.4. Removed 7.2.
+  0.10           10/24/2017   Jose Jimenez     Added Sections 6.2 and 6.3. Added Draft UI Representation.
+  1.0            10/24/2014   Karen Raymond    Release version.
+                                               
+                                               
+                                               
+                                               
+
+**Table 1.1**
+
+1.   Introduction
+=================
+
+1.1. Purpose of the Document
+----------------------------
+
+This document details the software Product Overview Specification for
+the Inventory Management System (IMS). This system will provide
+functionality for the online management of a retail store’s inventory,
+supplier items, and order items and will include functionality for
+performing system auditing, administration, and security. Included in
+this document is a listing of the IMS functional and non-functional
+requirements.
+
+1.2. Document Conventions 
+--------------------------
+
+    The following conventions are used in this document:
+
+> ***Main Titles***
+
+-   Font: Arial
+
+-   Size: 20
+
+-   Face: Bold
+
+> ***Subsection Titles***
+
+-   Font: Arial
+
+-   Size: 16 or 14
+
+-   Face: Bold or Italicized
+
+> ***Body***
+
+-   Font: Arial
+
+-   Size: 11
+
+-   Face: Normal
+
+### 1.2.1. *Terminology*
+
+### 
+
+> In this specification, the verbs "shall" or "must" indicate testable
+> requirements. Each requirement must be tested during verification
+> and/or validation. The verb "may" indicates a recommendation or
+> desirable goal. The verb "will" indicates information provided for
+> clarification or to provide context to or rationale for one or more
+> requirements. The information provided is not to be considered a
+> requirement and is therefore not testable.
+
+1.3. Intended Audience for the Document
+---------------------------------------
+
+This specification contains the requirements for the IMS project.  The
+intended audience for this document includes the IMS development team,
+QA team, and any management, other staff, or stakeholders involved with
+this project.
+
+1.4. References
+---------------
+
+-   The Accredited Standards Committee. (n.d.). What is EDI? In
+    > *Frequently Asked Questions* (A2). Retrieved October 23rd, 2017,
+    > from *http://www.x12.org/about/faqs.cfm\#a1*
+
+-   W3Schools. (n.d.). Introduction to XML. In *XML Tutorial* (XML
+    > Introduction). Retrieved October 23rd, 2017, from
+    > [*https://www.w3schools.com/xml/xml\_whatis.asp*](https://www.w3schools.com/xml/xml_whatis.asp)
+
+<!-- -->
+
+-   JScape. (n.d.). *What is EDI X12?* Retrieved October 24, 2017, from
+    > Managed File Transfer Solutions:
+    > [*http://www.jscape.com/blog/edi-x12*](http://www.jscape.com/blog/edi-x12)
+
+<!-- -->
+
+-   Measurement Equipment Corporation. (n.d.). *UPC-A Barcode*.
+    > Retrieved October 24, 2017, from Market barcode:
+    > [*http://www.makebarcode.com/specs/upc\_a.html*](http://www.makebarcode.com/specs/upc_a.html)
+
+2.    Product Overview
+======================
+
+2.1. Product Functions
+----------------------
+
+The Inventory Management software is an online product inventory
+management application for tracking of a retail store’s inventory,
+pending purchase orders, and product backordered status and dates. Use
+of the Inventory Management software by a retailer will enable efficient
+tracking of quantities, warehouse sourcing locations, low quantity
+reorder requirements, and backorder lead time tracking.
+
+The Inventory Management software will be capable of performing all
+necessary functions for tracking a retail store’s product on hand. This
+will include:
+
+-   Addition and removal of products from inventory
+
+-   Supplier purchase order generation
+
+-   Automated supplier purchase order generation
+
+-   Inventory-on-hand report generation
+
+-   Supplier purchase order report generation
+
+-   Product description management functions
+
+Utilizing the Inventory Management software, inventory tracking can
+facilitate automated inventory management based on expected product
+reorder lead times versus product quantities within inventory. By
+utilizing the application’s automated supplier purchase order generation
+features, and based on consumption rate versus lead time, retail
+organizations may utilize lean inventory management practices while
+minimizing risks of product shortages.
+
+The Inventory Management software will reside on a cloud-based web
+server which may be accessible through retail store workstations through
+all mainstream web browser applications. A backend database shall
+function as the product inventory information repository. Within this
+database shall exist the product listings with applicable ordering and
+pricing information, and supplier listings with applicable addressing
+and payment information.
+
+The web browser interface of the Inventory Management software shall
+provide a consistent interfacing for retail store personnel across
+multiple workstation platforms and may be accessible through any
+workstation providing internet connectivity.
+
+2.2. System, Environmental, And Architectural Constraints
+---------------------------------------------------------
+
+### 2.2.1. *Operating Environment*
+
+The Inventory Management software shall operate within a backend SQL
+database and a web browser front end interface. Management functions may
+be performed by retail store personnel using appropriate logins through
+approved web browsers. All major operating systems and web browsers
+shall be supported. Workstations shall be required to have internet
+connectivity in order to utilize the web interface.
+
+The database server application shall exist on a Linux based x64
+operating system. The database server application shall provide hosting
+for web socket connections with client workstations.
+
+  ----------------------------------------------------------------------------
+  **Resource**           **Client**                 **Server**
+  ---------------------- -------------------------- --------------------------
+  Operating System       Windows Vista and later\   Linux x64 V2.6 and later
+                         Mac OS X and later\        
+                         Linux V2.6 and later       
+
+  Web Browser            IE 11 and later\           n/a
+                         Chrome V49 and later\      
+                         Firefox V40 and later\     
+                         Safari 9 and later         
+
+  RAM                    &gt;2Gb                    &gt;8Gb
+
+  Hard Disk              n/a                        &gt;500Gb
+
+  Database Server        n/a                        MySQL 5.7
+
+  Development Language   HTML, Java                 Java
+  ----------------------------------------------------------------------------
+
+**Table 1.2**
+
+### 2.2.2. *Design and Implementation Constraints*
+
+Each retail store employee must have a unique identifier for use in
+login authentication. Retail store personnel shall be required to
+maintain a confidential password, which may be reset by the database
+administrator.
+
+Cost constraints dictate there shall be a single server providing data
+services for all retail store workstations. Retail stores shall be
+required to provide internet access to all workstations which require
+database access in order to utilize the Inventory Management web
+interface.
+
+### 2.2.3. *Corporate Policies, Government Regulations, or Industry Standards*
+
+The Inventory Management software will conform to applicable industry
+and government regulations regarding privacy and cybersecurity.
+
+User identification and authentication shall be required and shall
+conform to applicable encryption protocols.
+
+Transactions shall be recorded electronically and optionally printed for
+retrieval and auditing purposes.
+
+### 2.2.4. *Assumptions and Dependencies*
+
+For the purposes of the Inventory Management software, assumptions have
+been made regarding the internet connectivity of the retail store’s
+inventory workstations. In order to function, all inventory workstations
+must maintain connectivity with the web server in order to access
+application functions and perform inventory management.
+
+Training shall be required for retail store managers and shall be
+provided upon delivery and deployment of the Inventory Management as a
+function of an on-going service contract; in-application help prompts
+will be provided for training reinforcement.
+
+3.    Context Diagram
+=====================
+
+![Screen Shot 2017-10-23 at 6.08.34
+PM.png](.//media/image1.png){width="6.506944444444445in"
+height="1.6263888888888889in"}
+
+Figure 1. Context diagram for the Inventory Management System.
+
+4.    Functional requirements
+=============================
+
+4.1. User Account Management
+----------------------------
+
+  **Object ID**   []{#_Hlk496629916 .anchor}**Object Text**
+  --------------- ----------------------------------------------------------------------------------------------------------------------
+  > UAM-01        The system shall require user authentication credentials for supplier access.
+  > UAM-02        The system shall require user authentication credentials for inventory management access.
+  > UAM-03        The system shall permit supplier profile updates to the logged in supplier profile with supplier access credentials.
+  > UAM-04        The system shall permit creation of purchase orders using supplier access credentials.
+  > UAM-05        The system shall permit viewing of purchase order status using supplier access credentials.
+  > UAM-06        The system shall permit supplier profile updates to all supplier profiles using management access credentials.
+  > UAM-07        The system shall permit creation of purchase orders using management access credentials.
+  > UAM-08        The system shall permit viewing of purchase order status using management access credentials.
+  > UAM-09        The system shall permit editing of purchase orders using management access credentials.
+
+4.2. Inventory Data  
+---------------------
+
+  **Object ID**   **Object Text**
+  --------------- -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+  IND-01          The system shall allow a name for an inventory item
+  IND-02          The system shall allow a SKU number to identify each item.
+  IND-03          The system shall allow UPC barcode for each inventory item. The system supports UPC-A barcode format.
+  IND-04          > The system shall limit UPC-A barcode field to 12 numeric digits. No characters are allowed.
+  IND-05          > The system shall support UPC-A barcode either by typing or scanning the barcode.
+  IND-06          > The system shall validate entered UPC barcode as per UPC-A Code assignment.
+  IND-07          > The system shall have a manufacturing name for each item.
+  IND-08          > The system shall have a warehouse location for each item.
+  IND-09          > The system shall maintain the number of inventory items that are available in store.
+  IND-10          > The system shall maintain the number of inventory items that are available in warehouse.
+  IND-11          > The system shall maintain a reorder quantity value for refills.
+  IND-12          > The system shall maintain a reorder unit type field for each item.
+  IND-13          > The system shall provide five reorder unit types: case, two-pack, single, by volume and by weight.
+  IND-14          > The system shall allow backorder date for each inventory item.
+  IND-15          > The system shall allow one or multiple supplier name(s) for each inventory item.
+  IND-16          > The system shall provide field for per-item retail Sale price for each inventory item.
+  IND-17          The system shall provide entry for saving supplier item info. Info fields supported are name, address, telephone, and supplier EDI preference and payment options.
+  IND-18          The system shall support multiple EDI options such as paper order forms, X12 and XML formats.
+  IND-19          The system shall support multiple payment options such as cash-on-delivery, net 30 days and credit card modes.
+  IND-20          The system shall provide following information fields with order items. 1. Supplier name, address, telephone.2.Item quantity and price. 3. Delivery date 4. Total order price
+  IND-21          The system shall generate error messages when the user attempts to enter invalid data.
+  IND-22          > The system shall allow users to enter 10 digits for phone numbers. No characters are allowed.
+  IND-23          > The system allow users to enter email id that has @ and ‘.’ Symbols.
+  IND-24          > The system shall present a datetime picker to select a date.
+  IND-25          > The system shall display text in English language.
+  IND-26          > The system shall read bar code labels from barcode labels when an item is scanned.
+
+4.3. Inventory Management  
+---------------------------
+
+  **Object ID**   **Object Text**
+  --------------- ----------------------------------------------------------------------------------------------------------------------------------
+  IMA-01          The system shall allow for the addition and removal of items from the store’s inventory.
+  IMA-02          The system shall generate purchase orders to suppliers using ANSI ASC X12 EDI messages, paper, or XML.
+  IMA-03          The system shall generate purchase orders upon request or upon the system inventory reaching designated reorder level for items.
+  IMA-04          The system shall write purchase orders to the appropriate file type.
+  IMA-05          The system shall update the inventory either by using a UI or by reading an XML file that has an appropriate DTD.
+
+4.4. Report Generation  
+------------------------
+
+  **Object ID**   **Object Text**
+  --------------- ---------------------------------------------------------------------------------------------------------------------------------------------
+  RPT-01          The system shall allow the user to generate a report showing the information of a selected purchase order.
+  RPT-02          The system shall generate report showing the information of sales by product in the specified time period.
+  RPT-03          The system shall generate report showing the information about the inventory performance in each product category.
+  RPT-04          The system shall provide reorder report to view a product, its associated suppliers and relevant stock level, reorder quantity information.
+  RPT-05          The system shall provide transaction history report to view a list of transactions on a product or warehouse.
+  RPT-06          The system shall provide backorder enquiry report to manage the creation and deployment of shipments.
+  RPT-07          The system shall generate purchase order summary report for a selected time period.
+  RPT-08          The system shall generate inventory on order report to view list products on an order.
+  RPT-09          The system shall export generated report according to export preferences.
+  RPT-10          The system shall print generated reports on a printer linked to system.
+  RPT-11          The system shall provide statistical information reports on an hourly, daily, weekly, and monthly and annual basis.
+  RPT-12          The system shall provide reports on statistics of records added to the database, items missing from the repository, inventory requests etc.
+
+4.5. Purchase Order Management  
+--------------------------------
+
+  **Object ID**   []{#_Hlk496630592 .anchor}**Object Text**
+  --------------- ---------------------------------------------------------------------------------------------
+  POM-01          The inventory management software shall support creation of customer purchase orders.
+  > POM-02        The inventory management software shall support modification of a purchase order’s objects.
+  > POM-03        The inventory management software shall allow the list display of all purchase orders.
+  > POM-04        The inventory management software shall allow the display of one purchase order.
+  > POM-05        The inventory management software shall allow term criteria searching of purchase orders.
+  > POM-01        The inventory management software shall support creation of customer purchase orders.
+  > POM-02        The inventory management software shall support modification of a purchase order’s objects.
+
+4.6. Auditing Options
+---------------------
+
+  **Object ID**   []{#_Hlk496630652 .anchor}**Object Text**
+  --------------- ------------------------------------------------------------------------
+  AOR-01          The system shall provide logging operations for all user interactions.
+  AOR-02          The system shall provide an interface to view auditing records.
+  AOR-03          The system shall maintain user type record for each logged event.
+  AOR-04          The system shall maintain date/time for each logged event.
+
+4.7. System Administration and Security
+---------------------------------------
+
+  **Object ID**   **Object Text**
+  --------------- -------------------------------------------------------------------------------------------------------------------------------------------
+  SAS-01          The system shall have a configuration to enable mandatory login to perform any operation.
+  SAS-02          The system shall have the ability to configure the timeout to perform an automatic logout after a user has logged in.
+  SAS-03          The system shall have the ability to configure minimum and maximum length of a password.
+  SAS-04          The system shall have the ability to configure password strength to force a lowercase, uppercase letters and numbers in the password.
+  SAS-05          The system shall prohibit the exiting of the system.
+  SAS-06          The system shall restrict groups of users/workstations to specific functions.
+  SAS-07          The system shall assign role based security privileges to different user groups.
+  SAS-08          The system shall allow authorized user to conduct database backup operations to protect data integrity.
+  SAS-09          The system shall not allow unauthorized viewing, altering or copying data from database.
+  SAS-10          The system shall allow authorized user to backup database and verify data is secured.
+  SAS-11          The system shall encrypt contents of database when exported.
+  SAS-12          The system shall allow recovery operations by restoring from a backup database. It will utilize page checksums to detect data corruption.
+  SAS-13          The system shall track and approve all database modifications.
+  SAS-14          The system shall backup database periodically to recover from problems or to roll back to a prior point of time.
+
+5.    Constraints/Non-Functional Requirements
+=============================================
+
+5.1. Performance Requirements
+-----------------------------
+
+  **Object ID**   **Object Text**
+  --------------- ---------------------------------------------------------------------------------------------------
+  CPR-01          The inventory management software shall notify the user when operations are completed.
+  CPR-02          The inventory management software shall complete an operation within a reasonable amount of time.
+
+5.2. Safety Requirements
+------------------------
+
+No safety requirements have been identified for the current system.
+
+5.3. Security Requirements
+--------------------------
+
+  **Object ID**   **Object Text**
+  --------------- --------------------------------------------------------------------------------------------------
+  CSR-01          The inventory management software shall transmit sensitive data in an encrypted format.
+  CSR-02          The inventory management software shall not display sensitive information to the user interface.
+  CSR-03          The inventory management software shall destroy user session data upon logout.
+
+5.4. Business Rules
+-------------------
+
+  **Object ID**   **Object Text**
+  --------------- -------------------------------------------------------------------------------------------------------
+  CBR-01          The inventory management software shall not operate outside of local/national law guidelines.
+  CBR-02          The inventory management software shall not infringe upon any patented/copyright operations/features.
+  CBR-03          The inventory management software shall enforce user agreement of the system’s terms of agreement.
+  CBR-04          The inventory management software shall contain user agreement preservation.
+
+6.    External Interface Requirements 
+======================================
+
+6.1. User Interfaces
+--------------------
+
+-   The systems provide a client to add and remove items from the
+    store's inventory.
+
+-   The systems provide online reports on the client side of:
+
+    -   current inventory-on-hand
+
+    -   outstanding orders to suppliers
+
+    -   purchase orders to suppliers
+
+-   System shall present first-time user a login page when trying to
+    access privileged features.
+
+-   Registered users should be able to login to see profile page
+
+-   Each user will have a different level of accessibility.
+
+    -   Admin
+
+    -   Auditor (Admin read only)
+
+    -   User (read only)
+
+    -   User (read and modify)
+
+-   Admin features allow a user to:
+
+    -   backing up the data on the server
+
+    -   checking integrity of the database
+
+    -   see past transitions
+
+    -   check logged in users and logs.
+
+![https://lh4.googleusercontent.com/XrPFodZ9mEC9m715-sFAZtpbcpjHBX-9e7xaFX8Zg0ch36wlVH7HCttrSUdGe1EB6GJhE85KJw6vnLwB1CP7r-tYOF\_4a0nQ65ffN0VTY8Nczgt-15jyEQPk41Rc0VxLWa\_A-g\_E](.//media/image2.png){width="5.626388888888889in"
+height="3.5069444444444446in"}
+
+Figure 2. IMS user authentication UI.
+
+![https://lh3.googleusercontent.com/-uYwO2hsX5nBUtyuIaIiLZ5DA-taH2tGINOuvO5M0pUIq3cHmvumHBII7x7YtnT3x31ahroVtkltTAEMUOs3bk\_1WmmWvVAzKQEE-1I-l0lypoA\_Ut\_7SP5EhlHEmgc-3BLWyPmW](.//media/image3.png){width="5.916666666666667in"
+height="3.6430555555555557in"}
+
+Figure 3. IMS UI for purchase orders.
+
+6.2. Software Interfaces
+------------------------
+
+-   Program is written in Java programming language.
+
+-   The system uses XML as its main form of interchanging data.
+
+-   Input of data
+
+    -   Purchase orders.
+
+    -   Inventory Items
+
+    -   Suppliers.
+
+-   Output of data
+
+-   Report generator
+
+-   XML
+
+    -   Purchase orders.
+
+    -   Inventory Items
+
+    -   Suppliers.
+
+-   PDF to all Paper sizes
+
+-   EDI messages
+
+-   System interfaces with a PDF generator that can be send out to a
+    printer
+
+-   Validator
+
+-   Should validate any entered UPC number
+
+-   Address validation
+
+-   Phone number validation
+
+-   Valid date (Daylight saving accommodations, International orders
+    etc.)
+
+-   Unit validator. (Rounding Errors preventions)
+
+-   Money Validator (Rounding Error Preventions)
+
+6.3. Communication Interfaces
+-----------------------------
+
+-   The system shall leverage existing Web Service technologies. The
+    communication among software component would be performed through
+    message parsing over the IP network.
+
+-   Client on internet will be using HTTP/HTTPS protocol to get latest
+    transaction updates from the server.
+
+7.    Appendix
+==============
+
+7.1. Definitions, Acronyms, and Abbreviations
+---------------------------------------------
+
+**         **
+
+  **Term**   **Definition**
+  ---------- ------------------------------------
+  EDI        Electronic Data Interchange
+  HTTPS      Hypertext Transfer Protocol Secure
+  IE         Microsoft Internet Explorer
+  IMS        Inventory Management System
+  OS         Operating System
+  PDF        Portable Document Format
+  SKU        Stock Keeping Unit
+  UI         User Interface
+  UPC        Universal Product Code
+  X12        One type of EDI Format
+  XML        eXtensible Markup Language
