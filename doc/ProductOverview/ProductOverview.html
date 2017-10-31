@@ -1,0 +1,919 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>ProductOverview</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      .smallcaps{font-variant: small-caps;}
+      .line-block{white-space: pre-line;}
+      .column{display: inline-block;}
+  </style>
+  <link rel="stylesheet" href="./css/github-style-markdown.css">
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<nav id="TOC">
+<ul>
+<li><a href="#introduction">1.   Introduction</a><ul>
+<li><a href="#purpose-of-the-document">1.1. Purpose of the Document</a></li>
+<li><a href="#document-conventions">1.2. Document Conventions </a><ul>
+<li><a href="#terminology">1.2.1. <em>Terminology</em></a></li>
+<li><a href="#section"></a></li>
+</ul></li>
+<li><a href="#intended-audience-for-the-document">1.3. Intended Audience for the Document</a></li>
+<li><a href="#references">1.4. References</a></li>
+</ul></li>
+<li><a href="#product-overview">2.    Product Overview</a><ul>
+<li><a href="#product-functions">2.1. Product Functions</a></li>
+<li><a href="#system-environmental-and-architectural-constraints">2.2. System, Environmental, And Architectural Constraints</a><ul>
+<li><a href="#operating-environment">2.2.1. <em>Operating Environment</em></a></li>
+<li><a href="#design-and-implementation-constraints">2.2.2. <em>Design and Implementation Constraints</em></a></li>
+<li><a href="#corporate-policies-government-regulations-or-industry-standards">2.2.3. <em>Corporate Policies, Government Regulations, or Industry Standards</em></a></li>
+<li><a href="#assumptions-and-dependencies">2.2.4. <em>Assumptions and Dependencies</em></a></li>
+</ul></li>
+</ul></li>
+<li><a href="#context-diagram">3.    Context Diagram</a></li>
+<li><a href="#functional-requirements">4.    Functional requirements</a><ul>
+<li><a href="#user-account-management">4.1. User Account Management</a></li>
+<li><a href="#inventory-data">4.2. Inventory Data  </a></li>
+<li><a href="#inventory-management">4.3. Inventory Management  </a></li>
+<li><a href="#report-generation">4.4. Report Generation  </a></li>
+<li><a href="#purchase-order-management">4.5. Purchase Order Management  </a></li>
+<li><a href="#auditing-options">4.6. Auditing Options</a></li>
+<li><a href="#system-administration-and-security">4.7. System Administration and Security</a></li>
+</ul></li>
+<li><a href="#constraintsnon-functional-requirements">5.    Constraints/Non-Functional Requirements</a><ul>
+<li><a href="#performance-requirements">5.1. Performance Requirements</a></li>
+<li><a href="#safety-requirements">5.2. Safety Requirements</a></li>
+<li><a href="#security-requirements">5.3. Security Requirements</a></li>
+<li><a href="#business-rules">5.4. Business Rules</a></li>
+</ul></li>
+<li><a href="#external-interface-requirements">6.    External Interface Requirements </a><ul>
+<li><a href="#user-interfaces">6.1. User Interfaces</a></li>
+<li><a href="#software-interfaces">6.2. Software Interfaces</a></li>
+<li><a href="#communication-interfaces">6.3. Communication Interfaces</a></li>
+</ul></li>
+<li><a href="#appendix">7.    Appendix</a><ul>
+<li><a href="#definitions-acronyms-and-abbreviations">7.1. Definitions, Acronyms, and Abbreviations</a></li>
+</ul></li>
+</ul>
+</nav>
+<p>Title Page</p>
+<p>Document Name: Inventory Management Product Overview</p>
+<p>Project Name: Team Assignment 1</p>
+<p>Authors: Damon Fowler, Jose Jimenez, Karen Raymond, Lakshmi Mannem, Thomas Wester</p>
+<p>Course Name: Software Engineering Studio, RSEG127</p>
+<p>Instructor Name: Erik Hemdal</p>
+<p>Date: 10/24/2017</p>
+<p><strong>PRODUCT OVERVIEW SPECIFICATION</strong></p>
+<p><strong>PROJECT INVENTORY MANAGER</strong></p>
+<p><strong>INVENTORY MANAGEMENT SYSTEM</strong></p>
+<p><strong>Rev. 1.0</strong></p>
+<p><strong>Change History</strong></p>
+<p>   </p>
+<table>
+<thead>
+<tr class="header">
+<th><strong>Revision</strong></th>
+<th><strong>Date</strong></th>
+<th><strong>Author</strong></th>
+<th><strong>Changes</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>0.1</td>
+<td>10/22/2017</td>
+<td>Lakshmi Mannem</td>
+<td>Initial Revision</td>
+</tr>
+<tr class="even">
+<td>0.2</td>
+<td>10/23/2017</td>
+<td>Thomas Wester</td>
+<td>Added requirements for Section 4.1</td>
+</tr>
+<tr class="odd">
+<td>0.3</td>
+<td>10/23/2017</td>
+<td>Lakshmi Mannem</td>
+<td>Added requirements for Sec 4.2 and 4.4</td>
+</tr>
+<tr class="even">
+<td>0.4</td>
+<td>10/23/2017</td>
+<td>Damon Fowler</td>
+<td>Added requirements for Section 4.5, 51, 5.3, 5.4, and 5.5. Context diagram for Section 3. And partial 4.6</td>
+</tr>
+<tr class="odd">
+<td>0.5</td>
+<td>10/23/2017</td>
+<td>Lakshmi Mannem</td>
+<td>Added System Admin and Security requirements (Section 4.7)</td>
+</tr>
+<tr class="even">
+<td>0.6</td>
+<td>10/23/2017</td>
+<td>Thomas Wester</td>
+<td>Added Section 2.x</td>
+</tr>
+<tr class="odd">
+<td>0.7</td>
+<td>10/23/2017</td>
+<td>Karen Raymond</td>
+<td>Added Sections 1.0, 1.1, 1.2, 1.2.1, and 1.3. Requirements for section 4.3</td>
+</tr>
+<tr class="even">
+<td>0.8</td>
+<td>10/24/2017</td>
+<td>Damon Fowler</td>
+<td>Modified Section 5.4 and acronyms list.</td>
+</tr>
+<tr class="odd">
+<td>0.9</td>
+<td>10/24/2017</td>
+<td>Karen Raymond</td>
+<td>Added Section 1.4. Removed 7.2.</td>
+</tr>
+<tr class="even">
+<td>0.10</td>
+<td>10/24/2017</td>
+<td>Jose Jimenez</td>
+<td>Added Sections 6.2 and 6.3. Added Draft UI Representation.</td>
+</tr>
+<tr class="odd">
+<td>1.0</td>
+<td>10/24/2014</td>
+<td>Karen Raymond</td>
+<td>Release version.</td>
+</tr>
+<tr class="even">
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Table 1.1</strong></p>
+<h1 id="introduction">1.   Introduction</h1>
+<h2 id="purpose-of-the-document">1.1. Purpose of the Document</h2>
+<p>This document details the software Product Overview Specification for the Inventory Management System (IMS). This system will provide functionality for the online management of a retail store’s inventory, supplier items, and order items and will include functionality for performing system auditing, administration, and security. Included in this document is a listing of the IMS functional and non-functional requirements.</p>
+<h2 id="document-conventions">1.2. Document Conventions </h2>
+<p>    The following conventions are used in this document:</p>
+<p><em><strong>Main Titles</strong></em></p>
+<ul>
+<li><blockquote>
+<p>Font: Arial</p>
+</blockquote></li>
+<li><blockquote>
+<p>Size: 20</p>
+</blockquote></li>
+<li><blockquote>
+<p>Face: Bold</p>
+</blockquote></li>
+</ul>
+<p><em><strong>Subsection Titles</strong></em></p>
+<ul>
+<li><blockquote>
+<p>Font: Arial</p>
+</blockquote></li>
+<li><blockquote>
+<p>Size: 16 or 14</p>
+</blockquote></li>
+<li><blockquote>
+<p>Face: Bold or Italicized</p>
+</blockquote></li>
+</ul>
+<p><em><strong>Body</strong></em></p>
+<ul>
+<li><blockquote>
+<p>Font: Arial</p>
+</blockquote></li>
+<li><blockquote>
+<p>Size: 11</p>
+</blockquote></li>
+<li><blockquote>
+<p>Face: Normal</p>
+</blockquote></li>
+</ul>
+<h3 id="terminology">1.2.1. <em>Terminology</em></h3>
+<h3 id="section"></h3>
+<blockquote>
+<p>In this specification, the verbs &quot;shall&quot; or &quot;must&quot; indicate testable requirements. Each requirement must be tested during verification and/or validation. The verb &quot;may&quot; indicates a recommendation or desirable goal. The verb &quot;will&quot; indicates information provided for clarification or to provide context to or rationale for one or more requirements. The information provided is not to be considered a requirement and is therefore not testable.</p>
+</blockquote>
+<h2 id="intended-audience-for-the-document">1.3. Intended Audience for the Document</h2>
+<p>This specification contains the requirements for the IMS project.  The intended audience for this document includes the IMS development team, QA team, and any management, other staff, or stakeholders involved with this project.</p>
+<h2 id="references">1.4. References</h2>
+<ul>
+<li><blockquote>
+<p>The Accredited Standards Committee. (n.d.). What is EDI? In <em>Frequently Asked Questions</em> (A2). Retrieved October 23rd, 2017, from <a href="http://www.x12.org/about/faqs.cfm#a1"><span class="underline">http://www.x12.org/about/faqs.cfm#a1</span></a></p>
+</blockquote></li>
+<li><blockquote>
+<p>W3Schools. (n.d.). Introduction to XML. In <em>XML Tutorial</em> (XML Introduction). Retrieved October 23rd, 2017, from <a href="https://www.w3schools.com/xml/xml_whatis.asp"><span class="underline">https://www.w3schools.com/xml/xml_whatis.asp</span></a></p>
+</blockquote></li>
+</ul>
+<ul>
+<li><blockquote>
+<p>JScape. (n.d.). <em>What is EDI X12?</em> Retrieved October 24, 2017, from Managed File Transfer Solutions: <a href="http://www.jscape.com/blog/edi-x12"><span class="underline">http://www.jscape.com/blog/edi-x12</span></a></p>
+</blockquote></li>
+</ul>
+<ul>
+<li><blockquote>
+<p>Measurement Equipment Corporation. (n.d.). <em>UPC-A Barcode</em>. Retrieved October 24, 2017, from Market barcode: <a href="http://www.makebarcode.com/specs/upc_a.html"><span class="underline">http://www.makebarcode.com/specs/upc_a.html</span></a></p>
+</blockquote></li>
+</ul>
+<h1 id="product-overview">2.    Product Overview</h1>
+<h2 id="product-functions">2.1. Product Functions</h2>
+<p>The Inventory Management software is an online product inventory management application for tracking of a retail store’s inventory, pending purchase orders, and product backordered status and dates. Use of the Inventory Management software by a retailer will enable efficient tracking of quantities, warehouse sourcing locations, low quantity reorder requirements, and backorder lead time tracking.</p>
+<p>The Inventory Management software will be capable of performing all necessary functions for tracking a retail store’s product on hand. This will include:</p>
+<ul>
+<li><p>Addition and removal of products from inventory</p></li>
+<li><p>Supplier purchase order generation</p></li>
+<li><p>Automated supplier purchase order generation</p></li>
+<li><p>Inventory-on-hand report generation</p></li>
+<li><p>Supplier purchase order report generation</p></li>
+<li><p>Product description management functions</p></li>
+</ul>
+<p>Utilizing the Inventory Management software, inventory tracking can facilitate automated inventory management based on expected product reorder lead times versus product quantities within inventory. By utilizing the application’s automated supplier purchase order generation features, and based on consumption rate versus lead time, retail organizations may utilize lean inventory management practices while minimizing risks of product shortages.</p>
+<p>The Inventory Management software will reside on a cloud-based web server which may be accessible through retail store workstations through all mainstream web browser applications. A backend database shall function as the product inventory information repository. Within this database shall exist the product listings with applicable ordering and pricing information, and supplier listings with applicable addressing and payment information.</p>
+<p>The web browser interface of the Inventory Management software shall provide a consistent interfacing for retail store personnel across multiple workstation platforms and may be accessible through any workstation providing internet connectivity.</p>
+<h2 id="system-environmental-and-architectural-constraints">2.2. System, Environmental, And Architectural Constraints</h2>
+<h3 id="operating-environment">2.2.1. <em>Operating Environment</em></h3>
+<p>The Inventory Management software shall operate within a backend SQL database and a web browser front end interface. Management functions may be performed by retail store personnel using appropriate logins through approved web browsers. All major operating systems and web browsers shall be supported. Workstations shall be required to have internet connectivity in order to utilize the web interface.</p>
+<p>The database server application shall exist on a Linux based x64 operating system. The database server application shall provide hosting for web socket connections with client workstations.</p>
+<table>
+<thead>
+<tr class="header">
+<th><strong>Resource</strong></th>
+<th><strong>Client</strong></th>
+<th><strong>Server</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Operating System</td>
+<td>Windows Vista and later<br />
+Mac OS X and later<br />
+Linux V2.6 and later</td>
+<td>Linux x64 V2.6 and later</td>
+</tr>
+<tr class="even">
+<td>Web Browser</td>
+<td>IE 11 and later<br />
+Chrome V49 and later<br />
+Firefox V40 and later<br />
+Safari 9 and later</td>
+<td>n/a</td>
+</tr>
+<tr class="odd">
+<td>RAM</td>
+<td>&gt;2Gb</td>
+<td>&gt;8Gb</td>
+</tr>
+<tr class="even">
+<td>Hard Disk</td>
+<td>n/a</td>
+<td>&gt;500Gb</td>
+</tr>
+<tr class="odd">
+<td>Database Server</td>
+<td>n/a</td>
+<td>MySQL 5.7</td>
+</tr>
+<tr class="even">
+<td>Development Language</td>
+<td>HTML, Java</td>
+<td>Java</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Table 1.2</strong></p>
+<h3 id="design-and-implementation-constraints">2.2.2. <em>Design and Implementation Constraints</em></h3>
+<p>Each retail store employee must have a unique identifier for use in login authentication. Retail store personnel shall be required to maintain a confidential password, which may be reset by the database administrator.</p>
+<p>Cost constraints dictate there shall be a single server providing data services for all retail store workstations. Retail stores shall be required to provide internet access to all workstations which require database access in order to utilize the Inventory Management web interface.</p>
+<h3 id="corporate-policies-government-regulations-or-industry-standards">2.2.3. <em>Corporate Policies, Government Regulations, or Industry Standards</em></h3>
+<p>The Inventory Management software will conform to applicable industry and government regulations regarding privacy and cybersecurity.</p>
+<p>User identification and authentication shall be required and shall conform to applicable encryption protocols.</p>
+<p>Transactions shall be recorded electronically and optionally printed for retrieval and auditing purposes.</p>
+<h3 id="assumptions-and-dependencies">2.2.4. <em>Assumptions and Dependencies</em></h3>
+<p>For the purposes of the Inventory Management software, assumptions have been made regarding the internet connectivity of the retail store’s inventory workstations. In order to function, all inventory workstations must maintain connectivity with the web server in order to access application functions and perform inventory management.</p>
+<p>Training shall be required for retail store managers and shall be provided upon delivery and deployment of the Inventory Management as a function of an on-going service contract; in-application help prompts will be provided for training reinforcement.</p>
+<h1 id="context-diagram">3.    Context Diagram</h1>
+<p><img src=".//media/image1.png" alt="Context Diagram" style="width:6.50694in;height:1.62639in" /></p>
+<p>Figure 1. Context diagram for the Inventory Management System.</p>
+<h1 id="functional-requirements">4.    Functional requirements</h1>
+<h2 id="user-account-management">4.1. User Account Management</h2>
+<table>
+<thead>
+<tr class="header">
+<th><strong>Object ID</strong></th>
+<th><span id="_Hlk496629916" class="anchor"></span><strong>Object Text</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>UAM-01</td>
+<td>The system shall require user authentication credentials for supplier access.</td>
+</tr>
+<tr class="even">
+<td>UAM-02</td>
+<td>The system shall require user authentication credentials for inventory management access.</td>
+</tr>
+<tr class="odd">
+<td>UAM-03</td>
+<td>The system shall permit supplier profile updates to the logged in supplier profile with supplier access credentials.</td>
+</tr>
+<tr class="even">
+<td>UAM-04</td>
+<td>The system shall permit creation of purchase orders using supplier access credentials.</td>
+</tr>
+<tr class="odd">
+<td>UAM-05</td>
+<td>The system shall permit viewing of purchase order status using supplier access credentials.</td>
+</tr>
+<tr class="even">
+<td>UAM-06</td>
+<td>The system shall permit supplier profile updates to all supplier profiles using management access credentials.</td>
+</tr>
+<tr class="odd">
+<td>UAM-07</td>
+<td>The system shall permit creation of purchase orders using management access credentials.</td>
+</tr>
+<tr class="even">
+<td>UAM-08</td>
+<td>The system shall permit viewing of purchase order status using management access credentials.</td>
+</tr>
+<tr class="odd">
+<td>UAM-09</td>
+<td>The system shall permit editing of purchase orders using management access credentials.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="inventory-data">4.2. Inventory Data  </h2>
+<table>
+<thead>
+<tr class="header">
+<th><strong>Object ID</strong></th>
+<th><strong>Object Text</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>IND-01</td>
+<td>The system shall allow a name for an inventory item</td>
+</tr>
+<tr class="even">
+<td>IND-02</td>
+<td>The system shall allow a SKU number to identify each item.</td>
+</tr>
+<tr class="odd">
+<td>IND-03</td>
+<td>The system shall allow UPC barcode for each inventory item. The system supports UPC-A barcode format.</td>
+</tr>
+<tr class="even">
+<td>IND-04</td>
+<td>The system shall limit UPC-A barcode field to 12 numeric digits. No characters are allowed.</td>
+</tr>
+<tr class="odd">
+<td>IND-05</td>
+<td>The system shall support UPC-A barcode either by typing or scanning the barcode.</td>
+</tr>
+<tr class="even">
+<td>IND-06</td>
+<td>The system shall validate entered UPC barcode as per UPC-A Code assignment.</td>
+</tr>
+<tr class="odd">
+<td>IND-07</td>
+<td>The system shall have a manufacturing name for each item.</td>
+</tr>
+<tr class="even">
+<td>IND-08</td>
+<td>The system shall have a warehouse location for each item.</td>
+</tr>
+<tr class="odd">
+<td>IND-09</td>
+<td>The system shall maintain the number of inventory items that are available in store.</td>
+</tr>
+<tr class="even">
+<td>IND-10</td>
+<td>The system shall maintain the number of inventory items that are available in warehouse.</td>
+</tr>
+<tr class="odd">
+<td>IND-11</td>
+<td>The system shall maintain a reorder quantity value for refills.</td>
+</tr>
+<tr class="even">
+<td>IND-12</td>
+<td>The system shall maintain a reorder unit type field for each item.</td>
+</tr>
+<tr class="odd">
+<td>IND-13</td>
+<td>The system shall provide five reorder unit types: case, two-pack, single, by volume and by weight.</td>
+</tr>
+<tr class="even">
+<td>IND-14</td>
+<td>The system shall allow backorder date for each inventory item.</td>
+</tr>
+<tr class="odd">
+<td>IND-15</td>
+<td>The system shall allow one or multiple supplier name(s) for each inventory item.</td>
+</tr>
+<tr class="even">
+<td>IND-16</td>
+<td>The system shall provide field for per-item retail Sale price for each inventory item.</td>
+</tr>
+<tr class="odd">
+<td>IND-17</td>
+<td>The system shall provide entry for saving supplier item info. Info fields supported are name, address, telephone, and supplier EDI preference and payment options.</td>
+</tr>
+<tr class="even">
+<td>IND-18</td>
+<td>The system shall support multiple EDI options such as paper order forms, X12 and XML formats.</td>
+</tr>
+<tr class="odd">
+<td>IND-19</td>
+<td>The system shall support multiple payment options such as cash-on-delivery, net 30 days and credit card modes.</td>
+</tr>
+<tr class="even">
+<td>IND-20</td>
+<td>The system shall provide following information fields with order items. 1. Supplier name, address, telephone.2.Item quantity and price. 3. Delivery date 4. Total order price</td>
+</tr>
+<tr class="odd">
+<td>IND-21</td>
+<td>The system shall generate error messages when the user attempts to enter invalid data.</td>
+</tr>
+<tr class="even">
+<td>IND-22</td>
+<td>The system shall allow users to enter 10 digits for phone numbers. No characters are allowed.</td>
+</tr>
+<tr class="odd">
+<td>IND-23</td>
+<td>The system allow users to enter email id that has @ and ‘.’ Symbols.</td>
+</tr>
+<tr class="even">
+<td>IND-24</td>
+<td>The system shall present a datetime picker to select a date.</td>
+</tr>
+<tr class="odd">
+<td>IND-25</td>
+<td>The system shall display text in English language.</td>
+</tr>
+<tr class="even">
+<td>IND-26</td>
+<td>The system shall read bar code labels from barcode labels when an item is scanned.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="inventory-management">4.3. Inventory Management  </h2>
+<table>
+<thead>
+<tr class="header">
+<th><strong>Object ID</strong></th>
+<th><strong>Object Text</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>IMA-01</td>
+<td>The system shall allow for the addition and removal of items from the store’s inventory.</td>
+</tr>
+<tr class="even">
+<td>IMA-02</td>
+<td>The system shall generate purchase orders to suppliers using ANSI ASC X12 EDI messages, paper, or XML.</td>
+</tr>
+<tr class="odd">
+<td>IMA-03</td>
+<td>The system shall generate purchase orders upon request or upon the system inventory reaching designated reorder level for items.</td>
+</tr>
+<tr class="even">
+<td>IMA-04</td>
+<td>The system shall write purchase orders to the appropriate file type.</td>
+</tr>
+<tr class="odd">
+<td>IMA-05</td>
+<td>The system shall update the inventory either by using a UI or by reading an XML file that has an appropriate DTD.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="report-generation">4.4. Report Generation  </h2>
+<table>
+<thead>
+<tr class="header">
+<th><strong>Object ID</strong></th>
+<th><strong>Object Text</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>RPT-01</td>
+<td>The system shall allow the user to generate a report showing the information of a selected purchase order.</td>
+</tr>
+<tr class="even">
+<td>RPT-02</td>
+<td>The system shall generate report showing the information of sales by product in the specified time period.</td>
+</tr>
+<tr class="odd">
+<td>RPT-03</td>
+<td>The system shall generate report showing the information about the inventory performance in each product category.</td>
+</tr>
+<tr class="even">
+<td>RPT-04</td>
+<td>The system shall provide reorder report to view a product, its associated suppliers and relevant stock level, reorder quantity information.</td>
+</tr>
+<tr class="odd">
+<td>RPT-05</td>
+<td>The system shall provide transaction history report to view a list of transactions on a product or warehouse.</td>
+</tr>
+<tr class="even">
+<td>RPT-06</td>
+<td>The system shall provide backorder enquiry report to manage the creation and deployment of shipments.</td>
+</tr>
+<tr class="odd">
+<td>RPT-07</td>
+<td>The system shall generate purchase order summary report for a selected time period.</td>
+</tr>
+<tr class="even">
+<td>RPT-08</td>
+<td>The system shall generate inventory on order report to view list products on an order.</td>
+</tr>
+<tr class="odd">
+<td>RPT-09</td>
+<td>The system shall export generated report according to export preferences.</td>
+</tr>
+<tr class="even">
+<td>RPT-10</td>
+<td>The system shall print generated reports on a printer linked to system.</td>
+</tr>
+<tr class="odd">
+<td>RPT-11</td>
+<td>The system shall provide statistical information reports on an hourly, daily, weekly, and monthly and annual basis.</td>
+</tr>
+<tr class="even">
+<td>RPT-12</td>
+<td>The system shall provide reports on statistics of records added to the database, items missing from the repository, inventory requests etc.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="purchase-order-management">4.5. Purchase Order Management  </h2>
+<table>
+<thead>
+<tr class="header">
+<th><strong>Object ID</strong></th>
+<th><span id="_Hlk496630592" class="anchor"></span><strong>Object Text</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>POM-01</td>
+<td>The inventory management software shall support creation of customer purchase orders.</td>
+</tr>
+<tr class="even">
+<td>POM-02</td>
+<td>The inventory management software shall support modification of a purchase order’s objects.</td>
+</tr>
+<tr class="odd">
+<td>POM-03</td>
+<td>The inventory management software shall allow the list display of all purchase orders.</td>
+</tr>
+<tr class="even">
+<td>POM-04</td>
+<td>The inventory management software shall allow the display of one purchase order.</td>
+</tr>
+<tr class="odd">
+<td>POM-05</td>
+<td>The inventory management software shall allow term criteria searching of purchase orders.</td>
+</tr>
+<tr class="even">
+<td>POM-01</td>
+<td>The inventory management software shall support creation of customer purchase orders.</td>
+</tr>
+<tr class="odd">
+<td>POM-02</td>
+<td>The inventory management software shall support modification of a purchase order’s objects.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="auditing-options">4.6. Auditing Options</h2>
+<table>
+<thead>
+<tr class="header">
+<th><strong>Object ID</strong></th>
+<th><span id="_Hlk496630652" class="anchor"></span><strong>Object Text</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>AOR-01</td>
+<td>The system shall provide logging operations for all user interactions.</td>
+</tr>
+<tr class="even">
+<td>AOR-02</td>
+<td>The system shall provide an interface to view auditing records.</td>
+</tr>
+<tr class="odd">
+<td>AOR-03</td>
+<td>The system shall maintain user type record for each logged event.</td>
+</tr>
+<tr class="even">
+<td>AOR-04</td>
+<td>The system shall maintain date/time for each logged event.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="system-administration-and-security">4.7. System Administration and Security</h2>
+<table>
+<thead>
+<tr class="header">
+<th><strong>Object ID</strong></th>
+<th><strong>Object Text</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>SAS-01</td>
+<td>The system shall have a configuration to enable mandatory login to perform any operation.</td>
+</tr>
+<tr class="even">
+<td>SAS-02</td>
+<td>The system shall have the ability to configure the timeout to perform an automatic logout after a user has logged in.</td>
+</tr>
+<tr class="odd">
+<td>SAS-03</td>
+<td>The system shall have the ability to configure minimum and maximum length of a password.</td>
+</tr>
+<tr class="even">
+<td>SAS-04</td>
+<td>The system shall have the ability to configure password strength to force a lowercase, uppercase letters and numbers in the password.</td>
+</tr>
+<tr class="odd">
+<td>SAS-05</td>
+<td>The system shall prohibit the exiting of the system.</td>
+</tr>
+<tr class="even">
+<td>SAS-06</td>
+<td>The system shall restrict groups of users/workstations to specific functions.</td>
+</tr>
+<tr class="odd">
+<td>SAS-07</td>
+<td>The system shall assign role based security privileges to different user groups.</td>
+</tr>
+<tr class="even">
+<td>SAS-08</td>
+<td>The system shall allow authorized user to conduct database backup operations to protect data integrity.</td>
+</tr>
+<tr class="odd">
+<td>SAS-09</td>
+<td>The system shall not allow unauthorized viewing, altering or copying data from database.</td>
+</tr>
+<tr class="even">
+<td>SAS-10</td>
+<td>The system shall allow authorized user to backup database and verify data is secured.</td>
+</tr>
+<tr class="odd">
+<td>SAS-11</td>
+<td>The system shall encrypt contents of database when exported.</td>
+</tr>
+<tr class="even">
+<td>SAS-12</td>
+<td>The system shall allow recovery operations by restoring from a backup database. It will utilize page checksums to detect data corruption.</td>
+</tr>
+<tr class="odd">
+<td>SAS-13</td>
+<td>The system shall track and approve all database modifications.</td>
+</tr>
+<tr class="even">
+<td>SAS-14</td>
+<td>The system shall backup database periodically to recover from problems or to roll back to a prior point of time.</td>
+</tr>
+</tbody>
+</table>
+<h1 id="constraintsnon-functional-requirements">5.    Constraints/Non-Functional Requirements</h1>
+<h2 id="performance-requirements">5.1. Performance Requirements</h2>
+<table>
+<thead>
+<tr class="header">
+<th><strong>Object ID</strong></th>
+<th><strong>Object Text</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>CPR-01</td>
+<td>The inventory management software shall notify the user when operations are completed.</td>
+</tr>
+<tr class="even">
+<td>CPR-02</td>
+<td>The inventory management software shall complete an operation within a reasonable amount of time.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="safety-requirements">5.2. Safety Requirements</h2>
+<p>No safety requirements have been identified for the current system.</p>
+<h2 id="security-requirements">5.3. Security Requirements</h2>
+<table>
+<thead>
+<tr class="header">
+<th><strong>Object ID</strong></th>
+<th><strong>Object Text</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>CSR-01</td>
+<td>The inventory management software shall transmit sensitive data in an encrypted format.</td>
+</tr>
+<tr class="even">
+<td>CSR-02</td>
+<td>The inventory management software shall not display sensitive information to the user interface.</td>
+</tr>
+<tr class="odd">
+<td>CSR-03</td>
+<td>The inventory management software shall destroy user session data upon logout.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="business-rules">5.4. Business Rules</h2>
+<table>
+<thead>
+<tr class="header">
+<th><strong>Object ID</strong></th>
+<th><strong>Object Text</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>CBR-01</td>
+<td>The inventory management software shall not operate outside of local/national law guidelines.</td>
+</tr>
+<tr class="even">
+<td>CBR-02</td>
+<td>The inventory management software shall not infringe upon any patented/copyright operations/features.</td>
+</tr>
+<tr class="odd">
+<td>CBR-03</td>
+<td>The inventory management software shall enforce user agreement of the system’s terms of agreement.</td>
+</tr>
+<tr class="even">
+<td>CBR-04</td>
+<td>The inventory management software shall contain user agreement preservation.</td>
+</tr>
+</tbody>
+</table>
+<h1 id="external-interface-requirements">6.    External Interface Requirements </h1>
+<h2 id="user-interfaces">6.1. User Interfaces</h2>
+<ul>
+<li><p>The systems provide a web client to add and remove items from the store's inventory.</p></li>
+<li><p>The systems provide online reports on the client side of:</p>
+<ul>
+<li><p>current inventory-on-hand</p></li>
+<li><p>outstanding orders to suppliers</p></li>
+<li><p>purchase orders to suppliers</p></li>
+</ul></li>
+<li><p>System shall present first-time user a login page when trying to access privileged features.</p></li>
+<li><p>Registered users should be able to login to see profile page</p></li>
+<li><p>Each user will have a different level of accessibility.</p>
+<ul>
+<li><p>Admin</p></li>
+<li><p>Auditor (Admin read only)</p></li>
+<li><p>User (read only)</p></li>
+<li><p>User (read and modify)</p></li>
+</ul></li>
+<li><p>Admin features allow a user to:</p>
+<ul>
+<li><p>backing up the data on the server</p></li>
+<li><p>checking integrity of the database</p></li>
+<li><p>see past transactions</p></li>
+<li><p>check logged in users and logs.</p></li>
+</ul></li>
+</ul>
+<p><img src=".//media/image2.png" alt="MS user authentication UI." style="width:5.62639in;height:3.50694in" /></p>
+<p>Figure 2. IMS user authentication UI.</p>
+<p><img src=".//media/image3.png" alt="IMS UI for purchase orders." style="width:5.91667in;height:3.64306in" /></p>
+<p>Figure 3. IMS UI for purchase orders.</p>
+<h2 id="software-interfaces">6.2. Software Interfaces</h2>
+<ul>
+<li><p>Program is written in Java programming language.</p></li>
+<li><p>The system uses XML as its main form of interchanging data. (Note: Can XML be encrypted? Is XML interchange the same thing as “exporting data”?)</p></li>
+<li><p>Input of data</p>
+<ul>
+<li><p>Purchase orders.</p></li>
+<li><p>Inventory Items</p></li>
+<li><p>Suppliers.</p></li>
+</ul></li>
+<li><p>Output of data</p></li>
+<li><p>Report generator</p></li>
+<li><p>XML</p>
+<ul>
+<li><p>Purchase orders.</p></li>
+<li><p>Inventory Items</p></li>
+<li><p>Suppliers.</p></li>
+</ul></li>
+<li><p>PDF to all Paper sizes</p></li>
+<li><p>EDI messages</p></li>
+<li><p>System interfaces with a PDF generator that can be send out to a printer</p></li>
+<li><p>Validator</p></li>
+<li><p>Should validate any entered UPC number</p></li>
+<li><p>Address validation</p></li>
+<li><p>Phone number validation</p></li>
+<li><p>Valid date (Daylight saving accommodations, International orders etc.)</p>
+<ul>
+<li><p>This will be accomplished by storing dates in a standard form (such as UTC) with adjustment for local settings.</p></li>
+</ul></li>
+<li><p>Unit validator. (Rounding Errors preventions)</p>
+<ul>
+<li><p>Note: If the system uses floating point calculations, this can be quite challenging.</p></li>
+<li><p>A solution would be to provide a limit of accuracy</p></li>
+</ul></li>
+<li><p>Money Validator (Rounding Error Preventions)</p>
+<ul>
+<li><p>Note: If international orders are allowed, will multiple currencies be supported?</p></li>
+</ul></li>
+</ul>
+<h2 id="communication-interfaces">6.3. Communication Interfaces</h2>
+<ul>
+<li><p>The system shall leverage existing Web Service technologies. The communication among software component would be performed through an XML or JSON API.</p></li>
+<li><p>Client on internet will be using HTTP protocol to get latest transaction updates from the server.</p></li>
+</ul>
+<h1 id="appendix">7.    Appendix</h1>
+<h2 id="definitions-acronyms-and-abbreviations">7.1. Definitions, Acronyms, and Abbreviations</h2>
+<p><strong>         </strong></p>
+<table>
+<thead>
+<tr class="header">
+<th><strong>Term</strong></th>
+<th><strong>Definition</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>EDI</td>
+<td>Electronic Data Interchange</td>
+</tr>
+<tr class="even">
+<td>HTTPS</td>
+<td>Hypertext Transfer Protocol Secure</td>
+</tr>
+<tr class="odd">
+<td>IE</td>
+<td>Microsoft Internet Explorer</td>
+</tr>
+<tr class="even">
+<td>IMS</td>
+<td>Inventory Management System</td>
+</tr>
+<tr class="odd">
+<td>OS</td>
+<td>Operating System</td>
+</tr>
+<tr class="even">
+<td>PDF</td>
+<td>Portable Document Format</td>
+</tr>
+<tr class="odd">
+<td>SKU</td>
+<td>Stock Keeping Unit</td>
+</tr>
+<tr class="even">
+<td>UI</td>
+<td>User Interface</td>
+</tr>
+<tr class="odd">
+<td>UPC</td>
+<td>Universal Product Code</td>
+</tr>
+<tr class="even">
+<td>X12</td>
+<td>One type of EDI Format</td>
+</tr>
+<tr class="odd">
+<td>XML</td>
+<td>eXtensible Markup Language</td>
+</tr>
+</tbody>
+</table>
+</body>
+</html>
