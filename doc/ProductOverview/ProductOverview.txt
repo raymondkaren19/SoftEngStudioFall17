@@ -261,8 +261,7 @@ will be provided for training reinforcement.
 3.    Context Diagram
 =====================
 
-![Screen Shot 2017-10-23 at 6.08.34
-PM.png](.//media/image1.png){width="6.506944444444445in"
+![Context Diagram](.//media/image1.png){width="6.506944444444445in"
 height="1.6263888888888889in"}
 
 Figure 1. Context diagram for the Inventory Management System.
@@ -466,12 +465,14 @@ No safety requirements have been identified for the current system.
 
     -   check logged in users and logs.
 
-![https://lh4.googleusercontent.com/XrPFodZ9mEC9m715-sFAZtpbcpjHBX-9e7xaFX8Zg0ch36wlVH7HCttrSUdGe1EB6GJhE85KJw6vnLwB1CP7r-tYOF\_4a0nQ65ffN0VTY8Nczgt-15jyEQPk41Rc0VxLWa\_A-g\_E](.//media/image2.png){width="5.626388888888889in"
+![MS user authentication
+UI.](.//media/image2.png){width="5.626388888888889in"
 height="3.5069444444444446in"}
 
 Figure 2. IMS user authentication UI.
 
-![https://lh3.googleusercontent.com/-uYwO2hsX5nBUtyuIaIiLZ5DA-taH2tGINOuvO5M0pUIq3cHmvumHBII7x7YtnT3x31ahroVtkltTAEMUOs3bk\_1WmmWvVAzKQEE-1I-l0lypoA\_Ut\_7SP5EhlHEmgc-3BLWyPmW](.//media/image3.png){width="5.916666666666667in"
+![IMS UI for purchase
+orders.](.//media/image3.png){width="5.916666666666667in"
 height="3.6430555555555557in"}
 
 Figure 3. IMS UI for purchase orders.
