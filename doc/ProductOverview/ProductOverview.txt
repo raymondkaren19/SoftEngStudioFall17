@@ -288,118 +288,34 @@ Figure 1. Context diagram for the Inventory Management System.
 4.2. Inventory Data  
 ---------------------
 
-+-----------------------------------+-----------------------------------+
-| **Object ID**                     | **Object Text**                   |
-+===================================+===================================+
-| IND-01                            | The system shall allow a name for |
-|                                   | an inventory item                 |
-+-----------------------------------+-----------------------------------+
-| IND-02                            | The system shall allow a SKU      |
-|                                   | number to identify each item.     |
-+-----------------------------------+-----------------------------------+
-| IND-03                            | The system shall allow UPC        |
-|                                   | barcode for each inventory item.  |
-|                                   | The system supports UPC-A barcode |
-|                                   | format.                           |
-+-----------------------------------+-----------------------------------+
-| IND-04                            | The system shall limit UPC-A      |
-|                                   | barcode field to 12 numeric       |
-|                                   | digits. No characters are         |
-|                                   | allowed.                          |
-+-----------------------------------+-----------------------------------+
-| IND-05                            | The system shall support UPC-A    |
-|                                   | barcode either by typing or       |
-|                                   | scanning the barcode.             |
-+-----------------------------------+-----------------------------------+
-| IND-06                            | The system shall validate entered |
-|                                   | UPC barcode as per UPC-A Code     |
-|                                   | assignment.                       |
-+-----------------------------------+-----------------------------------+
-| IND-07                            | The system shall have a           |
-|                                   | manufacturing name for each item. |
-+-----------------------------------+-----------------------------------+
-| IND-08                            | The system shall have a warehouse |
-|                                   | location for each item.           |
-+-----------------------------------+-----------------------------------+
-| IND-09                            | The system shall maintain the     |
-|                                   | number of inventory items that    |
-|                                   | are available in store.           |
-+-----------------------------------+-----------------------------------+
-| IND-10                            | The system shall maintain the     |
-|                                   | number of inventory items that    |
-|                                   | are available in warehouse.       |
-+-----------------------------------+-----------------------------------+
-| IND-11                            | The system shall maintain a       |
-|                                   | reorder quantity value for        |
-|                                   | refills.                          |
-+-----------------------------------+-----------------------------------+
-| IND-12                            | The system shall maintain a       |
-|                                   | reorder unit type field for each  |
-|                                   | item.                             |
-+-----------------------------------+-----------------------------------+
-| IND-13                            | The system shall provide five     |
-|                                   | reorder unit types: case,         |
-|                                   | two-pack, single, by volume and   |
-|                                   | by weight.                        |
-+-----------------------------------+-----------------------------------+
-| IND-14                            | The system shall allow backorder  |
-|                                   | date for each inventory item.     |
-+-----------------------------------+-----------------------------------+
-| IND-15                            | The system shall allow one or     |
-|                                   | multiple supplier name(s) for     |
-|                                   | each inventory item.              |
-+-----------------------------------+-----------------------------------+
-| IND-16                            | The system shall provide field    |
-|                                   | for per-item retail Sale price    |
-|                                   | for each inventory item.          |
-+-----------------------------------+-----------------------------------+
-| IND-17                            | The system shall provide entry    |
-|                                   | for saving supplier item info.    |
-|                                   | Info fields supported are name,   |
-|                                   | address, telephone, and supplier  |
-|                                   | EDI preference and payment        |
-|                                   | options.                          |
-+-----------------------------------+-----------------------------------+
-| IND-18                            | The system shall support multiple |
-|                                   | EDI options such as paper order   |
-|                                   | forms, X12 and XML formats.       |
-+-----------------------------------+-----------------------------------+
-| IND-19                            | The system shall support multiple |
-|                                   | payment options such as           |
-|                                   | cash-on-delivery, net 30 days and |
-|                                   | credit card modes.                |
-+-----------------------------------+-----------------------------------+
-| IND-20                            | The system shall provide          |
-|                                   | following information fields with |
-|                                   | order items. 1. Supplier name,    |
-|                                   | address, telephone.2.Item         |
-|                                   | quantity and price. 3. Delivery   |
-|                                   | date 4. Total order price         |
-+-----------------------------------+-----------------------------------+
-| IND-21                            | The system shall generate error   |
-|                                   | messages when the user attempts   |
-|                                   | to enter invalid data.            |
-+-----------------------------------+-----------------------------------+
-| IND-22                            | > The system shall allow users to |
-|                                   | > enter 10 digits for phone       |
-|                                   | > numbers. No characters are      |
-|                                   | > allowed.                        |
-+-----------------------------------+-----------------------------------+
-| IND-23                            | > The system allow users to enter |
-|                                   | > email id that has @ and '.'     |
-|                                   | > Symbols.                        |
-+-----------------------------------+-----------------------------------+
-| IND-24                            | > The system shall present a      |
-|                                   | > datetime picker to select a     |
-|                                   | > date.                           |
-+-----------------------------------+-----------------------------------+
-| IND-25                            | > The system shall display text   |
-|                                   | > in English language.            |
-+-----------------------------------+-----------------------------------+
-| IND-26                            | > The system shall read bar code  |
-|                                   | > labels from barcode labels when |
-|                                   | > an item is scanned.             |
-+-----------------------------------+-----------------------------------+
+  **Object ID**   **Object Text**
+  --------------- -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+  IND-01          The system shall allow a name for an inventory item
+  IND-02          The system shall allow a SKU number to identify each item.
+  IND-03          The system shall allow UPC barcode for each inventory item. The system supports UPC-A barcode format.
+  IND-04          The system shall limit UPC-A barcode field to 12 numeric digits. No characters are allowed.
+  IND-05          The system shall support UPC-A barcode either by typing or scanning the barcode.
+  IND-06          The system shall validate entered UPC barcode as per UPC-A Code assignment.
+  IND-07          The system shall have a manufacturing name for each item.
+  IND-08          The system shall have a warehouse location for each item.
+  IND-09          The system shall maintain the number of inventory items that are available in store.
+  IND-10          The system shall maintain the number of inventory items that are available in warehouse.
+  IND-11          The system shall maintain a reorder quantity value for refills.
+  IND-12          The system shall maintain a reorder unit type field for each item.
+  IND-13          The system shall provide five reorder unit types: case, two-pack, single, by volume and by weight.
+  IND-14          The system shall allow backorder date for each inventory item.
+  IND-15          The system shall allow one or multiple supplier name(s) for each inventory item.
+  IND-16          The system shall provide field for per-item retail Sale price for each inventory item.
+  IND-17          The system shall provide entry for saving supplier item info. Info fields supported are name, address, telephone, and supplier EDI preference and payment options.
+  IND-18          The system shall support multiple EDI options such as paper order forms, X12 and XML formats.
+  IND-19          The system shall support multiple payment options such as cash-on-delivery, net 30 days and credit card modes.
+  IND-20          The system shall provide following information fields with order items. 1. Supplier name, address, telephone.2.Item quantity and price. 3. Delivery date 4. Total order price
+  IND-21          The system shall generate error messages when the user attempts to enter invalid data.
+  IND-22          The system shall allow users to enter 10 digits for phone numbers. No characters are allowed.
+  IND-23          The system allow users to enter email id that has @ and '.' Symbols.
+  IND-24          The system shall present a datetime picker to select a date.
+  IND-25          The system shall display text in English language.
+  IND-26          The system shall read bar code labels from barcode labels when an item is scanned.
 
 4.3. Inventory Management  
 ---------------------------
