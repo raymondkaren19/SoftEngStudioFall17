@@ -64,7 +64,7 @@ requirements.
 
     The following conventions are used in this document:
 
-> ***Main Titles***
+***Main Titles***
 
 -   Font: Arial
 
@@ -72,7 +72,7 @@ requirements.
 
 -   Face: Bold
 
-> ***Subsection Titles***
+***Subsection Titles***
 
 -   Font: Arial
 
@@ -80,7 +80,7 @@ requirements.
 
 -   Face: Bold or Italicized
 
-> ***Body***
+***Body***
 
 -   Font: Arial
 
@@ -273,48 +273,17 @@ Figure 1. Context diagram for the Inventory Management System.
 4.1. User Account Management
 ----------------------------
 
-+-----------------------------------+-----------------------------------+
-| **Object ID**                     | []{#_Hlk496629916                 |
-|                                   | .anchor}**Object Text**           |
-+===================================+===================================+
-| > UAM-01                          | The system shall require user     |
-|                                   | authentication credentials for    |
-|                                   | supplier access.                  |
-+-----------------------------------+-----------------------------------+
-| > UAM-02                          | The system shall require user     |
-|                                   | authentication credentials for    |
-|                                   | inventory management access.      |
-+-----------------------------------+-----------------------------------+
-| > UAM-03                          | The system shall permit supplier  |
-|                                   | profile updates to the logged in  |
-|                                   | supplier profile with supplier    |
-|                                   | access credentials.               |
-+-----------------------------------+-----------------------------------+
-| > UAM-04                          | The system shall permit creation  |
-|                                   | of purchase orders using supplier |
-|                                   | access credentials.               |
-+-----------------------------------+-----------------------------------+
-| > UAM-05                          | The system shall permit viewing   |
-|                                   | of purchase order status using    |
-|                                   | supplier access credentials.      |
-+-----------------------------------+-----------------------------------+
-| > UAM-06                          | The system shall permit supplier  |
-|                                   | profile updates to all supplier   |
-|                                   | profiles using management access  |
-|                                   | credentials.                      |
-+-----------------------------------+-----------------------------------+
-| > UAM-07                          | The system shall permit creation  |
-|                                   | of purchase orders using          |
-|                                   | management access credentials.    |
-+-----------------------------------+-----------------------------------+
-| > UAM-08                          | The system shall permit viewing   |
-|                                   | of purchase order status using    |
-|                                   | management access credentials.    |
-+-----------------------------------+-----------------------------------+
-| > UAM-09                          | The system shall permit editing   |
-|                                   | of purchase orders using          |
-|                                   | management access credentials.    |
-+-----------------------------------+-----------------------------------+
+  **Object ID**   []{#_Hlk496629916 .anchor}**Object Text**
+  --------------- ----------------------------------------------------------------------------------------------------------------------
+  UAM-01          The system shall require user authentication credentials for supplier access.
+  UAM-02          The system shall require user authentication credentials for inventory management access.
+  UAM-03          The system shall permit supplier profile updates to the logged in supplier profile with supplier access credentials.
+  UAM-04          The system shall permit creation of purchase orders using supplier access credentials.
+  UAM-05          The system shall permit viewing of purchase order status using supplier access credentials.
+  UAM-06          The system shall permit supplier profile updates to all supplier profiles using management access credentials.
+  UAM-07          The system shall permit creation of purchase orders using management access credentials.
+  UAM-08          The system shall permit viewing of purchase order status using management access credentials.
+  UAM-09          The system shall permit editing of purchase orders using management access credentials.
 
 4.2. Inventory Data  
 ---------------------
@@ -333,59 +302,56 @@ Figure 1. Context diagram for the Inventory Management System.
 |                                   | The system supports UPC-A barcode |
 |                                   | format.                           |
 +-----------------------------------+-----------------------------------+
-| IND-04                            | > The system shall limit UPC-A    |
-|                                   | > barcode field to 12 numeric     |
-|                                   | > digits. No characters are       |
-|                                   | > allowed.                        |
+| IND-04                            | The system shall limit UPC-A      |
+|                                   | barcode field to 12 numeric       |
+|                                   | digits. No characters are         |
+|                                   | allowed.                          |
 +-----------------------------------+-----------------------------------+
-| IND-05                            | > The system shall support UPC-A  |
-|                                   | > barcode either by typing or     |
-|                                   | > scanning the barcode.           |
+| IND-05                            | The system shall support UPC-A    |
+|                                   | barcode either by typing or       |
+|                                   | scanning the barcode.             |
 +-----------------------------------+-----------------------------------+
-| IND-06                            | > The system shall validate       |
-|                                   | > entered UPC barcode as per      |
-|                                   | > UPC-A Code assignment.          |
+| IND-06                            | The system shall validate entered |
+|                                   | UPC barcode as per UPC-A Code     |
+|                                   | assignment.                       |
 +-----------------------------------+-----------------------------------+
-| IND-07                            | > The system shall have a         |
-|                                   | > manufacturing name for each     |
-|                                   | > item.                           |
+| IND-07                            | The system shall have a           |
+|                                   | manufacturing name for each item. |
 +-----------------------------------+-----------------------------------+
-| IND-08                            | > The system shall have a         |
-|                                   | > warehouse location for each     |
-|                                   | > item.                           |
+| IND-08                            | The system shall have a warehouse |
+|                                   | location for each item.           |
 +-----------------------------------+-----------------------------------+
-| IND-09                            | > The system shall maintain the   |
-|                                   | > number of inventory items that  |
-|                                   | > are available in store.         |
+| IND-09                            | The system shall maintain the     |
+|                                   | number of inventory items that    |
+|                                   | are available in store.           |
 +-----------------------------------+-----------------------------------+
-| IND-10                            | > The system shall maintain the   |
-|                                   | > number of inventory items that  |
-|                                   | > are available in warehouse.     |
+| IND-10                            | The system shall maintain the     |
+|                                   | number of inventory items that    |
+|                                   | are available in warehouse.       |
 +-----------------------------------+-----------------------------------+
-| IND-11                            | > The system shall maintain a     |
-|                                   | > reorder quantity value for      |
-|                                   | > refills.                        |
+| IND-11                            | The system shall maintain a       |
+|                                   | reorder quantity value for        |
+|                                   | refills.                          |
 +-----------------------------------+-----------------------------------+
-| IND-12                            | > The system shall maintain a     |
-|                                   | > reorder unit type field for     |
-|                                   | > each item.                      |
+| IND-12                            | The system shall maintain a       |
+|                                   | reorder unit type field for each  |
+|                                   | item.                             |
 +-----------------------------------+-----------------------------------+
-| IND-13                            | > The system shall provide five   |
-|                                   | > reorder unit types: case,       |
-|                                   | > two-pack, single, by volume and |
-|                                   | > by weight.                      |
+| IND-13                            | The system shall provide five     |
+|                                   | reorder unit types: case,         |
+|                                   | two-pack, single, by volume and   |
+|                                   | by weight.                        |
 +-----------------------------------+-----------------------------------+
-| IND-14                            | > The system shall allow          |
-|                                   | > backorder date for each         |
-|                                   | > inventory item.                 |
+| IND-14                            | The system shall allow backorder  |
+|                                   | date for each inventory item.     |
 +-----------------------------------+-----------------------------------+
-| IND-15                            | > The system shall allow one or   |
-|                                   | > multiple supplier name(s) for   |
-|                                   | > each inventory item.            |
+| IND-15                            | The system shall allow one or     |
+|                                   | multiple supplier name(s) for     |
+|                                   | each inventory item.              |
 +-----------------------------------+-----------------------------------+
-| IND-16                            | > The system shall provide field  |
-|                                   | > for per-item retail Sale price  |
-|                                   | > for each inventory item.        |
+| IND-16                            | The system shall provide field    |
+|                                   | for per-item retail Sale price    |
+|                                   | for each inventory item.          |
 +-----------------------------------+-----------------------------------+
 | IND-17                            | The system shall provide entry    |
 |                                   | for saving supplier item info.    |
@@ -467,38 +433,15 @@ Figure 1. Context diagram for the Inventory Management System.
 4.5. Purchase Order Management  
 --------------------------------
 
-+-----------------------------------+-----------------------------------+
-| **Object ID**                     | []{#_Hlk496630592                 |
-|                                   | .anchor}**Object Text**           |
-+===================================+===================================+
-| POM-01                            | The inventory management software |
-|                                   | shall support creation of         |
-|                                   | customer purchase orders.         |
-+-----------------------------------+-----------------------------------+
-| > POM-02                          | The inventory management software |
-|                                   | shall support modification of a   |
-|                                   | purchase order's objects.         |
-+-----------------------------------+-----------------------------------+
-| > POM-03                          | The inventory management software |
-|                                   | shall allow the list display of   |
-|                                   | all purchase orders.              |
-+-----------------------------------+-----------------------------------+
-| > POM-04                          | The inventory management software |
-|                                   | shall allow the display of one    |
-|                                   | purchase order.                   |
-+-----------------------------------+-----------------------------------+
-| > POM-05                          | The inventory management software |
-|                                   | shall allow term criteria         |
-|                                   | searching of purchase orders.     |
-+-----------------------------------+-----------------------------------+
-| > POM-01                          | The inventory management software |
-|                                   | shall support creation of         |
-|                                   | customer purchase orders.         |
-+-----------------------------------+-----------------------------------+
-| > POM-02                          | The inventory management software |
-|                                   | shall support modification of a   |
-|                                   | purchase order's objects.         |
-+-----------------------------------+-----------------------------------+
+  **Object ID**   []{#_Hlk496630592 .anchor}**Object Text**
+  --------------- ---------------------------------------------------------------------------------------------
+  POM-01          The inventory management software shall support creation of customer purchase orders.
+  POM-02          The inventory management software shall support modification of a purchase order's objects.
+  POM-03          The inventory management software shall allow the list display of all purchase orders.
+  POM-04          The inventory management software shall allow the display of one purchase order.
+  POM-05          The inventory management software shall allow term criteria searching of purchase orders.
+  POM-01          The inventory management software shall support creation of customer purchase orders.
+  POM-02          The inventory management software shall support modification of a purchase order's objects.
 
 4.6. Auditing Options
 ---------------------
