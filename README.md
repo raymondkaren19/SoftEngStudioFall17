@@ -22,13 +22,13 @@ Please see the [contributing guide.](CONTRIBUTING.md)
 
 * Please use markdown txt files for all documentation. See Updating Docx documents.
 
-* You do not have to write the documentation in markdown directly. You can use something like Pandoc to convert your document to markdown. 
+* You do not have to write the documentation in markdown directly. You can use something like Pandoc to convert your document to markdown.
 
 #### Updating Docx documents
 
-* Word documents are binary files that can not be tracker for changes in git. We need to keep track of the changes so we are going to use Pandoc to create a mirror Pandoc flavored Markdown txt file that is readable.
+* Word documents are binary files that can not be tracker for changes in git. We need to keep track of the changes so we are going to use Pandoc to create a mirror Pandoc flavored Markdown txt file that is readable in as a plain text file. This is desirable because we can keep track of the changes in a visual form.
 
-* Install [Pandoc](http://pandoc.org/)
+* Install [Pandoc 2.0+ ](http://pandoc.org/installing.html)
 
 * CD into the `doc/ProductOverview/` dir
 * run `pandoc --extract-media ./ ProductOverview.docx -o ProductOverview.txt` This works in macOs and Linux. TODO: Please update this for windows.
