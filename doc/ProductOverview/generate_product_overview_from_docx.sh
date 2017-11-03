@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # This generates the HTML document
-pandoc -s --toc -c ./css/github-style-markdown.css -o ProductOverview.html --extract-media ./ ProductOverview.docx
+pandoc -s --toc -c ./css/github-style-markdown.css -o index.html --extract-media ./ ProductOverview.docx
 
 
 # This generates readable text file using pandoc flavored markdown.
