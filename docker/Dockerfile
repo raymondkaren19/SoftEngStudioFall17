@@ -78,9 +78,8 @@ RUN sed 's@session\s*required\s*pam_loginuid.so@session optional pam_loginuid.so
 
 ENV NOTVISIBLE "in users profile"
 RUN echo "export VISIBLE=now" >> /etc/profile
+ADD supervisord-sshd.conf /etc/supervisor/conf.d/supervisord-sshd.conf
 
 EXPOSE 22 3306 8080
-
-CMD ["/usr/sbin/sshd", "-D"]
 
 ENTRYPOINT ["/run.sh"]

@@ -10,13 +10,19 @@ https://docs.nexcess.net/article/how-to-change-ssh-passwords-from-the-cli.html
 
 ## Password for the user, run the container on the background and map ports
 ## Change the MySQL password beforing running. Take note.
-`docker run -d --name="tomcat-mysql-run" -e MYSQL_PASSWORD=root -p 3306:3306 -p 8080:8080 -p 2222:22 tomcat-mysql-image`
+`docker run -d --name="tomcat-mysql-run" -e MYSQL_PASSWORD=ChangeMeToSomeReallyLongPassword -p 3306:3306 -p 8080:8080 -p 2222:22 tomcat-mysql-image`
+
+Delete the container if you are changing the build image. 
+`docker rm tomcat-mysql-run`
 
 ### SSH into running container
 
 From host machine:
-`ssh ant-dev@0.0.0.0 -p 2222`
+`ssh ssh-docker@0.0.0.0 -p 2222`
 From outside host machine, replace 0.0.0.0 with host machine address.
+
+### Alternatibly you can run bash from the host machine.
+`docker exec -it tomcat-mysql-run /bin/bash`
 
 ## Files derived from Source
 `https://github.com/Aallam/Dockerfiles/tree/master/tomcat-mysql`
