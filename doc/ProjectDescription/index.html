@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>ProjectDescription</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      .smallcaps{font-variant: small-caps;}
+      .line-block{white-space: pre-line;}
+      .column{display: inline-block;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h3 id="course-project-description-inventory-manager">Course Project Description Inventory manager </h3>
+<ul>
+<li><p>The course project is to create an online system for managing a retail store's inventory.</p></li>
+<li><p>To be consistent with GPS program requirements and courses, use Java technology for this assignment.</p></li>
+<li><p>I envision a back-end database server accessed via client software, a Web browser, or both.</p></li>
+</ul>
+<h3 id="manage-the-inventory">Manage the inventory – </h3>
+<p>The system must be able to:</p>
+<ul>
+<li><p>add and remove items from the store's inventory.</p></li>
+<li><p>generate online reports of current inventory-on-hand.</p></li>
+<li><p>Generate online reports of outstanding orders to suppliers.</p></li>
+<li><p>Generate purchase orders to suppliers <sub>­</sub>using any of paper, ANSI ASC X12 EDI messages, or XML. Generate POs upon request or upon inventory reaching the reorder level for items. Since there will not be actual suppliers to connect to, the system should write POs to the appropriate type of file.</p></li>
+<li><p>Update the inventory using a UI or by reading an XML file with an appropriate DTD.</p></li>
+</ul>
+<h3 id="inventory-items">Inventory Items –</h3>
+<ul>
+<li><p>Item name</p></li>
+<li><p>SKU (stock keeping unit) number(s) (store-assigned number for a specific item reflecting sizes, colors, or other variances). A store which sells a shirt in 5 sizes and 5 colors needs 25 SKUs for this item.</p></li>
+<li><p>UPC number. Universal Product Code number. The software should validate any entered UPC number to verify that it is correct. There is a specific procedure for this validation.</p></li>
+<li><p>Manufacturer name</p></li>
+<li><p>Quantity-on-hand</p></li>
+<li><p>Warehouse location</p></li>
+<li><p>Reorder quantity. How many of the item should be reordered when stock is low.</p></li>
+<li><p>Reorder unit (case, two-pack, each, by volume, by weight, etc.)</p></li>
+<li><p>Backorder date. This is the date when the next order for this item is expected to be delivered.</p></li>
+<li><p>Supplier name(s). The supplier from whom to purchase this item. There may be multiple suppliers. The manufacturer may be a supplier, or it may be a separate organization.</p></li>
+<li><p>Per -item retail Sale Price. Price that the store sells each item to end customers.</p></li>
+</ul>
+<h3 id="supplier-items">Supplier Items –</h3>
+<ul>
+<li><p>Supplier name</p></li>
+<li><p>Supplier address and telephone number</p></li>
+<li><p>Supplier EDI preference (paper order forms, X12, XML)</p></li>
+<li><p>Payment terms. Common payment terms might be cash-on-delivery, net 30 days, or other terms.</p></li>
+<li><p>Incoterms: The international commercial terms that apply to orders from this supplier.</p></li>
+</ul>
+<h3 id="order-items">Order Items –</h3>
+<ul>
+<li><p>Supplier information (name, address, etc.)</p></li>
+<li><p>Items ordered with quantities and purchase prices.</p></li>
+<li><p>Required delivery date</p></li>
+<li><p>Total price for order.</p></li>
+</ul>
+<h3 id="auditing">Auditing – </h3>
+<ul>
+<li><p>All accesses to the system must be tracked in a way that allows auditing of system usage to be done.</p></li>
+<li><p>User, type, time and date of each access should be maintained.</p></li>
+</ul>
+<h3 id="system-administrator-and-security">System administrator and security – </h3>
+<ul>
+<li><p>The software should provide administrative functions for backing up the data and for checking integrity of the database.</p></li>
+<li><p>Users must be required to authenticate and log in to the system in order to use it.</p></li>
+</ul>
+</body>
+</html>

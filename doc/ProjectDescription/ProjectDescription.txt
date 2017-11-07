@@ -1,0 +1,102 @@
+### Course Project Description Inventory manager 
+
+-   The course project is to create an online system for managing a
+    retail store\'s inventory.
+
+-   To be consistent with GPS program requirements and courses, use Java
+    technology for this assignment.
+
+-   I envision a back-end database server accessed via client software,
+    a Web browser, or both.
+
+### Manage the inventory -- 
+
+The system must be able to:
+
+-   add and remove items from the store\'s inventory.
+
+-   generate online reports of current inventory-on-hand.
+
+-   Generate online reports of outstanding orders to suppliers.
+
+-   Generate purchase orders to suppliers ~­~using any of paper, ANSI
+    ASC X12 EDI messages, or XML. Generate POs upon request or upon
+    inventory reaching the reorder level for items. Since there will not
+    be actual suppliers to connect to, the system should write POs to
+    the appropriate type of file.
+
+-   Update the inventory using a UI or by reading an XML file with an
+    appropriate DTD.
+
+### Inventory Items --
+
+-   Item name
+
+-   SKU (stock keeping unit) number(s) (store-assigned number for a
+    specific item reflecting sizes, colors, or other variances). A store
+    which sells a shirt in 5 sizes and 5 colors needs 25 SKUs for this
+    item.
+
+-   UPC number. Universal Product Code number. The software should
+    validate any entered UPC number to verify that it is correct. There
+    is a specific procedure for this validation.
+
+-   Manufacturer name
+
+-   Quantity-on-hand
+
+-   Warehouse location
+
+-   Reorder quantity. How many of the item should be reordered when
+    stock is low.
+
+-   Reorder unit (case, two-pack, each, by volume, by weight, etc.)
+
+-   Backorder date. This is the date when the next order for this item
+    is expected to be delivered.
+
+-   Supplier name(s). The supplier from whom to purchase this item.
+    There may be multiple suppliers. The manufacturer may be a supplier,
+    or it may be a separate organization.
+
+-   Per -item retail Sale Price. Price that the store sells each item to
+    end customers.
+
+### Supplier Items --
+
+-   Supplier name
+
+-   Supplier address and telephone number
+
+-   Supplier EDI preference (paper order forms, X12, XML)
+
+-   Payment terms. Common payment terms might be cash-on-delivery, net
+    30 days, or other terms.
+
+-   Incoterms: The international commercial terms that apply to orders
+    from this supplier.
+
+### Order Items --
+
+-   Supplier information (name, address, etc.)
+
+-   Items ordered with quantities and purchase prices.
+
+-   Required delivery date
+
+-   Total price for order.
+
+### Auditing -- 
+
+-   All accesses to the system must be tracked in a way that allows
+    auditing of system usage to be done.
+
+-   User, type, time and date of each access should be maintained.
+
+### System administrator and security -- 
+
+-   The software should provide administrative functions for backing up
+    the data and for checking integrity of the database.
+
+-   Users must be required to authenticate and log in to the system in
+    order to use it.
