@@ -23,8 +23,10 @@ maven_build:
 
 deploy-to-staging:
   stage: deploy
+  image: maven:3.3.9-jdk-8
   script:
     - echo "Deploy to staging server"
+    - mvn deploy
     - docker cp target/inventorymanager-webapp.war tomcat-mysql-run:/opt/tomcat/webapps/inventorymanager-webapp.war
   environment:
     name: staging
