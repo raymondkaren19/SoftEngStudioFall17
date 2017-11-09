@@ -1,22 +1,6 @@
-# These are the default stages. You don't need to explicitly define them. But you could define any stages you need.
-stages:
-  - build
-  - test
-  - deploy
-
-# This is the name of the job. You can choose it freely.
 maven_build:
-  # A job is always executed within a stage. If no stage is set, it defaults to 'test'
   stage: test
-  # Since we require Maven for this job, we can restrict the job to runners with a certain tag. Of course, we need to configure a runner with the tag maven with a maven installation
   image: maven:3.3.9-jdk-8
-
-  artifacts:
-    paths:
-    - target/*.war
-
-  # Here you can execute arbitrate terminal commands.
-  # If any of the commands returns a non zero exit code the job fails
   script:
     - echo "Building project with maven"
     - mvn verify
@@ -24,6 +8,12 @@ maven_build:
 deploy-to-staging:
   stage: deploy
   image: maven:3.3.9-jdk-8
+  services:
+    - docker:dind
+  artifacts:
+    paths:
+      - target/*.war
+
   script:
     - echo "Deploy to staging server"
     - mvn package
@@ -31,5 +21,5 @@ deploy-to-staging:
   environment:
     name: staging
     url: http://ec2-52-87-247-183.compute-1.amazonaws.com/root/SoftEngStudioFall17:8888/inventorymanager-webapp/
-  only:
-  - master
+  #only: # Enable when testing is done
+  #- master
