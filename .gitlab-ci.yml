@@ -20,3 +20,14 @@ maven_build:
   script:
     - echo "Building project with maven"
     - mvn verify
+
+deploy-to-staging:
+  stage: deploy
+  script:
+    - echo "Deploy to staging server"
+    - docker cp target/inventorymanager-webapp.war tomcat-mysql-run:/opt/tomcat/webapps/inventorymanager-webapp.war
+  environment:
+    name: staging
+    url: http://ec2-52-87-247-183.compute-1.amazonaws.com/root/SoftEngStudioFall17:8888/inventorymanager-webapp/
+  only:
+  - master

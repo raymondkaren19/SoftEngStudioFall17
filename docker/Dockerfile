@@ -67,6 +67,7 @@ RUN apt-get update && \
 
 # Setup Users
 RUN groupadd -r ssh-docker && useradd -r -g ssh-docker ssh-docker
+RUN sudo adduser ssh-docker sudo
 
 # Setup SSH server options
 RUN mkdir /var/run/sshd
