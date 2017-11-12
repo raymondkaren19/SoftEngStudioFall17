@@ -11,10 +11,9 @@ deploy-to-staging:
  artifacts:
   paths:
    - target/*.war
- variables:
-  TOMCAT_HOST: $(ip route show | awk '/default/ {print $3}')
  script:
   - echo "Deploy to staging server"
+  - TOMCAT_HOST=$(ip route show | awk '/default/ {print $3}')
   - mvn package
   - curl -T "target/inventorymanager-webapp.war" "http://tomcat:${TOMCAT_PASSWORD}@${TOMCAT_HOST}:8888/manager/text/deploy?path=/inventorymanager-webapp&update=true"
  environment:
