@@ -8,20 +8,16 @@ maven_build:
 deploy-to-staging:
   stage: deploy
   image: maven:3.3.9-jdk-8
-  services:
-    - docker:dind
   artifacts:
     paths:
       - target/*.war
-  #variables:
-  #  DOCKER_HOST: tcp://my_docker_host:2376
+ variables:
+    TOMCAT_HOST: "$(netstat -nr | grep '^0\.0\.0\.0' | awk '{print $2}')"
 
   script:
-   # - curl -fsSL get.docker.com -o get-docker.sh
-   # - sh get-docker.sh
     - echo "Deploy to staging server"
     - mvn package
-    - docker cp target/inventorymanager-webapp.war tomcat-mysql-run:/opt/tomcat/webapps/inventorymanager-webapp.war
+    - curl -T "target/inventorymanager-webapp.war" "http://tomcat:${TOMCAT_PASSWORD}@${TOMCAT_HOST}:8888/manager/text/deploy?path=/inventorymanager-webapp&update=true"
   environment:
     name: staging
     url: http://ec2-52-87-247-183.compute-1.amazonaws.com/root/SoftEngStudioFall17:8888/inventorymanager-webapp/
