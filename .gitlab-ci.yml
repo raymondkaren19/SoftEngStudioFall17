@@ -1,25 +1,22 @@
- maven_build:
-  stage: test
-  image: maven:3.3.9-jdk-8
-  script:
-    - echo "Building project with maven"
-    - mvn verify
+maven_build:
+ stage: test
+ image: maven:3.3.9-jdk-8
+ script:
+  - echo "Building project with maven"
+  - mvn verify
 
- deploy-to-staging:
-  stage: deploy
-  image: maven:3.3.9-jdk-8
-  artifacts:
-    paths:
-      - target/*.war
+deploy-to-staging:
+ stage: deploy
+ image: maven:3.3.9-jdk-8
+ artifacts:
+  paths:
+   - target/*.war
  variables:
-    TOMCAT_HOST: "$(ip route show | awk '/default/ {print $3}')"
-
-  script:
-    - echo "Deploy to staging server"
-    - mvn package
-    - curl -T "target/inventorymanager-webapp.war" "http://tomcat:${TOMCAT_PASSWORD}@${TOMCAT_HOST}:8888/manager/text/deploy?path=/inventorymanager-webapp&update=true"
-  environment:
-    name: staging
-    url: http://ec2-52-87-247-183.compute-1.amazonaws.com/root/SoftEngStudioFall17:8888/inventorymanager-webapp/
-  #only: # Enable when testing is done
-  #- master
+  TOMCAT_HOST: "$(ip route show | awk '/default/ {print $3}')"
+ script:
+  - echo "Deploy to staging server"
+  - mvn package
+  - curl -T "target/inventorymanager-webapp.war" "http://tomcat:${TOMCAT_PASSWORD}@${TOMCAT_HOST}:8888/manager/text/deploy?path=/inventorymanager-webapp&update=true"
+ environment:
+  name: staging
+  url: http://ec2-52-87-247-183.compute-1.amazonaws.com/root/SoftEngStudioFall17:8888/inventorymanager-webapp/
