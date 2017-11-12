@@ -18,4 +18,20 @@ deploy-to-staging:
   - curl -T "target/inventorymanager-webapp.war" "http://tomcat:${TOMCAT_PASSWORD}@${TOMCAT_HOST}:8888/manager/text/deploy?path=/inventorymanager-webapp&update=true"
  environment:
   name: staging
-  url: http://ec2-52-87-247-183.compute-1.amazonaws.com/root/SoftEngStudioFall17:8888/inventorymanager-webapp/
+  url: http://ec2-52-87-247-183.compute-1.amazonaws.com:8888/inventorymanager-webapp/
+ only:
+  - master
+
+deploy-to-production:
+ stage: deploy
+ image: maven:3.3.9-jdk-8
+ artifacts:
+  paths:
+   - target/*.war
+ script:
+  - echo "Deploy to production server"
+ environment:
+  name: production
+ only:
+  - master
+ when: manual
