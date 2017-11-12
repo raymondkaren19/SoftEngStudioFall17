@@ -48,8 +48,15 @@ ADD tomcat-run.sh /tomcat-run.sh
 ADD run.sh /run.sh
 ADD supervisord-mysql.conf /etc/supervisor/conf.d/supervisord-mysql.conf
 ADD supervisord-tomcat.conf /etc/supervisor/conf.d/supervisord-tomcat.conf
+
+# if password was set replace the xml file
+RUN sed -i -e 's/s3cret/'"${TOMCAT_PASSWORD:-s3cret}"'/g' settings.xml
+RUN sed -i -e 's/s3cret/'"${TOMCAT_PASSWORD:-s3cret}"'/g' tomcat-users.xml
 ADD settings.xml $TOMCAT_HOME/conf/settings.xml
 ADD tomcat-users.xml $TOMCAT_HOME/conf/tomcat-users.xml
+RUN sed -i -e 's/'"${TOMCAT_PASSWORD:-s3cret}"'/s3cret/g' settings.xml
+RUN sed -i -e 's/'"${TOMCAT_PASSWORD:-s3cret}"'/s3cret/g' tomcat-users.xml
+
 ADD context.xml $TOMCAT_HOME/webapps/manager/META-INF/context.xml
 RUN chmod 755 /*.sh
 
@@ -72,7 +79,7 @@ RUN sudo adduser ssh-docker sudo
 # Setup SSH server options
 RUN mkdir /var/run/sshd
 RUN echo "AllowGroups ssh-docker" >> /etc/ssh/sshd_config
-RUN echo 'ssh-docker:devPassword' | chpasswd
+RUN echo 'ssh-docker:'"${SSH_PASSWORD:-devPassword}"'' | chpasswd
 
 # SSH login fix. Otherwise user is kicked off after login
 RUN sed 's@session\s*required\s*pam_loginuid.so@session optional pam_loginuid.so@g' -i /etc/pam.d/sshd

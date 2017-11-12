@@ -42,3 +42,4 @@ output.json #Since Android Studio 3.0
 /build
 /captures
 .externalNativeBuild
+.vscode/
