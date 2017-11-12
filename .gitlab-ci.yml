@@ -12,7 +12,7 @@ deploy-to-staging:
   paths:
    - target/*.war
  variables:
-  TOMCAT_HOST: "$(ip route show | awk '/default/ {print $3}')"
+  TOMCAT_HOST: $(ip route show | awk '/default/ {print $3}')
  script:
   - echo "Deploy to staging server"
   - mvn package
