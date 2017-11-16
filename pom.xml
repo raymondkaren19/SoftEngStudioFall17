@@ -6,6 +6,9 @@
   <packaging>war</packaging>
   <version>0.0.1-SNAPSHOT</version>
   <name>inventorymanager-webapp</name>
+  <properties>
+  <jpa.version>1.0.0.Final</jpa.version>
+  </properties>
   <dependencies>
     <dependency>
       <groupId>junit</groupId>
@@ -13,6 +16,12 @@
       <version>3.8.1</version>
       <scope>test</scope>
     </dependency>
+    <dependency>
+	   <groupId>javax.persistence</groupId>
+	   <artifactId>persistence-api</artifactId>
+	   <version>1.0.2</version>
+	   <scope>provided</scope>
+    </dependency>    
   </dependencies>
   <build>
     <finalName>inventorymanager-webapp</finalName>

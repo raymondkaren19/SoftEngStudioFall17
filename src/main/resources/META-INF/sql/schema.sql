@@ -12,3 +12,22 @@ CREATE TABLE SUPPLIER (
      , INCOTERMS VARCHAR(250)
      , PRIMARY KEY (ID)
 );
+
+CREATE TABLE InventoryItem (
+  ItemId int(11) unsigned NOT NULL AUTO_INCREMENT,
+  ItemName varchar(255) NOT NULL,
+  ItemUPCNumber  varchar(12) NOT NULL,
+  ItemSKU  varchar(25) NOT NULL,
+  ManufacturerName VARCHAR(50) NOT NULL,
+  InventoryOnHand  int(11) NOT NULL,
+  WarehouseLocation VARCHAR(50) NOT NULL,
+  ReorderQuantity  int(11) NOT NULL,
+  ReorderUnit VARCHAR(20) NOT NULL,
+  BackorderDate VARCHAR (20) NOT NULL,
+  PerItemRetailSalePrice float(11) NOT NULL, 
+  SupplierId  INT,   
+  PRIMARY KEY (ItemId), 
+  FOREIGN KEY (SupplierId) 
+      REFERENCES SUPPLIER (ID)
+      ON DELETE CASCADE
+);
