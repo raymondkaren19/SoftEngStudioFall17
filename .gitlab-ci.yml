@@ -30,6 +30,9 @@ deploy-to-production:
    - target/*.war
  script:
   - echo "Deploy to production server"
+  - TOMCAT_HOST=ec2-52-23-230-241.compute-1.amazonaws.com
+  - mvn package
+  - curl -T "target/inventorymanager-webapp.war" "http://tomcat:${TOMCAT_PASS_DEPLOYMENT}@${TOMCAT_HOST}/manager/text/deploy?path=/&update=true"
  environment:
   name: production
  only:
