@@ -20,19 +20,16 @@ import edu.brandeis.spring.mvc.domain.InventoryItem;
 public class InventoryItemServiceImpl implements InventoryItemService {
     private InventoryItemRepository inventoryItemRepository;
 
-    @Override
     @Transactional(readOnly=true)
     public List<InventoryItem> findAll() {
         return Lists.newArrayList(inventoryItemRepository.findAll());
     }
 
-    @Override
     @Transactional(readOnly=true)
     public InventoryItem findById(Long id) {
         return inventoryItemRepository.findOne(id);
     }
 
-    @Override
     public InventoryItem save(InventoryItem inventoryItem) {
         return inventoryItemRepository.save(inventoryItem);
     }

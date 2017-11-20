@@ -20,19 +20,16 @@ import edu.brandeis.spring.mvc.domain.Supplier;
 public class SupplierServiceImpl implements SupplierService {
     private SupplierRepository supplierRepository;
 
-    @Override
     @Transactional(readOnly=true)
     public List<Supplier> findAll() {
         return Lists.newArrayList(supplierRepository.findAll());
     }
 
-    @Override
     @Transactional(readOnly=true)
     public Supplier findById(Long id) {
         return supplierRepository.findOne(id);
     }
 
-    @Override
     public Supplier save(Supplier supplier) {
         return supplierRepository.save(supplier);
     }
