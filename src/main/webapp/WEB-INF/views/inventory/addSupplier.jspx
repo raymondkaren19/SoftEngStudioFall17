@@ -7,7 +7,18 @@
     <jsp:directive.page contentType="text/html;charset=UTF-8" />
     <jsp:output omit-xml-declaration="yes" />
 
-    <spring:message code="label_addSupplier" var="labeladdSupplier"/>
+    <spring:message code="label_supplier_new" var="labelSupplierNew"/>
+    <spring:message code="label_supplier_update" var="labelSupplierUpdate"/>
+    <spring:message code="label_supplier_name" var="labelSupplierName"/>
+    <spring:message code="label_supplier_street" var="labelSupplierStreet"/>
+    <spring:message code="label_supplier_city" var="labelSupplierCity"/>
+    <spring:message code="label_supplier_state" var="labelSupplierState"/>
+    <spring:message code="label_supplier_zip" var="labelSupplierZip"/>
+    <spring:message code="label_supplier_phone" var="labelSupplierPhone"/>
+    <spring:message code="label_supplier_edi" var="labelSupplierEdi"/>
+    <spring:message code="label_supplier_payment" var="labelSupplierPayment"/>
+    <spring:message code="label_supplier_incoterms" var="labelSupplierIncoterms"/>
+ 
     <spring:url var="addSupplierUrl" value="/j_spring_add_supplier" />
 
     <h3>${addSupplierHeaderText}</h3>
