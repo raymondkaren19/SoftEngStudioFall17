@@ -26,6 +26,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.Part;
 import edu.brandeis.spring.mvc.domain.*;
+import edu.brandeis.spring.mvc.service.*;
 
 @RequestMapping("/items")
 @Controller
