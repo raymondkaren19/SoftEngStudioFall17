@@ -25,7 +25,22 @@
 
     <sec:authorize access="isAnonymous()">
         <div id="addSupplier">
-            <form name="addSupplierForm" action="${addSupplierUrl}" method="post">
+            <form:form modelAttribute="supplier" id="supplierAddForm" method="post"
+                   enctype="multipart/form-data">
+                   
+                <c:if test="${not empty message}">
+                    <div id="message" class="${message.type}">${message.message}</div>
+                </c:if>
+
+                <form:label path="suppliername">
+                    ${labelSupplierName}*
+                </form:label>
+                <form:input path="suppliername" />
+                <div>
+                    <form:errors path="suppliername" cssClass="error" />
+                </div>
+                <p/>
+<!--
                 <table>
                     <caption align="left">Supplier:</caption>
                     <tr>
@@ -61,10 +76,17 @@
                         <td><input type="text" name="j_supplierEmail"/></td>
                     </tr>
                     <tr>
-                        <td colspan="2" align="center"><input name="submit" type="submit"
-                                                              value="addSupplier"/></td>
+                        <td align="center">
+                            <button type="submit" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only">
+                            <span class="ui-button-text">Save</span>
+                        </td>
+                        <td align="center">
+                            <button type="reset" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only">
+                            <span class="ui-button-text">Reset</span>
+                       </td>
                     </tr>
                 </table>
+-->
             </form>
         </div>
     </sec:authorize>
