@@ -73,7 +73,7 @@ public class InventoryItemController {
         redirectAttributes.addFlashAttribute("message", new Message("success",
                 messageSource.getMessage("book_save_success", new Object[]{}, locale)));
 
-        logger.info("Inventory Item id: " + item.getId());
+        logger.info("Inventory Item id: " + item.getItemId());
 
         itemService.save(item);
         return "redirect:/inventory/";
