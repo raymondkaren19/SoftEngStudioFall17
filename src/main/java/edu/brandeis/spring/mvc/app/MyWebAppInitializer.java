@@ -10,7 +10,7 @@ import org.springframework.web.context.support.XmlWebApplicationContext;
 import org.springframework.web.servlet.DispatcherServlet;
 
 public class MyWebAppInitializer implements WebApplicationInitializer {
-    @Override
+ 
     public void onStartup(ServletContext container) throws ServletException {
         XmlWebApplicationContext appContext = new XmlWebApplicationContext();
 
