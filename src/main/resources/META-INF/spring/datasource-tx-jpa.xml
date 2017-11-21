@@ -36,7 +36,7 @@
         <property name="jpaVendorAdapter">
             <bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter" />
         </property>
-        <property name="packagesToScan" value="com.termproject"/>
+        <property name="packagesToScan" value="edu.brandeis.spring.mvc"/>
         <property name="jpaProperties">
             <props>
                 <prop key="hibernate.dialect">
@@ -52,7 +52,7 @@
 
     <context:annotation-config/>
 
-    <jpa:repositories base-package="com.termproject"
+    <jpa:repositories base-package="edu.brandeis.spring.mvc"
                       entity-manager-factory-ref="emf"
                       transaction-manager-ref="transactionManager"/>
 </beans>
