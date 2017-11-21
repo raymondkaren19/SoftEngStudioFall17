@@ -25,9 +25,9 @@
                           '${labelInventoryItemInventory}',
                           '${labelInventoryItemPrice}', ],
                 colModel :[
-                    {name:'Itemname', index:'itemname', width:50},
-                    {name:'manufacturername', index:'manufacturername', width:50},
-                    {name:'inventoryonhand', index:'inventoryonhand', width:100},
+                    {name:'itemname', index:'itemname', width:50},
+                    {name:'manufacturername', index:'manufacturername', width:100},
+                    {name:'inventoryonhand', index:'inventoryonhand', width:50},
                     {name:'peritemretailsaleprice', index:'peritemretailsaleprice', width:50},
                 ],
                 jsonReader : {

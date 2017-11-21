@@ -9,9 +9,9 @@
 
     <http use-expressions="true">
         <intercept-url pattern='/WEB-INF' access='permitAll' />
-        <form-login login-page="/items" authentication-failure-url="/security/loginfail"
-                    default-target-url="/items" />
-        <logout logout-success-url="/items"/>
+        <form-login login-page="/inventory" authentication-failure-url="/security/loginfail"
+                    default-target-url="/inventory" />
+        <logout logout-success-url="/inventory"/>
     </http>
 
     <authentication-manager>

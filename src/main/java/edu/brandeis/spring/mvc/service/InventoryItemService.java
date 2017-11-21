@@ -6,9 +6,8 @@ import org.springframework.data.domain.Pageable;
 import edu.brandeis.spring.mvc.domain.InventoryItem;
 
 public interface InventoryItemService {
-	List<InventoryItem> findAll();
-	InventoryItem findById(Long id);
-	InventoryItem save(InventoryItem item);
-	   
-	    
+    List<InventoryItem> findAll();
+    InventoryItem findById(Long id);
+    InventoryItem save(InventoryItem item);
+    Page<InventoryItem> findAllByPage(Pageable pageable);
 }

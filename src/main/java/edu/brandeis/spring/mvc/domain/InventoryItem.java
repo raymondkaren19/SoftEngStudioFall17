@@ -26,12 +26,12 @@ public class InventoryItem {
 
     @Id
     @GeneratedValue(strategy = IDENTITY)
-    @Column(name = "ITEMID")
-    public Long getItemId() {
+    @Column(name = "ID")
+    public Long getId() {
         return Id;
     }
 
-    public void setItemId(Long id) {
+    public void setId(Long id) {
         this.Id = id;
     }
 
