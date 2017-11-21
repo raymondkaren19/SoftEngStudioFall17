@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:jsp="http://java.sun.com/JSP/Page"
+     xmlns:c="http://java.sun.com/jsp/jstl/core"
+     xmlns:spring="http://www.springframework.org/tags"
+     version="2.0">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+
+    <spring:message code="label_inventoryitem_list" var="labelInventoryItemList"/>
+    <spring:message code="label_inventoryitem_name" var="labelInventoryItemName"/>
+    <spring:message code="label_inventoryitem_manufacturer" var="labelInventoryItemManufacturer"/>
+    <spring:message code="label_inventoryitem_inventory" var="labelInventoryItemInventory"/>
+    <spring:message code="label_inventoryitem_price" var="labelInventoryItemPrice"/>
+
+    <spring:url value="/inventory/" var="showItemsUrl"/>
+
+    <script type="text/javascript">
+        $(function(){
+            $("#list").jqGrid({
+                url:'${showItemsUrl}/listgrid',
+                datatype: 'json',
+                mtype: 'GET',
+                colNames:['${labelInventoryItemName}',
+                          '${labelInventoryItemManufacturer}',
+                          '${labelInventoryItemInventory}',
+                          '${labelInventoryItemPrice}', ],
+                colModel :[
+                    {name:'Itemname', index:'itemname', width:50},
+                    {name:'manufacturername', index:'manufacturername', width:50},
+                    {name:'inventoryonhand', index:'inventoryonhand', width:100},
+                    {name:'peritemretailsaleprice', index:'peritemretailsaleprice', width:50},
+                ],
+                jsonReader : {
+                    root:"itemData",
+                    page: "currentPage",
+                    total: "totalPages",
+                    records: "totalRecords",
+                    repeatitems: false,
+                    id: "id"
+                },
+                pager: '#pager',
+                rowNum:10,
+                rowList:[10,20,30],
+                sortname: 'itemname',
+                sortorder: 'asc',
+                viewrecords: true,
+                gridview: true,
+                height: 250,
+                width: 500,
+                caption: '${labelInventoryItemList}',
+                onSelectRow: function(id){
+                    document.location.href ="${showItemsUrl}/" + id;
+                }
+            });
+        });
+    </script>
+
+    <c:if test="${not empty message}">
+        <div id="message" class="${message.type}">${message.message}</div>
+    </c:if>
+
+    <h2>${labelInventoryItemList}</h2>
+
+    <div>
+        <table id="list"><tr><td/></tr></table>
+    </div>
+    <div id="pager"></div>
+</div>
