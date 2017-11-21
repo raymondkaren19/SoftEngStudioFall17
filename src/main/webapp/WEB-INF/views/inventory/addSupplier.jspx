@@ -4,57 +4,124 @@
      xmlns:spring="http://www.springframework.org/tags"
      xmlns:sec="http://www.springframework.org/security/tags"
      version="2.0">
+
     <jsp:directive.page contentType="text/html;charset=UTF-8" />
     <jsp:output omit-xml-declaration="yes" />
 
-    <spring:message code="label_addSupplier" var="labeladdSupplier"/>
+    <spring:message code="label_supplier_new" var="labelSupplierNew"/>
+    <spring:message code="label_supplier_update" var="labelSupplierUpdate"/>
+    <spring:message code="label_supplier_name" var="labelSupplierName"/>
+    <spring:message code="label_supplier_street" var="labelSupplierStreet"/>
+    <spring:message code="label_supplier_city" var="labelSupplierCity"/>
+    <spring:message code="label_supplier_state" var="labelSupplierState"/>
+    <spring:message code="label_supplier_zip" var="labelSupplierZip"/>
+    <spring:message code="label_supplier_phone" var="labelSupplierPhone"/>
+    <spring:message code="label_supplier_edi" var="labelSupplierEdi"/>
+    <spring:message code="label_supplier_payment" var="labelSupplierPayment"/>
+    <spring:message code="label_supplier_incoterms" var="labelSupplierIncoterms"/>
+ 
     <spring:url var="addSupplierUrl" value="/j_spring_add_supplier" />
 
-    <h3>${addSupplierHeaderText}</h3>
+    <spring:eval expression="inventoryitem.id == null ? labelSupplierNew:labelSupplierUpdate"
+                 var="formTitle"/>
 
-    <sec:authorize access="isAnonymous()">
-        <div id="addSupplier">
-            <form name="addSupplierForm" action="${addSupplierUrl}" method="post">
-                <table>
-                    <caption align="left">Supplier:</caption>
-                    <tr>
-                        <td>Supplier Name:</td>
-                        <td><input type="text" name="j_supplierName"/></td>
-                    </tr>
-                    <tr>
-                        <td>Address 1:</td>
-                        <td><input type="text" name="j_supplierAddress1"/></td>
-                    </tr>
-                    <tr>
-                        <td>Address 2:</td>
-                        <td><input type="text" name="j_supplierAddress2"/></td>
-                    </tr>
-                    <tr>
-                        <td>City:</td>
-                        <td><input type="text" name="j_supplierCity"/></td>
-                    </tr>
-                    <tr>
-                        <td>State:</td>
-                        <td><input type="text" name="j_supplierState"/></td>
-                    </tr>
-                    <tr>
-                        <td>Zip:</td>
-                        <td><input type="text" name="j_supplierZip"/></td>
-                    </tr>
-                    <tr>
-                        <td>Phone:</td>
-                        <td><input type="text" name="j_supplierPhone"/></td>
-                    </tr>
-                    <tr>
-                        <td>Email:</td>
-                        <td><input type="text" name="j_supplierEmail"/></td>
-                    </tr>
-                    <tr>
-                        <td colspan="2" align="center"><input name="submit" type="submit"
-                                                              value="addSupplier"/></td>
-                    </tr>
-                </table>
-            </form>
-        </div>
-    </sec:authorize>
+    <h1>${formTitle}</h1>
+
+    <div id="supplierUpdate">
+        <form:form modelAttribute="supplier" id="supplierUpdateForm" method="post"
+                   enctype="multipart/form-data">
+
+        <c:if test="${not empty message}">
+                <div id="message" class="${message.type}">${message.message}</div>
+            </c:if>
+
+            <form:label path="name">
+                ${labelSupplierName}*
+            </form:label>
+            <form:input path="name" />
+            <div>
+                <form:errors path="name" cssClass="error" />
+            </div>
+            <p/>
+
+            <form:label path="street">
+                ${labelSupplierStreet}*
+            </form:label>
+            <form:input path="street" />
+            <div>
+                <form:errors path="street" cssClass="error" />
+            </div>
+            <p/>
+
+            <form:label path="city">
+                ${labelSupplierCity}*
+            </form:label>
+            <form:input path="city" />
+            <div>
+                <form:errors path="city" cssClass="error" />
+            </div>
+            <p/>
+
+            <form:label path="state">
+                ${labelSupplierState}*
+            </form:label>
+            <form:input path="state" />
+            <div>
+                <form:errors path="state" cssClass="error" />
+            </div>
+            <p/>
+
+            <form:label path="zipcode">
+                ${labelSupplierZip}*
+            </form:label>
+            <form:input path="zipcode" />
+            <div>
+                <form:errors path="zipcode" cssClass="error" />
+            </div>
+            <p/>
+
+            <form:label path="phone">
+                ${labelSupplierPhone}*
+            </form:label>
+            <form:input path="phone" />
+            <div>
+                <form:errors path="phone" cssClass="error" />
+            </div>
+            <p/>
+
+            <form:label path="edi">
+                ${labelSupplierEdi}*
+            </form:label>
+            <form:input path="edi" />
+            <div>
+                <form:errors path="edi" cssClass="error" />
+            </div>
+            <p/>
+
+            <form:label path="payment">
+                ${labelSupplierPayment}*
+            </form:label>
+            <form:input path="payment" />
+            <div>
+                <form:errors path="payment" cssClass="error" />
+            </div>
+            <p/>
+
+            <form:label path="incoterms">
+                ${labelSupplierIncoterms}*
+            </form:label>
+            <form:input path="incoterms" />
+            <div>
+                <form:errors path="incoterms" cssClass="error" />
+            </div>
+            <p/>
+            
+            <button type="submit" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only">
+                <span class="ui-button-text">Save</span>
+            </button>
+            <button type="reset" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only">
+                <span class="ui-button-text">Reset</span>
+            </button>
+        </form:form>
+    </div>
 </div>
