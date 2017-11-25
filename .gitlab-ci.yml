@@ -18,7 +18,7 @@ deploy-to-staging:
   - curl -T "target/inventorymanager-webapp.war" "http://tomcat:${TOMCAT_PASSWORD}@${TOMCAT_HOST}:8888/manager/text/deploy?path=/inventorymanager-webapp&update=true"
  environment:
   name: staging
-  url: http://ec2-52-87-247-183.compute-1.amazonaws.com:8888/inventorymanager-webapp/
+  url: http://ec2-52-90-192-232.compute-1.amazonaws.com:8888/inventorymanager-webapp/
  only:
   - master
 
