@@ -42,11 +42,12 @@ public class InventoryItemController {
         logger.info("Listing items");
 
         List<InventoryItem> items = itemService.findAll();
-        uiModel.addAttribute("InventoryItems", items);
-
+        uiModel.addAttribute("inventoryitems", items);
+           
         logger.info("No. of inventory items: " + items.size());
 
         return "inventory/list";
+        
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
@@ -79,15 +80,15 @@ public class InventoryItemController {
         return "redirect:/inventory/";
     }
 
-    @RequestMapping(params = "form", method = RequestMethod.GET)
+    @RequestMapping(params = "form", method = RequestMethod.GET)    
     public String createForm(Model uiModel) {
         InventoryItem item = new InventoryItem();
-        uiModel.addAttribute("InventoryItem", item);
+        uiModel.addAttribute("inventoryitem", item);
 
         return "inventory/addInventoryItem";
     }
 
-    @ResponseBody
+    @ResponseBody  
     @RequestMapping(value = "/listgrid", method = RequestMethod.GET, produces="application/json")
     public InventoryItemGrid listGrid(@RequestParam(value = "page", required = false) Integer page,
                                       @RequestParam(value = "rows", required = false) Integer rows,
@@ -100,8 +101,8 @@ public class InventoryItemController {
         // Process order by
         Sort sort = null;
         String orderBy = sortBy;
-        if (orderBy != null && orderBy.equals("itemname")) {
-            orderBy = "itemname";
+        if (orderBy != null && orderBy.equals("itemName")) {
+            orderBy = "itemName";
         }
 
         if (orderBy != null && order != null) {

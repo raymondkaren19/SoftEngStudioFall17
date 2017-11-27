@@ -1,7 +1,7 @@
 package edu.brandeis.spring.mvc.domain;
 
 
-import static javax.persistence.GenerationType.IDENTITY;
+import static javax.persistence.GenerationType.IDENTITY;import javax.persistence.*;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -10,139 +10,140 @@ import javax.persistence.Id;
 import org.hibernate.validator.constraints.NotEmpty;
 
 @Entity
+@Table(name = "InventoryItem")
 public class InventoryItem {
-    private Long Id;
-    private String ItemName;
-    private String ItemUPCNumber;
-    private String ItemSKU;
-    private String ManufacturerName;
-    private int InventoryOnHand;
-    private String WarehouseLocation;
-    private int ReorderQuantity;
-    private String ReorderUnit;
-    private String BackorderDate;
-    private float PerItemRetailSalePrice; 
-    private int SupplierId;
+    private Long itemId;
+    private String itemName;
+    private String itemUPCNumber;
+    private String itemSKU;
+    private String manufacturerName;
+    private int inventoryOnHand;
+    private String warehouseLocation;
+    private int reorderQuantity;
+    private String reorderUnit;
+    private String backorderDate;
+    private float perItemRetailSalePrice; 
+    private int supplierId;
 
     @Id
     @GeneratedValue(strategy = IDENTITY)
     @Column(name = "ITEMID")
     public Long getItemId() {
-        return Id;
+        return itemId;
     }
 
     public void setItemId(Long id) {
-        this.Id = id;
+        this.itemId = id;
     }
 
     @NotEmpty(message="{validation.itemname.NotEmpty.message}")
     @Column(name = "ITEMNAME")
     public String getItemName() {
-        return ItemName;
+        return itemName;
     }
 
     public void setItemName(String name) {
-        this.ItemName = name;
+        this.itemName = name;
     }
 
     @NotEmpty(message="{validation.itemupcnumber.NotEmpty.message}")
     @Column(name = "ITEMUPCNUMBER")
     public String getItemUPCNumber() {
-        return ItemUPCNumber;
+        return itemUPCNumber;
     }
 
     public void setItemUPCNumber(String UPC) {
-        this.ItemUPCNumber = UPC;
+        this.itemUPCNumber = UPC;
     }
 
     @NotEmpty(message="{validation.itemsku.NotEmpty.message}")
     @Column(name = "ITEMSKU")
     public String getItemSKU() {
-        return ItemSKU;
+        return itemSKU;
     }
 
-    public void setItemSKU(String itemSKU) {
-        ItemSKU = itemSKU;
+    public void setItemSKU(String SKU) {
+        itemSKU = SKU;
     }
 
     @NotEmpty(message="{validation.manufacturername.NotEmpty.message}")
     @Column(name = "MANUFACTURERNAME")
     public String getManufacturerName() {
-        return ManufacturerName;
+        return manufacturerName;
     }
 
-    public void setManufacturerName(String manufacturerName) {
-        ManufacturerName = manufacturerName;
+    public void setManufacturerName(String manufName) {
+    	manufacturerName = manufName;
     }
 
     @NotEmpty(message="{validation.inventoryonhand.NotEmpty.message}")
     @Column(name = "INVENTORYONHAND")
     public int getInventoryOnHand() {
-        return InventoryOnHand;
+        return inventoryOnHand;
     }
 
-    public void setInventoryOnHand(int inventoryOnHand) {
-        InventoryOnHand = inventoryOnHand;
+    public void setInventoryOnHand(int invenOnHand) {
+        inventoryOnHand = invenOnHand;
     }
 
     @NotEmpty(message="{validation.warehouselocation.NotEmpty.message}")
     @Column(name = "WAREHOUSELOCATION")
     public String getWarehouseLocation() {
-        return WarehouseLocation;
+        return warehouseLocation;
     }
 
-    public void setWarehouseLocation(String warehouseLocation) {
-        WarehouseLocation = warehouseLocation;
+    public void setWarehouseLocation(String location) {
+        warehouseLocation = location;
     }
 
     @NotEmpty(message="{validation.reorderquantity.NotEmpty.message}")
     @Column(name = "REORDERQUANTITY")
     public int getReorderQuantity() {
-        return ReorderQuantity;
+        return reorderQuantity;
     }
 
-    public void setReorderQuantity(int reorderQuantity) {
-        ReorderQuantity = reorderQuantity;
+    public void setReorderQuantity(int quantity) {
+        reorderQuantity = quantity;
     }
 
     @NotEmpty(message="{validation.reorderunit.NotEmpty.message}")
     @Column(name = "REORDERUNIT")
     public String getReorderUnit() {
-        return ReorderUnit;
+        return reorderUnit;
     }
 
-    public void setReorderUnit(String reorderUnit) {
-        ReorderUnit = reorderUnit;
+    public void setReorderUnit(String rUnit) {
+        reorderUnit = rUnit;
     }
 
     @NotEmpty(message="{validation.backorderdate.NotEmpty.message}")
     @Column(name = "BACKORDERDATE")
     public String getBackorderDate() {
-        return BackorderDate;
+        return backorderDate;
     }
 
-    public void setBackorderDate(String backorderDate) {
-        BackorderDate = backorderDate;
+    public void setBackorderDate(String bDate) {
+        backorderDate= bDate;
     }
 
     @NotEmpty(message="{validation.peritemretailsaleprice.NotEmpty.message}")
     @Column(name = "PERITEMRETAILSALEPRICE")
     public float getPerItemRetailSalePrice() {
-        return PerItemRetailSalePrice;
+        return perItemRetailSalePrice;
     }
 
-    public void setPerItemRetailSalePrice(float perItemRetailSalePrice) {
-        PerItemRetailSalePrice = perItemRetailSalePrice;
+    public void setPerItemRetailSalePrice(float salePrice) {
+        perItemRetailSalePrice = salePrice;
     }
 
     @NotEmpty(message="{validation.supplierid.NotEmpty.message}")
     @Column(name = "SUPPLIERID")
     public int getSupplierId() {
-        return SupplierId;
+        return supplierId;
     }
 
-    public void setSupplierId(int supplierId) {
-        SupplierId = supplierId;
+    public void setSupplierId(int sId) {
+    	supplierId = sId;
     }
 
 }

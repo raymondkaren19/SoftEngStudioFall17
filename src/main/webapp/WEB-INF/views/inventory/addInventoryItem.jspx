@@ -33,8 +33,10 @@
     <spring:message code="label_inventoryitem_backorderdate" var="labelInventoryItemBackorderDate"/>
     <spring:message code="label_inventoryitem_price" var="labelInventoryItemPrice"/>
     <spring:message code="label_inventoryitem_supplierid" var="labelInventoryItemSupplier"/>
+    <spring:message code="label_product_update" var="labelProductUpdate"/>
+    <spring:message code="label_product_new" var="labelProductNew"/>
 
-    <spring:eval expression="inventoryitem.id == null ? labelProductNew:labelProductUpdate"
+    <spring:eval expression="inventoryitem.itemId == null ? labelProductNew:labelProductUpdate"
                  var="formTitle"/>
 
     <h1>${formTitle}</h1>
@@ -47,104 +49,105 @@
                 <div id="message" class="${message.type}">${message.message}</div>
             </c:if>
 
-            <form:label path="itemname">
+            <form:label path="itemName">
                 ${labelInventoryItemName}*
             </form:label>
-            <form:input path="itemname" />
+            <form:input path="itemName" />
             <div>
-                <form:errors path="itemname" cssClass="error" />
+                <form:errors path="itemName" cssClass="error" />
             </div>
             <p/>
-
-            <form:label path="itemupcnumber">
+		<form:label path="itemUPCNumber">
                 ${labelInventoryItemUPC}*
             </form:label>
-            <form:input path="itemupcnumber" />
+            <form:input path="itemUPCNumber" />
             <div>
-                <form:errors path="itemupcnumber" cssClass="error" />
+                <form:errors path="itemUPCNumber" cssClass="error" />
             </div>
             <p/>
 
-            <form:label path="itemsku">
+            <form:label path="itemSKU">
                 ${labelInventoryItemSKU}
             </form:label>
-            <form:input path="itemsku"/>
+            <form:input path="itemSKU"/>
             <div>
-                <form:errors path="itemsku" cssClass="error" />
+                <form:errors path="itemSKU" cssClass="error" />
             </div>
             <p/>
 
-            <form:label path="manufacturername">
+            <form:label path="manufacturerName">
                 ${labelInventoryItemManufacturer}
             </form:label>
-            <form:input path="manufacturername"/>
+            <form:input path="manufacturerName"/>
             <div>
-                <form:errors path="manufacturername" cssClass="error" />
+                <form:errors path="manufacturerName" cssClass="error" />
             </div>
             <p/>
 
-            <form:label path="inventoryonhand">
+             
+           
+            <form:label path="inventoryOnHand">
                 ${labelInventoryItemInventory}
             </form:label>
-            <form:input path="inventoryonhand"/>
+            <form:input path="inventoryOnHand"/>
             <div>
-                <form:errors path="inventoryonhand" cssClass="error" />
+                <form:errors path="inventoryOnHand" cssClass="error" />
             </div>
             <p/>
 
-            <form:label path="warehouselocation">
+            <form:label path="warehouseLocation">
                 ${labelInventoryItemLocation}
             </form:label>
-            <form:input path="warehouselocation"/>
+            <form:input path="warehouseLocation"/>
             <div>
-                <form:errors path="warehouselocation" cssClass="error" />
+                <form:errors path="warehouseLocation" cssClass="error" />
             </div>
             <p/>
 
-            <form:label path="reorderquantity">
+            <form:label path="reorderQuantity">
                 ${labelInventoryItemReorderQty}
             </form:label>
-            <form:input path="reorderquantity"/>
+            <form:input path="reorderQuantity"/>
             <div>
-                <form:errors path="reorderquantity" cssClass="error" />
+                <form:errors path="reorderQuantity" cssClass="error" />
             </div>
             <p/>
 
-            <form:label path="reorderunit">
+            <form:label path="reorderUnit">
                 ${labelInventoryItemReorderUnit}
             </form:label>
-            <form:input path="reorderunit"/>
+            <form:input path="reorderUnit"/>
             <div>
-                <form:errors path="reorderunit" cssClass="error" />
+                <form:errors path="reorderUnit" cssClass="error" />
             </div>
             <p/>
 
-            <form:label path="backorderdate">
+            <form:label path="backorderDate">
                 ${labelInventoryItemBackorderDate}
             </form:label>
-            <form:input path="backorderdate"/>
+            <form:input path="backorderDate"/>
             <div>
-                <form:errors path="backorderdate" cssClass="error" />
+                <form:errors path="backorderDate" cssClass="error" />
             </div>
             <p/>
 
-            <form:label path="peritemretailsaleprice">
+            <form:label path="perItemRetailSalePrice">
                 ${labelInventoryItemPrice}
             </form:label>
-            <form:input path="peritemretailsaleprice"/>
+            <form:input path="perItemRetailSalePrice"/>
             <div>
-                <form:errors path="peritemretailsaleprice" cssClass="error" />
+                <form:errors path="perItemRetailSalePrice" cssClass="error" />
             </div>
             <p/>
-
-            <form:label path="supplierid">
+            <form:label path="supplierId">
                 ${labelInventoryItemSupplier}
             </form:label>
-            <form:input path="supplierid"/>
+            <form:input path="supplierId"/>
             <div>
-                <form:errors path="supplierid" cssClass="error" />
+                <form:errors path="supplierId" cssClass="error" />
             </div>
             <p/>
+            
 
             <button type="submit" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only">
                 <span class="ui-button-text">Save</span>

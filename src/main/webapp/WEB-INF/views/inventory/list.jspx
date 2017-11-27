@@ -25,10 +25,10 @@
                           '${labelInventoryItemInventory}',
                           '${labelInventoryItemPrice}', ],
                 colModel :[
-                    {name:'itemname', index:'itemname', width:50},
-                    {name:'manufacturername', index:'manufacturername', width:100},
-                    {name:'inventoryonhand', index:'inventoryonhand', width:50},
-                    {name:'peritemretailsaleprice', index:'peritemretailsaleprice', width:50},
+                    {name:'itemName', index:'itemName', width:50},
+                    {name:'manufacturerName', index:'manufacturerName', width:100},
+                    {name:'inventoryOnHand', index:'inventoryOnHand', width:50},
+                    {name:'perItemRetailSalePrice', index:'perItemRetailSalePrice', width:50},
                 ],
                 jsonReader : {
                     root:"itemData",
@@ -36,12 +36,12 @@
                     total: "totalPages",
                     records: "totalRecords",
                     repeatitems: false,
-                    id: "id"
+                    id: "itemId"
                 },
                 pager: '#pager',
                 rowNum:10,
                 rowList:[10,20,30],
-                sortname: 'itemname',
+                sortname: 'itemName',
                 sortorder: 'asc',
                 viewrecords: true,
                 gridview: true,
