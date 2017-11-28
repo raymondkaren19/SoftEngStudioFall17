@@ -72,7 +72,7 @@ public class InventoryItemController {
         }
         uiModel.asMap().clear();
         redirectAttributes.addFlashAttribute("message", new Message("success",
-                messageSource.getMessage("book_save_success", new Object[]{}, locale)));
+                messageSource.getMessage("inventoryitem_save_success", new Object[]{}, locale)));
 
         logger.info("Inventory Item id: " + item.getItemId());
 
