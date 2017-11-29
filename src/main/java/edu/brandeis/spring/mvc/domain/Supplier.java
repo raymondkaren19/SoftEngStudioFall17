@@ -1,88 +1,123 @@
 package edu.brandeis.spring.mvc.domain;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Table;
+
+import org.hibernate.validator.constraints.NotEmpty;
 
 @Entity
+@Table(name = "Supplier")
 public class Supplier {
 	@Id
     @GeneratedValue(strategy=GenerationType.AUTO)
     private Integer ID;
 
-    private String Name;
+    private String name;
     
-    private Integer STREETNUM ;
-    private String STREETNAME ;
-    private String CITY;
-    private String STATE;
-    private String ZIPCODE;
-    private int PHONE;
-    private String EDI;
-    private String PAYMENT;
-    private String INCOTERMS;
+    private String street ;
+    //private String streetName ;
+    private String city;
+    private String state;
+    private String zipcode;
+    private int phone;
+    private String edi;
+    private String payment;
+    private String incoterms;
     
-    
+    @NotEmpty(message="{validation.itemname.NotEmpty.message}")
+    @Column(name = "NAME")
 	public String getName() {
-		return Name;
+		return name;
 	}
-	public void setName(String name) {
-		Name = name;
+	public void setName(String sname) {
+		name = sname;
 	}
+	
+	/* 
+    @NotEmpty(message="{validation.itemname.NotEmpty.message}")
+    @Column(name = "STREETNUM")
 	public Integer getSTREETNUM() {
-		return STREETNUM;
+		return streetNum;
 	}
 	public void setSTREETNUM(Integer sTREETNUM) {
-		STREETNUM = sTREETNUM;
+		streetNum = sTREETNUM;
+	}*/
+	
+	// combined streetnumber and street name
+	
+	@NotEmpty(message="{validation.itemname.NotEmpty.message}")
+    @Column(name = "STREETNAME")
+	public String getSTREET() {
+		return street;
 	}
-	public String getSTREETNAME() {
-		return STREETNAME;
+	public void setSTREET(String sTREETNAME) {
+		street = sTREETNAME;
 	}
-	public void setSTREETNAME(String sTREETNAME) {
-		STREETNAME = sTREETNAME;
-	}
+	
+	@NotEmpty(message="{validation.itemname.NotEmpty.message}")
+    @Column(name = "CITY")
 	public String getCITY() {
-		return CITY;
+		return city;
 	}
 	public void setCITY(String cITY) {
-		CITY = cITY;
+		city = cITY;
 	}
+	
+	@NotEmpty(message="{validation.itemname.NotEmpty.message}")
+    @Column(name = "STATE")
 	public String getSTATE() {
-		return STATE;
+		return state;
 	}
 	public void setSTATE(String sTATE) {
-		STATE = sTATE;
+		state = sTATE;
 	}
+	
+	@NotEmpty(message="{validation.itemname.NotEmpty.message}")
+    @Column(name = "ZIPCODE")
 	public String getZIPCODE() {
-		return ZIPCODE;
+		return zipcode;
 	}
 	public void setZIPCODE(String zIPCODE) {
-		ZIPCODE = zIPCODE;
+		zipcode = zIPCODE;
 	}
+	
+	@NotEmpty(message="{validation.itemname.NotEmpty.message}")
+    @Column(name = "PHONE")
 	public int getPHONE() {
-		return PHONE;
+		return phone;
 	}
 	public void setPHONE(int pHONE) {
-		PHONE = pHONE;
+		phone = pHONE;
 	}
+	
+	@NotEmpty(message="{validation.itemname.NotEmpty.message}")
+    @Column(name = "EDI")
 	public String getEDI() {
-		return EDI;
+		return edi;
 	}
 	public void setEDI(String eDI) {
-		EDI = eDI;
+		edi = eDI;
 	}
+	
+	@NotEmpty(message="{validation.itemname.NotEmpty.message}")
+    @Column(name = "PAYMENT")
 	public String getPAYMENT() {
-		return PAYMENT;
+		return payment;
 	}
 	public void setPAYMENT(String pAYMENT) {
-		PAYMENT = pAYMENT;
-	}
+		payment = pAYMENT;
+	}	
+	
+    @Column(name = "INCOTERMS")
 	public String getINCOTERMS() {
-		return INCOTERMS;
+		return incoterms;
 	}
 	public void setINCOTERMS(String iNCOTERMS) {
-		INCOTERMS = iNCOTERMS;
+		incoterms = iNCOTERMS;
 	}
     
     
