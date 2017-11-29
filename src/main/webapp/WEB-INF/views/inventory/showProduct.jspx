@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:jsp="http://java.sun.com/JSP/Page"
+     xmlns:c="http://java.sun.com/jsp/jstl/core"
+     xmlns:spring="http://www.springframework.org/tags"
+     xmlns:form="http://www.springframework.org/tags/form"
+     xmlns:joda="http://www.joda.org/joda/time/tags"
+     xmlns:sec="http://www.springframework.org/security/tags"
+     version="2.0">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+
+    <spring:message code="label_inventoryitem_details" var="labelInventoryItemDetails"/>
+    <spring:message code="label_inventoryitem_update" var="labelInventoryItemUpdate"/>
+    <spring:message code="label_inventoryitem_name" var="labelInventoryItemName"/>
+    <spring:message code="label_inventoryitem_upc" var="labelInventoryItemUPC"/>
+    <spring:message code="label_inventoryitem_sku" var="labelInventoryItemSKU"/>
+    <spring:message code="label_inventoryitem_manufacturer" var="labelInventoryItemManufacturer"/>
+    <spring:message code="label_inventoryitem_inventory" var="labelInventoryItemInventory"/>
+    <spring:message code="label_inventoryitem_location" var="labelInventoryItemLocation"/>
+    <spring:message code="label_inventoryitem_reorderqty" var="labelInventoryItemReorderQty"/>
+    <spring:message code="label_inventoryitem_reorderunit" var="labelInventoryItemReorderUnit"/>
+    <spring:message code="label_inventoryitem_backorderdate" var="labelInventoryItemBackorderDate"/>
+    <spring:message code="label_inventoryitem_price" var="labelInventoryItemPrice"/>
+    <spring:message code="label_inventoryitem_supplierid" var="labelInventoryItemSupplier"/>
+
+    <spring:url value="/inventory" var="editInventoryItemUrl"/>
+
+    <h1>${labelInventoryItemDetails}</h1>
+
+    <div id="inventoryItemDetails">
+
+        <c:if test="${not empty message}">
+            <div id="message" class="${message.type}">${message.message}</div>
+        </c:if>
+
+        <table>
+            <tr>
+                <td>${labelInventoryItemName}</td>
+                <td>${InventoryItem.Itemname}</td>
+            </tr>
+            <tr>
+                <td>${labelInventoryItemUPC}</td>
+                <td>${InventoryItem.ITEMUPCNUMBER}</td>
+            </tr>
+            <tr>
+                <td>${labelInventoryItemSKU}</td>
+                <td>${InventoryItem.ITEMSKU}</td>
+            </tr>
+            <tr>
+                <td>${labelInventoryItemManufacturer}</td>
+                <td>${InventoryItem.MANUFACTURERNAME}</td>
+            </tr>
+            <tr>
+                <td>${labelInventoryItemInventory}</td>
+                <td>${InventoryItem.INVENTORYONHAND}</td>
+            </tr>
+            <tr>
+                <td>${labelInventoryItemLocation}</td>
+                <td>${InventoryItem.WAREHOUSELOCATION}</td>
+            </tr>
+            <tr>
+                <td>${labelInventoryItemReorderQty}</td>
+                <td>${InventoryItem.REORDERQUANTITY}</td>
+            </tr>
+            <tr>
+                <td>${labelInventoryItemReorderUnit}</td>
+                <td>${InventoryItem.REORDERUNIT}</td>
+            </tr>
+            <tr>
+                <td>${labelInventoryItemBackorderDate}</td>
+                <td>${InventoryItem.BACKORDERDATE}</td>
+            </tr>
+            <tr>
+                <td>${labelInventoryItemPrice}</td>
+                <td>${InventoryItem.PERITEMRETAILSALEPRICE}</td>
+            </tr>
+            <tr>
+                <td>${labelInventoryItemSupplier}</td>
+                <td>${InventoryItem.SUPPLIERID}</td>
+            </tr>
+        </table>
+
+        <a href="${editInventoryItemUrl}/${InventoryItem.itemId}?form">${labelInventoryItemUpdate}</a>
+<!--
+        <sec:authorize access="hasRole('ROLE_USER')">
+            <a href="${editBookUrl}/${book.id}?form">${labelBookUpdate}</a>
+        </sec:authorize>
+-->
+    </div>
+</div>

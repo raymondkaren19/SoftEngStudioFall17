@@ -55,7 +55,7 @@ public class InventoryItemController {
         InventoryItem item = itemService.findById(id);
         uiModel.addAttribute("InventoryItems", item);
 
-        return "inventory/show";
+        return "inventory/showProduct";
     }
 
     @RequestMapping(params = "form", method = RequestMethod.POST)
