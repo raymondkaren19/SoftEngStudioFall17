@@ -53,7 +53,7 @@ public class InventoryItemController {
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     public String show(@PathVariable("id") Long id, Model uiModel) {
         InventoryItem item = itemService.findById(id);
-        uiModel.addAttribute("InventoryItems", item);
+        uiModel.addAttribute("item", item);
 
         return "inventory/showProduct";
     }

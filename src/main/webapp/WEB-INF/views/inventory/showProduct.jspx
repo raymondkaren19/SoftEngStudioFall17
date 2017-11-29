@@ -36,54 +36,54 @@
         <table>
             <tr>
                 <td>${labelInventoryItemName}</td>
-                <td>${InventoryItem.Itemname}</td>
+                <td>${item.itemName}</td>
             </tr>
             <tr>
                 <td>${labelInventoryItemUPC}</td>
-                <td>${InventoryItem.ITEMUPCNUMBER}</td>
+                <td>${item.itemUPCNumber}</td>
             </tr>
             <tr>
                 <td>${labelInventoryItemSKU}</td>
-                <td>${InventoryItem.ITEMSKU}</td>
+                <td>${item.itemSKU}</td>
             </tr>
             <tr>
                 <td>${labelInventoryItemManufacturer}</td>
-                <td>${InventoryItem.MANUFACTURERNAME}</td>
+                <td>${item.manufacturerName}</td>
             </tr>
             <tr>
                 <td>${labelInventoryItemInventory}</td>
-                <td>${InventoryItem.INVENTORYONHAND}</td>
+                <td>${item.inventoryOnHand}</td>
             </tr>
             <tr>
                 <td>${labelInventoryItemLocation}</td>
-                <td>${InventoryItem.WAREHOUSELOCATION}</td>
+                <td>${item.warehouseLocation}</td>
             </tr>
             <tr>
                 <td>${labelInventoryItemReorderQty}</td>
-                <td>${InventoryItem.REORDERQUANTITY}</td>
+                <td>${item.reorderQuantity}</td>
             </tr>
             <tr>
                 <td>${labelInventoryItemReorderUnit}</td>
-                <td>${InventoryItem.REORDERUNIT}</td>
+                <td>${item.reorderUnit}</td>
             </tr>
             <tr>
                 <td>${labelInventoryItemBackorderDate}</td>
-                <td>${InventoryItem.BACKORDERDATE}</td>
+                <td>${item.backorderDate}</td>
             </tr>
             <tr>
                 <td>${labelInventoryItemPrice}</td>
-                <td>${InventoryItem.PERITEMRETAILSALEPRICE}</td>
+                <td>${item.perItemRetailSalePrice}</td>
             </tr>
             <tr>
                 <td>${labelInventoryItemSupplier}</td>
-                <td>${InventoryItem.SUPPLIERID}</td>
+                <td>${item.supplierId}</td>
             </tr>
         </table>
 
-        <a href="${editInventoryItemUrl}/${InventoryItem.itemId}?form">${labelInventoryItemUpdate}</a>
+        <a href="${editInventoryItemUrl}/${item.itemId}?form">${labelInventoryItemUpdate}</a>
 <!--
         <sec:authorize access="hasRole('ROLE_USER')">
-            <a href="${editBookUrl}/${book.id}?form">${labelBookUpdate}</a>
+            <a href="${editInventoryItemUrl}/${item.itemId}?form">${labelInventoryItemUpdate}</a>
         </sec:authorize>
 -->
     </div>
