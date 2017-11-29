@@ -76,7 +76,7 @@ public class InventoryItem {
     	manufacturerName = manufName;
     }
 
-    @NotEmpty(message="{validation.inventoryonhand.NotEmpty.message}")
+//    @NotEmpty(message="{validation.inventoryonhand.NotEmpty.message}")
     @Column(name = "INVENTORYONHAND")
     public int getInventoryOnHand() {
         return inventoryOnHand;
@@ -96,7 +96,7 @@ public class InventoryItem {
         warehouseLocation = location;
     }
 
-    @NotEmpty(message="{validation.reorderquantity.NotEmpty.message}")
+//    @NotEmpty(message="{validation.reorderquantity.NotEmpty.message}")
     @Column(name = "REORDERQUANTITY")
     public int getReorderQuantity() {
         return reorderQuantity;
@@ -126,7 +126,7 @@ public class InventoryItem {
         backorderDate= bDate;
     }
 
-    @NotEmpty(message="{validation.peritemretailsaleprice.NotEmpty.message}")
+//    @NotEmpty(message="{validation.peritemretailsaleprice.NotEmpty.message}")
     @Column(name = "PERITEMRETAILSALEPRICE")
     public float getPerItemRetailSalePrice() {
         return perItemRetailSalePrice;
@@ -136,7 +136,7 @@ public class InventoryItem {
         perItemRetailSalePrice = salePrice;
     }
 
-    @NotEmpty(message="{validation.supplierid.NotEmpty.message}")
+//    @NotEmpty(message="{validation.supplierid.NotEmpty.message}")
     @Column(name = "SUPPLIERID")
     public int getSupplierId() {
         return supplierId;
