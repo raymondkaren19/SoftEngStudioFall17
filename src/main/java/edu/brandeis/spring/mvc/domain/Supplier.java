@@ -17,7 +17,7 @@ public class Supplier {
     private String city;
     private String state;
     private String zipcode;
-    private int phone;
+    private String phone;
     private String edi;
     private String payment;
     private String incoterms;
@@ -79,10 +79,10 @@ public class Supplier {
     
 //    @NotEmpty(message="{validation.itemname.NotEmpty.message}")
     @Column(name = "PHONE")
-    public int getPhone() {
+    public String getPhone() {
         return phone;
     }
-    public void setPhone(int pHONE) {
+    public void setPhone(String pHONE) {
         phone = pHONE;
     }
     

@@ -60,11 +60,13 @@ public class SupplierController {
             return "supplier/addSupplier";
         }
         uiModel.asMap().clear();
-        redirectAttributes.addFlashAttribute("message", "Supplier save success");
+        redirectAttributes.addFlashAttribute("message", new Message("success",
+                messageSource.getMessage("supplier_save_success", new Object[]{}, locale)));
+
         logger.info("Supplier name: " + supplier.getName());
 
         supplierService.save(supplier);
-        return "redirect:/inventory/";  // disable this for sprint 1
+        return "redirect:/inventory/";
     }
 
     
