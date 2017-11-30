@@ -10,7 +10,7 @@
     <definition extends="default" name="inventory/showProduct">
         <put-attribute name="body" value="/WEB-INF/views/inventory/showProduct.jspx" />
     </definition>
-    <definition extends="default" name="supplier/addSupplier">
+    <definition extends="default" name="suppliers/addSupplier">
         <put-attribute name="body" value="/WEB-INF/views/inventory/addSupplier.jspx" />
     </definition>
     <definition extends="default" name="inventory/addInventoryItem">

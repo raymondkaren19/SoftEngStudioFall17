@@ -28,7 +28,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.Part;
 import edu.brandeis.spring.mvc.service.*;
 
-@RequestMapping("/supplier")
+@RequestMapping("/suppliers")
 @Controller
 public class SupplierController {
     private final Logger logger = LoggerFactory.getLogger(SupplierController.class);
@@ -41,11 +41,11 @@ public class SupplierController {
         logger.info("Listing Suppliers");
 
         List<Supplier> suppliers = supplierService.findAll();
-        uiModel.addAttribute("suppliers", suppliers);
+        uiModel.addAttribute("Suppliers", suppliers);
 
         logger.info("No. of suppliers: " + suppliers.size());
 
-        return "supplier/list";
+        return "suppliers/list";
     } 
 
     
@@ -58,14 +58,14 @@ public class SupplierController {
         if (bindingResult.hasErrors()) {
             uiModel.addAttribute("message", "supplier_save_fail");            		
             uiModel.addAttribute("supplier", supplier); 
-            return "supplier/addSupplier";
+            return "suppliers/create";
         }
         uiModel.asMap().clear();
         redirectAttributes.addFlashAttribute("message", "Supplier save success");
         logger.info("Supplier name: " + supplier.getName());
 
         supplierService.save(supplier);
-        return "redirect:/supplier/";  // disable this for sprint 1
+        return "redirect:/suppliers/";  // disable this for sprint 1
     }
 
     
@@ -74,7 +74,7 @@ public class SupplierController {
     	Supplier supplier = new Supplier();
         uiModel.addAttribute("supplier", supplier);
 
-        return "supplier/addSupplier";
+        return "suppliers/create";
     }
     
     @Autowired
