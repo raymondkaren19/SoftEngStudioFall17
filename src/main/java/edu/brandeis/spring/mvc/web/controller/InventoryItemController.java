@@ -55,8 +55,8 @@ public class InventoryItemController {
         
     }
 
-    @RequestMapping(value = "/{id}", method = RequestMethod.GET)
-    public String show(@PathVariable("id") Long id, Model uiModel) {
+    @RequestMapping(value = "/{itemId}", method = RequestMethod.GET)
+    public String show(@PathVariable("itemId") Long id, Model uiModel) {
         InventoryItem item = itemService.findById(id);
         uiModel.addAttribute("item", item);
 
@@ -114,7 +114,7 @@ public class InventoryItemController {
         return "redirect:/inventory/";
     }
 
-    @RequestMapping(params = "form", method = RequestMethod.GET)    
+    @RequestMapping(params = "form", method = RequestMethod.GET)
     public String createForm(Model uiModel) {
         InventoryItem item = new InventoryItem();
         uiModel.addAttribute("inventoryitem", item);
