@@ -57,7 +57,7 @@
                 <form:errors path="itemName" cssClass="error" />
             </div>
             <p/>
-		<form:label path="itemUPCNumber">
+            <form:label path="itemUPCNumber">
                 ${labelInventoryItemUPC}*
             </form:label>
             <form:input path="itemUPCNumber" />
