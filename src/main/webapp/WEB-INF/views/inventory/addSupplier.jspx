@@ -32,12 +32,10 @@
     <spring:message code="label_supplier_payment" var="labelSupplierPayment"/>
     <spring:message code="label_supplier_incoterms" var="labelSupplierIncoterms"/>
 
-<!--
-    <spring:eval expression="inventoryitem.id == null ? labelSupplierNew:labelSupplierUpdate"
+    <spring:eval expression="supplier.ID == null ? labelSupplierNew:labelSupplierUpdate"
                  var="formTitle"/>
--->
 
-    <h1>${labelSupplierNew}</h1>
+    <h1>${formTitle}</h1>
 
     <div id="supplierUpdate">
         <form:form modelAttribute="supplier" id="supplierUpdateForm" method="post"
