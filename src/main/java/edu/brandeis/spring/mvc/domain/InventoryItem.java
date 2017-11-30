@@ -1,7 +1,7 @@
 package edu.brandeis.spring.mvc.domain;
 
-
-import static javax.persistence.GenerationType.IDENTITY;import javax.persistence.*;
+import static javax.persistence.GenerationType.IDENTITY;
+import javax.persistence.*;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
