@@ -23,9 +23,11 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.google.common.collect.Lists;
 
 import edu.brandeis.spring.mvc.domain.InventoryItem;
+import edu.brandeis.spring.mvc.domain.Supplier;
 import edu.brandeis.spring.mvc.service.InventoryItemGrid;
 import edu.brandeis.spring.mvc.service.InventoryItemService;
 import edu.brandeis.spring.mvc.service.Message;
+import edu.brandeis.spring.mvc.service.SupplierService;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -35,6 +37,7 @@ public class InventoryItemController {
     private final Logger logger = LoggerFactory.getLogger(InventoryItemController.class);
 
     private InventoryItemService itemService;
+    private SupplierService supplierService;
     private MessageSource messageSource;
 
     @RequestMapping(method = RequestMethod.GET)
@@ -43,7 +46,7 @@ public class InventoryItemController {
 
         List<InventoryItem> items = itemService.findAll();
         uiModel.addAttribute("inventoryitems", items);
-           
+
         logger.info("No. of inventory items: " + items.size());
 
         return "inventory/list";
@@ -54,6 +57,10 @@ public class InventoryItemController {
     public String show(@PathVariable("id") Long id, Model uiModel) {
         InventoryItem item = itemService.findById(id);
         uiModel.addAttribute("item", item);
+
+        logger.info("Inventory supplier ID: " + item.getSupplierId());
+        Supplier supplier = supplierService.findById((long) item.getSupplierId());
+        uiModel.addAttribute("supplier", supplier);
 
         return "inventory/showProduct";
     }
@@ -136,6 +143,11 @@ public class InventoryItemController {
     @Autowired
     public void setInventoryService(InventoryItemService itemService) {
         this.itemService = itemService;
+    }
+
+    @Autowired
+    public void setSupplierService(SupplierService supplierService) {
+        this.supplierService = supplierService;
     }
 
     @Autowired
