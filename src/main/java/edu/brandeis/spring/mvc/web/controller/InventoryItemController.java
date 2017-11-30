@@ -28,8 +28,10 @@ import edu.brandeis.spring.mvc.service.InventoryItemGrid;
 import edu.brandeis.spring.mvc.service.InventoryItemService;
 import edu.brandeis.spring.mvc.service.Message;
 import edu.brandeis.spring.mvc.service.SupplierService;
+import edu.brandeis.spring.mvc.web.util.UrlUtil;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.validation.Valid;
 
 @RequestMapping("/inventory")
 @Controller
@@ -65,6 +67,31 @@ public class InventoryItemController {
         return "inventory/showProduct";
     }
 
+    @RequestMapping(value = "/{itemId}", params = "form", method = RequestMethod.POST)
+    public String update(@Valid InventoryItem item, BindingResult bindingResult, Model uiModel,
+                         HttpServletRequest httpServletRequest, RedirectAttributes redirectAttributes,
+                         Locale locale) {
+        logger.info("Updating inventory item: " + item.getItemId());
+        if (bindingResult.hasErrors() || null == item.getItemId()) {
+            uiModel.addAttribute("message", new Message("error",
+                    messageSource.getMessage("inventoryitem_save_fail", new Object[]{}, locale)));
+            uiModel.addAttribute("inventoryitem", item);
+            return "inventory/addInventoryItem";
+        }
+        uiModel.asMap().clear();
+        redirectAttributes.addFlashAttribute("message", new Message("success",
+                messageSource.getMessage("inventoryitem_save_success", new Object[]{}, locale)));
+        itemService.save(item);
+        return "redirect:/inventory/" + UrlUtil.encodeUrlPathSegment(item.getItemId().toString(),
+                httpServletRequest);
+    }
+
+    @RequestMapping(value = "/{itemId}", params = "form", method = RequestMethod.GET)
+    public String updateForm(@PathVariable("itemId") Long id, Model uiModel) {
+        uiModel.addAttribute("inventoryitem", itemService.findById(id));
+        return "inventory/addInventoryItem";
+    }
+
     @RequestMapping(params = "form", method = RequestMethod.POST)
     public String create(InventoryItem item, BindingResult bindingResult, Model uiModel, 
         HttpServletRequest httpServletRequest, RedirectAttributes redirectAttributes, 
@@ -74,7 +101,7 @@ public class InventoryItemController {
 
         if (bindingResult.hasErrors()) {
             uiModel.addAttribute("message", "inventoryitem_save_fail");
-            uiModel.addAttribute("InventoryItem", item);  
+            uiModel.addAttribute("inventoryitem", item);  
             return "inventory/addInventoryItem";
         }
         uiModel.asMap().clear();
