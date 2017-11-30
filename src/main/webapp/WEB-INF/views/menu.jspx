@@ -10,7 +10,7 @@
     <spring:message code="menu_header_text" var="menuHeaderText"/>
     <spring:message code="menu_add_supplier" var="menuAddSupplier"/>
     <spring:message code="menu_add_product" var="menuAddProduct"/>
-    <spring:url value="/inventory?supplier" var="addSupplierUrl"/>
+    <spring:url value="/supplier?form" var="addSupplierUrl"/>
     <spring:url value="/inventory?form" var="addInventoryItemUrl"/>
 
     <spring:message code="label_login" var="labelLogin"/>
