@@ -50,12 +50,12 @@ public class SupplierController {
 
     @RequestMapping(params = "form", method = RequestMethod.POST)
     public String create(Supplier supplier, BindingResult bindingResult, Model uiModel, 
-		HttpServletRequest httpServletRequest, RedirectAttributes redirectAttributes, 
-		Locale locale) {
+        HttpServletRequest httpServletRequest, RedirectAttributes redirectAttributes, 
+        Locale locale) {
         logger.info("Creating Supplier");
         
         if (bindingResult.hasErrors()) {
-            uiModel.addAttribute("message", "supplier_save_fail");            		
+            uiModel.addAttribute("message", "supplier_save_fail");
             uiModel.addAttribute("supplier", supplier); 
             return "supplier/addSupplier";
         }
@@ -75,9 +75,9 @@ public class SupplierController {
 
         return "supplier/addSupplier";
     }
-    
+
     @Autowired
-    public void setInventoryService(SupplierService supplierService) {
+    public void setSupplierService(SupplierService supplierService) {
         this.supplierService = supplierService;
     }
 
