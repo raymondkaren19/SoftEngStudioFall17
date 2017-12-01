@@ -1,4 +1,16 @@
-insert into supplier (name, streetnum, streetname, city, state, zipcode, phone, edi, payment, incoterms) values ('Littleton Lumber', '55', 'White Street', 'Littleton', 'MA', '01460', '978-486-9877', 'paper', 'net 30 days', 'none');
+insert into supplier
+(name,
+streetname,
+city,
+state,
+zipcode,
+phone,
+edi,
+payment,
+incoterms)
+values
+('Littleton Lumber', '55 White Street', 'Littleton', 'MA', '01460', '978-486-9877', 'paper', 'net 30 days', 'none');
+
 INSERT INTO inventoryitem 
 (`ItemName`,
 `ItemUPCNumber`,
