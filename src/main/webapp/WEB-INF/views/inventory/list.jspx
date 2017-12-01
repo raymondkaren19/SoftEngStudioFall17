@@ -18,6 +18,7 @@
     <spring:message code="label_supplier_phone" var="labelSupplierPhone"/>
 
     <spring:url value="/inventory/" var="showItemsUrl"/>
+    <spring:url value="/supplier/" var="showSuppliersUrl"/>
 
     <script type="text/javascript">
         $(function(){
@@ -63,7 +64,7 @@
     <script type="text/javascript">
         $(function(){
             $("#supplierlist").jqGrid({
-                url:'${showItemsUrl}/supplierlistgrid',
+                url:'${showSuppliersUrl}/supplierlistgrid',
                 datatype: 'json',
                 mtype: 'GET',
                 colNames:['${labelSupplierName}',

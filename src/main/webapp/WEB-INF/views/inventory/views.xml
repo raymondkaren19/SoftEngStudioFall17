@@ -10,10 +10,13 @@
     <definition extends="default" name="inventory/showProduct">
         <put-attribute name="body" value="/WEB-INF/views/inventory/showProduct.jspx" />
     </definition>
+    <definition extends="default" name="inventory/addInventoryItem">
+        <put-attribute name="body" value="/WEB-INF/views/inventory/addInventoryItem.jspx" />
+    </definition>
     <definition extends="default" name="supplier/addSupplier">
         <put-attribute name="body" value="/WEB-INF/views/inventory/addSupplier.jspx" />
     </definition>
-    <definition extends="default" name="inventory/addInventoryItem">
-        <put-attribute name="body" value="/WEB-INF/views/inventory/addInventoryItem.jspx" />
+    <definition extends="default" name="supplier/showSupplier">
+        <put-attribute name="body" value="/WEB-INF/views/inventory/showSupplier.jspx" />
     </definition>
 </tiles-definitions>

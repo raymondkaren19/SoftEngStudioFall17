@@ -1,8 +1,6 @@
 package edu.brandeis.spring.mvc.web.controller;
 
-import java.io.IOException;
 import edu.brandeis.spring.mvc.domain.*;
-import java.io.InputStream;
 import java.util.List;
 import java.util.Locale;
 
@@ -27,7 +25,6 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.google.common.collect.Lists;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.Part;
 import edu.brandeis.spring.mvc.service.*;
 
 @RequestMapping("/supplier")
@@ -50,6 +47,14 @@ public class SupplierController {
         return "supplier/list";
     } 
 
+    @RequestMapping(value = "/{ID}", method = RequestMethod.GET)
+    public String show(@PathVariable("ID") Long id, Model uiModel) {
+        Supplier supplier = supplierService.findById(id);
+        uiModel.addAttribute("supplier", supplier);
+
+        return "supplier/showSupplier";
+    }
+
     @RequestMapping(params = "form", method = RequestMethod.POST)
     public String create(Supplier supplier, BindingResult bindingResult, Model uiModel, 
         HttpServletRequest httpServletRequest, RedirectAttributes redirectAttributes, 
@@ -71,7 +76,6 @@ public class SupplierController {
         return "redirect:/inventory/";
     }
 
-    
     @RequestMapping(params = "form", method = RequestMethod.GET)
     public String createForm(Model uiModel) {
     	Supplier supplier = new Supplier();
@@ -93,8 +97,8 @@ public class SupplierController {
         // Process order by
         Sort sort = null;
         String orderBy = sortBy;
-        if (orderBy != null && orderBy.equals("name")) {
-            orderBy = "name";
+        if (orderBy != null && orderBy.equals("ID")) {
+            orderBy = "ID";
         }
 
         if (orderBy != null && order != null) {
@@ -120,7 +124,7 @@ public class SupplierController {
         supplierGrid.setTotalPages(supplierPage.getTotalPages());
         supplierGrid.setTotalRecords(supplierPage.getTotalElements());
 
-        supplierGrid.setItemData(Lists.newArrayList(supplierPage.iterator()));
+        supplierGrid.setSupplierData(Lists.newArrayList(supplierPage.iterator()));
 
         return supplierGrid;
     }
