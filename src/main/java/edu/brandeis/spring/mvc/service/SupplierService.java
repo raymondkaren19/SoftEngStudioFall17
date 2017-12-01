@@ -11,6 +11,6 @@ public interface SupplierService {
     List<Supplier> findAll();
     Supplier findById(Long id);
     Supplier save(Supplier Supplier);
-
+    Page<Supplier> findAllByPage(Pageable pageable);
 }
 

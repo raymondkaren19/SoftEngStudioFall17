@@ -24,6 +24,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.google.common.collect.Lists;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.Part;
 import edu.brandeis.spring.mvc.service.*;
@@ -76,6 +78,51 @@ public class SupplierController {
         uiModel.addAttribute("supplier", supplier);
 
         return "supplier/addSupplier";
+    }
+
+    @ResponseBody  
+    @RequestMapping(value = "/supplierlistgrid", method = RequestMethod.GET, produces="application/json")
+    public SupplierGrid listGrid(@RequestParam(value = "page", required = false) Integer page,
+                                 @RequestParam(value = "rows", required = false) Integer rows,
+                                 @RequestParam(value = "sidx", required = false) String sortBy,
+                                 @RequestParam(value = "sord", required = false) String order) {
+
+        logger.info("Listing suppliers for grid with page: {}, rows: {}", page, rows);
+        logger.info("Listing suppliers for grid with sort: {}, order: {}", sortBy, order);
+
+        // Process order by
+        Sort sort = null;
+        String orderBy = sortBy;
+        if (orderBy != null && orderBy.equals("name")) {
+            orderBy = "name";
+        }
+
+        if (orderBy != null && order != null) {
+            sort = new Sort(Sort.Direction.ASC, orderBy);
+        }
+
+        // Constructs page request for current page
+        // Note: page number for Spring Data JPA starts with 0, while jqGrid starts with 1
+        PageRequest pageRequest = null;
+
+        if (sort != null) {
+            pageRequest = new PageRequest(page - 1, rows, sort);
+        } else {
+            pageRequest = new PageRequest(page - 1, rows);
+        }
+
+        Page<Supplier> supplierPage = supplierService.findAllByPage(pageRequest);
+
+        // Construct the grid data that will return as JSON data
+        SupplierGrid supplierGrid = new SupplierGrid();
+
+        supplierGrid.setCurrentPage(supplierPage.getNumber() + 1);
+        supplierGrid.setTotalPages(supplierPage.getTotalPages());
+        supplierGrid.setTotalRecords(supplierPage.getTotalElements());
+
+        supplierGrid.setItemData(Lists.newArrayList(supplierPage.iterator()));
+
+        return supplierGrid;
     }
 
     @Autowired

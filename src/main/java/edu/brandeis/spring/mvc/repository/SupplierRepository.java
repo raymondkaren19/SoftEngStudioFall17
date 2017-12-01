@@ -1,10 +1,8 @@
 package edu.brandeis.spring.mvc.repository;
 
-import java.util.List;
-
-import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.repository.PagingAndSortingRepository;
 
 import edu.brandeis.spring.mvc.domain.*;
-public interface SupplierRepository extends CrudRepository<Supplier, Long> {
-    List<Supplier> findAll();
+
+public interface SupplierRepository extends PagingAndSortingRepository<Supplier, Long> {
 }

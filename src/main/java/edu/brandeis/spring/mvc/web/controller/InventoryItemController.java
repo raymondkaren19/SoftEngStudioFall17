@@ -44,12 +44,16 @@ public class InventoryItemController {
 
     @RequestMapping(method = RequestMethod.GET)
     public String list(Model uiModel) {
-        logger.info("Listing items");
+        logger.info("Listing items and suppliers");
 
         List<InventoryItem> items = itemService.findAll();
         uiModel.addAttribute("inventoryitems", items);
 
+        List<Supplier> suppliers = supplierService.findAll();
+        uiModel.addAttribute("suppliers", suppliers);
+
         logger.info("No. of inventory items: " + items.size());
+        logger.info("No. of suppliers: " + suppliers.size());
 
         return "inventory/list";
         
@@ -123,7 +127,7 @@ public class InventoryItemController {
     }
 
     @ResponseBody  
-    @RequestMapping(value = "/listgrid", method = RequestMethod.GET, produces="application/json")
+    @RequestMapping(value = "/itemlistgrid", method = RequestMethod.GET, produces="application/json")
     public InventoryItemGrid listGrid(@RequestParam(value = "page", required = false) Integer page,
                                       @RequestParam(value = "rows", required = false) Integer rows,
                                       @RequestParam(value = "sidx", required = false) String sortBy,

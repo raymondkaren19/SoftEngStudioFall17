@@ -42,4 +42,9 @@ public class SupplierServiceImpl implements SupplierService {
         this.supplierRepository = supplierRepository;
     }
 
+    @Override
+    @Transactional(readOnly=true)
+    public Page<Supplier> findAllByPage(Pageable pageable) {
+        return supplierRepository.findAll(pageable);
+    }
 }
