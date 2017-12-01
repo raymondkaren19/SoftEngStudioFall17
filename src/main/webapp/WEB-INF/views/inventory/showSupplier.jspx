@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:jsp="http://java.sun.com/JSP/Page"
+     xmlns:c="http://java.sun.com/jsp/jstl/core"
+     xmlns:spring="http://www.springframework.org/tags"
+     xmlns:form="http://www.springframework.org/tags/form"
+     xmlns:joda="http://www.joda.org/joda/time/tags"
+     xmlns:sec="http://www.springframework.org/security/tags"
+     version="2.0">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+
+    <spring:message code="label_supplier_details" var="labelSupplierDetails"/>
+    <spring:message code="label_supplier_update" var="labelSupplierUpdate"/>
+    <spring:message code="label_supplier_name" var="labelSupplierName"/>
+    <spring:message code="label_supplier_street" var="labelSupplierStreet"/>
+    <spring:message code="label_supplier_city" var="labelSupplierCity"/>
+    <spring:message code="label_supplier_state" var="labelSupplierState"/>
+    <spring:message code="label_supplier_zip" var="labelSupplierZip"/>
+    <spring:message code="label_supplier_phone" var="labelSupplierPhone"/>
+    <spring:message code="label_supplier_edi" var="labelSupplierEdi"/>
+    <spring:message code="label_supplier_payment" var="labelSupplierPayment"/>
+    <spring:message code="label_supplier_incoterms" var="labelSupplierIncoterms"/>
+
+    <spring:url value="/supplier" var="editInventoryItemUrl"/>
+
+    <h1>${labelSupplierDetails}</h1>
+
+    <div id="supplierDetails">
+
+        <c:if test="${not empty message}">
+            <div id="message" class="${message.type}">${message.message}</div>
+        </c:if>
+
+        <table>
+            <tr>
+                <td>${labelSupplierName}</td>
+                <td>${supplier.name}</td>
+            </tr>
+            <tr>
+                <td>${labelSupplierStreet}</td>
+                <td>${supplier.street}</td>
+            </tr>
+            <tr>
+                <td>${labelSupplierCity}</td>
+                <td>${supplier.city}</td>
+            </tr>
+            <tr>
+                <td>${labelSupplierState}</td>
+                <td>${supplier.state}</td>
+            </tr>
+            <tr>
+                <td>${labelSupplierZip}</td>
+                <td>${supplier.zipcode}</td>
+            </tr>
+            <tr>
+                <td>${labelSupplierPhone}</td>
+                <td>${supplier.phone}</td>
+            </tr>
+            <tr>
+                <td>${labelSupplierEdi}</td>
+                <td>${supplier.edi}</td>
+            </tr>
+            <tr>
+                <td>${labelSupplierPayment}</td>
+                <td>${supplier.payment}</td>
+            </tr>
+            <tr>
+                <td>${labelSupplierIncoterms}</td>
+                <td>${supplier.incoterms}</td>
+            </tr>
+        </table>
+
+        <a href="${editSupplierUrl}/${supplier.ID}?form">${labelSupplierUpdate}</a>
+<!--
+        <sec:authorize access="hasRole('ROLE_USER')">
+            <a href="${editSupplierUrl}/${supplier.ID}?form">${labelSupplierUpdate}</a>
+        </sec:authorize>
+-->
+    </div>
+</div>

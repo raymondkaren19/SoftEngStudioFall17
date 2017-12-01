@@ -34,11 +34,11 @@ public class SupplierGrid {
         this.totalRecords = totalRecords;
     }
 
-    public List<Supplier> getItemData() {
+    public List<Supplier> getSupplierData() {
         return supplierData;
     }
 
-    public void setItemData(List<Supplier> supplierData) {
+    public void setSupplierData(List<Supplier> supplierData) {
         this.supplierData = supplierData;
     }
 }
