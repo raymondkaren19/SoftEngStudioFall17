@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+
+<div xmlns:jsp="http://java.sun.com/JSP/Page"
+     xmlns:c="http://java.sun.com/jsp/jstl/core"
+     xmlns:spring="http://www.springframework.org/tags"
+     xmlns:form="http://www.springframework.org/tags/form"
+     version="2.0">
+
+    <script type="text/javascript">
+        $(function(){
+            $("#suppliertDescription").ckeditor(
+                    {
+                        toolbar : 'Basic',
+                        uiColor : '#CCCCCC'
+                    }
+            );
+        });
+    </script>
+
+    <jsp:directive.page contentType="text/html;charset=UTF-8" />
+    <jsp:output omit-xml-declaration="yes" />
+
+    <spring:message code="label_supplier_new" var="labelSupplierNew"/>
+    <spring:message code="label_supplier_update" var="labelSupplierUpdate"/>
+    <spring:message code="label_supplier_name" var="labelSupplierName"/>
+    <spring:message code="label_supplier_street" var="labelSupplierStreet"/>
+    <spring:message code="label_supplier_city" var="labelSupplierCity"/>
+    <spring:message code="label_supplier_state" var="labelSupplierState"/>
+    <spring:message code="label_supplier_zip" var="labelSupplierZip"/>
+    <spring:message code="label_supplier_phone" var="labelSupplierPhone"/>
+    <spring:message code="label_supplier_edi" var="labelSupplierEdi"/>
+    <spring:message code="label_supplier_payment" var="labelSupplierPayment"/>
+    <spring:message code="label_supplier_incoterms" var="labelSupplierIncoterms"/>
+
+    <spring:eval expression="supplier.ID == null ? labelSupplierNew:labelSupplierUpdate"
+                 var="formTitle"/>
+
+    <h1>${formTitle}</h1>
+
+    <div id="supplierUpdate">
+        <form:form modelAttribute="supplier" id="supplierUpdateForm" method="post"
+                   enctype="multipart/form-data">
+
+        <c:if test="${not empty message}">
+                <div id="message" class="${message.type}">${message.message}</div>
+            </c:if>
+
+            <form:label path="name">
+                ${labelSupplierName}*
+            </form:label>
+            <form:input path="name" />
+            <div>
+                <form:errors path="name" cssClass="error" />
+            </div>
+            <p/>
+
+            <form:label path="street">
+                ${labelSupplierStreet}*
+            </form:label>
+            <form:input path="street" />
+            <div>
+                <form:errors path="street" cssClass="error" />
+            </div>
+            <p/>
+
+            <form:label path="city">
+                ${labelSupplierCity}*
+            </form:label>
+            <form:input path="city" />
+            <div>
+                <form:errors path="city" cssClass="error" />
+            </div>
+            <p/>
+
+            <form:label path="state">
+                ${labelSupplierState}*
+            </form:label>
+            <form:input path="state" />
+            <div>
+                <form:errors path="state" cssClass="error" />
+            </div>
+            <p/>
+
+            <form:label path="zipcode">
+                ${labelSupplierZip}*
+            </form:label>
+            <form:input path="zipcode" />
+            <div>
+                <form:errors path="zipcode" cssClass="error" />
+            </div>
+            <p/>
+
+            <form:label path="phone">
+                ${labelSupplierPhone}*
+            </form:label>
+            <form:input path="phone" />
+            <div>
+                <form:errors path="phone" cssClass="error" />
+            </div>
+            <p/>
+
+            <form:label path="edi">
+                ${labelSupplierEdi}*
+            </form:label>
+            <form:input path="edi" />
+            <div>
+                <form:errors path="edi" cssClass="error" />
+            </div>
+            <p/>
+
+            <form:label path="payment">
+                ${labelSupplierPayment}*
+            </form:label>
+            <form:input path="payment" />
+            <div>
+                <form:errors path="payment" cssClass="error" />
+            </div>
+            <p/>
+
+            <form:label path="incoterms">
+                ${labelSupplierIncoterms}*
+            </form:label>
+            <form:input path="incoterms" />
+            <div>
+                <form:errors path="incoterms" cssClass="error" />
+            </div>
+            <p/>
+            
+            <button type="submit" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only">
+                <span class="ui-button-text">Save</span>
+            </button>
+            <button type="reset" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only">
+                <span class="ui-button-text">Reset</span>
+            </button>
+        </form:form>
+    </div>
+</div>

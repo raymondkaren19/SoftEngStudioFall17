@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE tiles-definitions PUBLIC
+        "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN"
+        "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
+
+<tiles-definitions>
+    <definition extends="default" name="inventory/list">
+        <put-attribute name="body" value="/WEB-INF/views/inventory/list.jspx" />
+    </definition>
+    <definition extends="default" name="inventory/showProduct">
+        <put-attribute name="body" value="/WEB-INF/views/inventory/showProduct.jspx" />
+    </definition>
+    <definition extends="default" name="supplier/addSupplier">
+        <put-attribute name="body" value="/WEB-INF/views/inventory/addSupplier.jspx" />
+    </definition>
+    <definition extends="default" name="inventory/addInventoryItem">
+        <put-attribute name="body" value="/WEB-INF/views/inventory/addInventoryItem.jspx" />
+    </definition>
+</tiles-definitions>

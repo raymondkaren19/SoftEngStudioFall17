@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+
+<div xmlns:jsp="http://java.sun.com/JSP/Page"
+     xmlns:c="http://java.sun.com/jsp/jstl/core"
+     xmlns:spring="http://www.springframework.org/tags"
+     xmlns:form="http://www.springframework.org/tags/form"
+     version="2.0">
+
+    <script type="text/javascript">
+        $(function(){
+            $("#inventorytDescription").ckeditor(
+                    {
+                        toolbar : 'Basic',
+                        uiColor : '#CCCCCC'
+                    }
+            );
+        });
+    </script>
+
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+
+    <spring:message code="label_inventoryitem_new" var="labelInventoryItemNew"/>
+    <spring:message code="label_inventoryitem_update" var="labelInventoryItemUpdate"/>
+    <spring:message code="label_inventoryitem_name" var="labelInventoryItemName"/>
+    <spring:message code="label_inventoryitem_upc" var="labelInventoryItemUPC"/>
+    <spring:message code="label_inventoryitem_sku" var="labelInventoryItemSKU"/>
+    <spring:message code="label_inventoryitem_manufacturer" var="labelInventoryItemManufacturer"/>
+    <spring:message code="label_inventoryitem_inventory" var="labelInventoryItemInventory"/>
+    <spring:message code="label_inventoryitem_location" var="labelInventoryItemLocation"/>
+    <spring:message code="label_inventoryitem_reorderqty" var="labelInventoryItemReorderQty"/>
+    <spring:message code="label_inventoryitem_reorderunit" var="labelInventoryItemReorderUnit"/>
+    <spring:message code="label_inventoryitem_backorderdate" var="labelInventoryItemBackorderDate"/>
+    <spring:message code="label_inventoryitem_price" var="labelInventoryItemPrice"/>
+    <spring:message code="label_inventoryitem_supplierid" var="labelInventoryItemSupplier"/>
+    <spring:message code="label_product_update" var="labelProductUpdate"/>
+    <spring:message code="label_product_new" var="labelProductNew"/>
+
+    <spring:eval expression="inventoryitem.itemId == null ? labelProductNew:labelProductUpdate"
+                 var="formTitle"/>
+
+    <h1>${formTitle}</h1>
+
+    <div id="inventoryItemUpdate">
+        <form:form modelAttribute="inventoryitem" id="inventoryItemUpdateForm" method="post"
+                   enctype="multipart/form-data">
+
+        <c:if test="${not empty message}">
+                <div id="message" class="${message.type}">${message.message}</div>
+            </c:if>
+
+            <form:label path="itemName">
+                ${labelInventoryItemName}*
+            </form:label>
+            <form:input path="itemName" />
+            <div>
+                <form:errors path="itemName" cssClass="error" />
+            </div>
+            <p/>
+            <form:label path="itemUPCNumber">
+                ${labelInventoryItemUPC}*
+            </form:label>
+            <form:input path="itemUPCNumber" />
+            <div>
+                <form:errors path="itemUPCNumber" cssClass="error" />
+            </div>
+            <p/>
+
+            <form:label path="itemSKU">
+                ${labelInventoryItemSKU}
+            </form:label>
+            <form:input path="itemSKU"/>
+            <div>
+                <form:errors path="itemSKU" cssClass="error" />
+            </div>
+            <p/>
+
+            <form:label path="manufacturerName">
+                ${labelInventoryItemManufacturer}
+            </form:label>
+            <form:input path="manufacturerName"/>
+            <div>
+                <form:errors path="manufacturerName" cssClass="error" />
+            </div>
+            <p/>
+
+             
+           
+            <form:label path="inventoryOnHand">
+                ${labelInventoryItemInventory}
+            </form:label>
+            <form:input path="inventoryOnHand"/>
+            <div>
+                <form:errors path="inventoryOnHand" cssClass="error" />
+            </div>
+            <p/>
+
+            <form:label path="warehouseLocation">
+                ${labelInventoryItemLocation}
+            </form:label>
+            <form:input path="warehouseLocation"/>
+            <div>
+                <form:errors path="warehouseLocation" cssClass="error" />
+            </div>
+            <p/>
+
+            <form:label path="reorderQuantity">
+                ${labelInventoryItemReorderQty}
+            </form:label>
+            <form:input path="reorderQuantity"/>
+            <div>
+                <form:errors path="reorderQuantity" cssClass="error" />
+            </div>
+            <p/>
+
+            <form:label path="reorderUnit">
+                ${labelInventoryItemReorderUnit}
+            </form:label>
+            <form:input path="reorderUnit"/>
+            <div>
+                <form:errors path="reorderUnit" cssClass="error" />
+            </div>
+            <p/>
+
+            <form:label path="backorderDate">
+                ${labelInventoryItemBackorderDate}
+            </form:label>
+            <form:input path="backorderDate"/>
+            <div>
+                <form:errors path="backorderDate" cssClass="error" />
+            </div>
+            <p/>
+
+            <form:label path="perItemRetailSalePrice">
+                ${labelInventoryItemPrice}
+            </form:label>
+            <form:input path="perItemRetailSalePrice"/>
+            <div>
+                <form:errors path="perItemRetailSalePrice" cssClass="error" />
+            </div>
+            <p/>
+            <form:label path="supplierId">
+                ${labelInventoryItemSupplier}
+            </form:label>
+            <form:input path="supplierId"/>
+            <div>
+                <form:errors path="supplierId" cssClass="error" />
+            </div>
+            <p/>
+            
+
+            <button type="submit" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only">
+                <span class="ui-button-text">Save</span>
+            </button>
+            <button type="reset" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only">
+                <span class="ui-button-text">Reset</span>
+            </button>
+        </form:form>
+    </div>
+</div>

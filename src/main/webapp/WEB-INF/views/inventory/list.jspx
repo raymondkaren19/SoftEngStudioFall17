@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:jsp="http://java.sun.com/JSP/Page"
+     xmlns:c="http://java.sun.com/jsp/jstl/core"
+     xmlns:spring="http://www.springframework.org/tags"
+     version="2.0">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+
+    <spring:message code="label_inventoryitem_list" var="labelInventoryItemList"/>
+    <spring:message code="label_inventoryitem_name" var="labelInventoryItemName"/>
+    <spring:message code="label_inventoryitem_manufacturer" var="labelInventoryItemManufacturer"/>
+    <spring:message code="label_inventoryitem_inventory" var="labelInventoryItemInventory"/>
+    <spring:message code="label_inventoryitem_price" var="labelInventoryItemPrice"/>
+    <spring:message code="label_supplier_list" var="labelSupplierList"/>
+    <spring:message code="label_supplier_name" var="labelSupplierName"/>
+    <spring:message code="label_supplier_city" var="labelSupplierCity"/>
+    <spring:message code="label_supplier_state" var="labelSupplierState"/>
+    <spring:message code="label_supplier_phone" var="labelSupplierPhone"/>
+
+    <spring:url value="/inventory/" var="showItemsUrl"/>
+
+    <script type="text/javascript">
+        $(function(){
+            $("#itemlist").jqGrid({
+                url:'${showItemsUrl}/itemlistgrid',
+                datatype: 'json',
+                mtype: 'GET',
+                colNames:['${labelInventoryItemName}',
+                          '${labelInventoryItemManufacturer}',
+                          '${labelInventoryItemInventory}',
+                          '${labelInventoryItemPrice}', ],
+                colModel :[
+                    {name:'itemName', index:'itemName', width:50},
+                    {name:'manufacturerName', index:'manufacturerName', width:100},
+                    {name:'inventoryOnHand', index:'inventoryOnHand', width:50},
+                    {name:'perItemRetailSalePrice', index:'perItemRetailSalePrice', width:50},
+                ],
+                jsonReader : {
+                    root:"itemData",
+                    page: "currentPage",
+                    total: "totalPages",
+                    records: "totalRecords",
+                    repeatitems: false,
+                    id: "itemId"
+                },
+                pager: '#itempager',
+                rowNum:10,
+                rowList:[10,20,30],
+                sortname: 'itemName',
+                sortorder: 'asc',
+                viewrecords: true,
+                gridview: true,
+                height: 250,
+                width: 500,
+                caption: '${labelInventoryItemList}',
+                onSelectRow: function(id){
+                    document.location.href ="${showItemsUrl}/" + id;
+                }
+            });
+        });
+    </script>
+
+    <script type="text/javascript">
+        $(function(){
+            $("#supplierlist").jqGrid({
+                url:'${showItemsUrl}/supplierlistgrid',
+                datatype: 'json',
+                mtype: 'GET',
+                colNames:['${labelSupplierName}',
+                          '${labelSupplierCity}',
+                          '${labelSupplierState}',
+                          '${labelSupplierPhone}', ],
+                colModel :[
+                    {name:'name', index:'name', width:100},
+                    {name:'city', index:'city', width:50},
+                    {name:'state', index:'state', width:50},
+                    {name:'phone', index:'phone', width:50},
+                ],
+                jsonReader : {
+                    root:"supplierData",
+                    page: "currentPage",
+                    total: "totalPages",
+                    records: "totalRecords",
+                    repeatitems: false,
+                    id: "ID"
+                },
+                pager: '#supplierpager',
+                rowNum:10,
+                rowList:[10,20,30],
+                sortname: 'name',
+                sortorder: 'asc',
+                viewrecords: true,
+                gridview: true,
+                height: 250,
+                width: 500,
+                caption: '${labelSupplierList}',
+                onSelectRow: function(id){
+                    document.location.href ="${showSuppliersUrl}/" + id;
+                }
+            });
+        });
+    </script>
+
+    <c:if test="${not empty message}">
+        <div id="message" class="${message.type}">${message.message}</div>
+    </c:if>
+
+    <h2>${labelInventoryItemList}</h2>
+
+    <div>
+        <table id="itemlist"><tr><td/></tr></table>
+        <div id="itempager"></div>
+    </div>
+
+    <h2>${labelSupplierList}</h2>
+
+    <div>
+        <table id="supplierlist"><tr><td/></tr></table>
+        <div id="supplierpager"></div>
+    </div>
+    
+</div>
