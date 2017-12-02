@@ -90,6 +90,27 @@ public class InventoryItemController {
                 httpServletRequest);
     }
 
+    @RequestMapping(value = "delete/{itemId}",  method = RequestMethod.GET)
+    public String delete(@PathVariable("itemId") Long id, Model uiModel)                         {
+        logger.info("Deleting inventory item: " + id);
+       
+        InventoryItem item = itemService.findById(id);
+        
+        // Item will not be deleted from the database. Instead inventoryOnHand field will be set to zero. 
+        item.setInventoryOnHand(0);
+        itemService.save(item);
+        
+        item = itemService.findById(id);
+        uiModel.addAttribute("item", item);
+
+        logger.info("Inventory supplier ID: " + item.getSupplierId());
+        Supplier supplier = supplierService.findById((long) item.getSupplierId());
+        uiModel.addAttribute("supplier", supplier);        
+                
+        return "inventory/showProduct";    
+        //return "redirect:/inventory/";
+    }
+    
     @RequestMapping(value = "/{itemId}", params = "form", method = RequestMethod.GET)
     public String updateForm(@PathVariable("itemId") Long id, Model uiModel) {
         uiModel.addAttribute("inventoryitem", itemService.findById(id));
