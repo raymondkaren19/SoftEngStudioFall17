@@ -25,6 +25,8 @@
     <commons.io.version>2.4</commons.io.version>
     <spring.security.version>3.2.1.RELEASE</spring.security.version>
     <hibernate.entitymanager.version>4.2.3.Final</hibernate.entitymanager.version>
+    <!-- NOTE: specify your Tomcat installation webapps directory location! -->
+    <wardeployment>C:\apache-tomcat-7.0.76\webapps\</wardeployment>
   </properties>
   <dependencies>
       <dependency>
@@ -185,8 +187,7 @@
             <groupId>org.apache.maven.plugins</groupId>
             <artifactId>maven-war-plugin</artifactId>
             <configuration>
-                <!-- NOTE: specify your Tomcat installation webapps directory location! -->
-                <outputDirectory>C:\apache-tomcat-7.0.76\webapps\</outputDirectory>
+                <outputDirectory>${wardeployment}</outputDirectory>
             </configuration>
         </plugin>
       </plugins>
