@@ -44,3 +44,4 @@ output.json #Since Android Studio 3.0
 .externalNativeBuild
 .vscode/
 nbproject/
+*.mwb.bak
