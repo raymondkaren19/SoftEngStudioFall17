@@ -14,13 +14,12 @@ deploy-to-staging:
  script:
   - echo "Deploy to staging server"
   - TOMCAT_HOST=$(ip route show | awk '/default/ {print $3}')
-  - mysql -u root -p$MYSQL_PASS_STAGING -h localhost < ./src/main/resources/META-INF/sql/schema.sql
   - sed -i -e 's/'value=\"mysql\"'/'value=\"$MYSQL_PASS_STAGING\"'/g' ./src/main/resources/META-INF/spring/datasource-tx-jpa.xml
   - mvn package
   - curl -T "target/inventorymanager-webapp.war" "http://tomcat:${TOMCAT_PASSWORD}@${TOMCAT_HOST}:8888/manager/text/deploy?path=/inventorymanager-webapp&update=true"
  environment:
   name: staging
-  url: http://ec2-52-90-192-232.compute-1.amazonaws.com:8888/inventorymanager-webapp/
+  url: http://"$STAGING_HOST":8888/inventorymanager-webapp/
  only:
   - master
 
@@ -32,13 +31,56 @@ deploy-to-production:
    - target/*.war
  script:
   - echo "Deploy to production server"
-  - TOMCAT_HOST=ec2-52-23-230-241.compute-1.amazonaws.com
-  - mysql -u root -p$MYSQL_PASS_PRODUCTION -h $TOMCAT_HOST < ./src/main/resources/META-INF/sql/schema.sql
   - sed -i -e 's/'value=\"mysql\"'/'value=\"$MYSQL_PASS_PRODUCTION\"'/g' ./src/main/resources/META-INF/spring/datasource-tx-jpa.xml
   - mvn package
-  - curl -T "target/inventorymanager-webapp.war" "http://tomcat:${TOMCAT_PASS_DEPLOYMENT}@${TOMCAT_HOST}/manager/text/deploy?path=/&update=true"
+  - curl -T "target/inventorymanager-webapp.war" "http://tomcat:${TOMCAT_PASS_DEPLOYMENT}@${PRODUCTION_HOST}/manager/text/deploy?path=/&update=true"
  environment:
   name: production
+  url: http://"$PRODUCTION_HOST"/
+ only:
+  - master
+ when: manual
+
+deploy-to-sql-schema-to-staging:
+ stage: deploy
+ image: mysql:5.7
+ script:
+  - mysql -u root -p$MYSQL_PASS_STAGING -h $STAGING_HOST < ./src/main/resources/META-INF/sql/schema.sql
+ environment:
+  name: sql/schema-staging
+ only:
+  - master
+ when: manual
+
+deploy-to-sql-schema-to-production:
+ stage: deploy
+ image: mysql:5.7
+ script:
+  - mysql -u root -p$MYSQL_PASS_PRODUCTION -h $PRODUCTION_HOST < ./src/main/resources/META-INF/sql/schema.sql
+ environment:
+  name: sql/schema-production
+ only:
+  - master
+ when: manual
+
+deploy-to-sql-insert-sample-data-to-staging:
+ stage: deploy
+ image: mysql:5.7
+ script:
+  - mysql -u root -p$MYSQL_PASS_STAGING -h $STAGING_HOST < ./src/main/resources/META-INF/sql/test-data.sql
+ environment:
+  name: sql/insert-sample-data-staging
+ only:
+  - master
+ when: manual
+
+deploy-to-sql-insert-sample-data-to-production:
+ stage: deploy
+ image: mysql:5.7
+ script:
+  - mysql -u root -p$MYSQL_PASS_PRODUCTION -h $PRODUCTION_HOST < ./src/main/resources/META-INF/sql/test-data.sql
+ environment:
+  name: sql/insert-sample-data-production
  only:
   - master
  when: manual
