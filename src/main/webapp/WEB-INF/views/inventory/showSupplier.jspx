@@ -21,7 +21,7 @@
     <spring:message code="label_supplier_payment" var="labelSupplierPayment"/>
     <spring:message code="label_supplier_incoterms" var="labelSupplierIncoterms"/>
 
-    <spring:url value="/supplier" var="editInventoryItemUrl"/>
+    <spring:url value="/supplier" var="editSupplierUrl"/>
 
     <h1>${labelSupplierDetails}</h1>
 
