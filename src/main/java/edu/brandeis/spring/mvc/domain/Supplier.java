@@ -11,7 +11,7 @@ import org.hibernate.validator.constraints.NotEmpty;
 import org.hibernate.validator.constraints.Range;
 
 @Entity
-@Table(name = "Supplier")
+@Table(name = "SUPPLIER")
 public class Supplier {
     private Long ID;
     private String name;
