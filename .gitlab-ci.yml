@@ -47,7 +47,7 @@ deploy-to-sql-schema-to-staging:
  stage: deploy
  image: mysql:5.7
  script:
-  - mysql -u root -p$MYSQL_PASS_STAGING -h $STAGING_HOST < ./src/main/resources/META-INF/sql/schema.sql
+  - mysql -u $MYSQL_USER_STAGING -p$MYSQL_PASS_STAGING -h $STAGING_HOST < ./src/main/resources/META-INF/sql/schema.sql
  environment:
   name: sql/schema-staging
  only:
@@ -58,7 +58,7 @@ deploy-to-sql-schema-to-production:
  stage: deploy
  image: mysql:5.7
  script:
-  - mysql -u root -p$MYSQL_PASS_PRODUCTION -h $PRODUCTION_HOST < ./src/main/resources/META-INF/sql/schema.sql
+  - mysql -u $MYSQL_USER_PRODUCTION -p$MYSQL_PASS_PRODUCTION -h $PRODUCTION_HOST < ./src/main/resources/META-INF/sql/schema.sql
  environment:
   name: sql/schema-production
  only:
@@ -69,7 +69,7 @@ deploy-to-sql-insert-sample-data-to-staging:
  stage: deploy
  image: mysql:5.7
  script:
-  - mysql -u root -p$MYSQL_PASS_STAGING -h $STAGING_HOST < ./src/main/resources/META-INF/sql/test-data.sql
+  - mysql -u $MYSQL_USER_STAGING -p$MYSQL_PASS_STAGING -h $STAGING_HOST < ./src/main/resources/META-INF/sql/test-data.sql
  environment:
   name: sql/insert-sample-data-staging
  only:
@@ -80,7 +80,7 @@ deploy-to-sql-insert-sample-data-to-production:
  stage: deploy
  image: mysql:5.7
  script:
-  - mysql -u root -p$MYSQL_PASS_PRODUCTION -h $PRODUCTION_HOST < ./src/main/resources/META-INF/sql/test-data.sql
+  - mysql -u $MYSQL_USER_PRODUCTION -p$MYSQL_PASS_PRODUCTION -h $PRODUCTION_HOST < ./src/main/resources/META-INF/sql/test-data.sql
  environment:
   name: sql/insert-sample-data-production
  only:
