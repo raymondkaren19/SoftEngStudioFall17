@@ -17,11 +17,8 @@ import static junit.framework.Assert.fail;
 // Test the local conection of the mysql instance
 public class MySQLConnectionTest extends TestCase  {
 
-	protected String host = "localhost";
 	protected String port = "3306";
 	protected String database = "InventoryDB";
-	protected String username = "root";
-	protected String password = "mysql";
 	protected String connectionParameters = "?useSSL=false";
 	protected Connection con;
 	protected String printColWidth = "30";
@@ -30,11 +27,14 @@ public class MySQLConnectionTest extends TestCase  {
             // Only run on local machine
             if(System.getenv("CI") == null)
             {
-             initAndConnect();   
+             initAndConnect("root","mysql", "localhost" );   
             }
 	}
 
-	protected void initAndConnect() {
+	protected void initAndConnect(String username, String password, String host ) {
+            
+            
+            
 		String connectionString = String.format("jdbc:mysql://%s:%s/%s%s", host, port, database, connectionParameters);
 		
 		try {
