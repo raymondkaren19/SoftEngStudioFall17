@@ -14,6 +14,7 @@ import java.sql.SQLException;
 
 import static junit.framework.Assert.fail;
 
+// Test the local conection of the mysql instance
 public class MySQLConnectionTest extends TestCase  {
 
 	protected String host = "localhost";
@@ -22,11 +23,15 @@ public class MySQLConnectionTest extends TestCase  {
 	protected String username = "root";
 	protected String password = "mysql";
 	protected String connectionParameters = "?useSSL=false";
-	protected String connectionString;
 	protected Connection con;
 	protected String printColWidth = "30";
-	public void test() {
-		initAndConnect();
+	
+        public void test() {
+            // Only run on local machine
+            if(System.getenv("CI") == null)
+            {
+             initAndConnect();   
+            }
 	}
 
 	protected void initAndConnect() {
