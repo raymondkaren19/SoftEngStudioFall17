@@ -14,6 +14,7 @@ COMMIT;
 START TRANSACTION;
 USE `InventoryDB`;
 INSERT INTO `InventoryDB`.`InventoryItem` (`ItemId`, `ItemName`, `ItemUPCNumber`, `ItemSKU`, `ManufacturerName`, `InventoryOnHand`, `WarehouseLocation`, `ReorderQuantity`, `ReorderUnit`, `BackorderDate`, `PerItemRetailSalePrice`, `SupplierId`) VALUES (1, 'Battery', '123456780011', '12345', 'Apple', 10, 'Arizona',  5, 'Single', '2017-11-17', 1000, 1);
+INSERT INTO `InventoryDB`.`InventoryItem` (`ItemId`, `ItemName`, `ItemUPCNumber`, `ItemSKU`, `ManufacturerName`, `InventoryOnHand`, `WarehouseLocation`, `ReorderQuantity`, `ReorderUnit`, `BackorderDate`, `PerItemRetailSalePrice`, `SupplierId`) VALUES (2, 'Keyboard', '123456780012', '127895', 'Google', 10, 'CA', '5', 'Single', ' 12/04/2017', 100.00, 1);
 
 COMMIT;
 
@@ -36,4 +37,3 @@ USE `InventoryDB`;
 INSERT INTO `InventoryDB`.`PURCHASE_ORDERS` (`ID`, `PURCHASE_ORDER_ID`, `ITEM_ID`, `QTY_ORDERED`, `DELIVERY_DATE`, `UNIT_PRICE`) VALUES (DEFAULT, NULL, NULL, 8, '2017-11-30', 100.00);
 
 COMMIT;
-

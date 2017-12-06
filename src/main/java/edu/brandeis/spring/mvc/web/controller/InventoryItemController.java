@@ -3,6 +3,7 @@ package edu.brandeis.spring.mvc.web.controller;
 import java.util.List;
 import java.util.Locale;
 
+import org.joda.time.DateTime;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,6 +29,7 @@ import edu.brandeis.spring.mvc.service.InventoryItemGrid;
 import edu.brandeis.spring.mvc.service.InventoryItemService;
 import edu.brandeis.spring.mvc.service.Message;
 import edu.brandeis.spring.mvc.service.SupplierService;
+import edu.brandeis.spring.mvc.service.AuditLogService;
 import edu.brandeis.spring.mvc.web.util.UrlUtil;
 
 import javax.servlet.http.HttpServletRequest;
@@ -40,6 +42,7 @@ public class InventoryItemController {
 
     private InventoryItemService itemService;
     private SupplierService supplierService;
+    private AuditLogService auditLogService;
     private MessageSource messageSource;
 
     @RequestMapping(method = RequestMethod.GET)
@@ -86,6 +89,9 @@ public class InventoryItemController {
         redirectAttributes.addFlashAttribute("message", new Message("success",
                 messageSource.getMessage("inventoryitem_save_success", new Object[]{}, locale)));
         itemService.save(item);
+        
+        auditLogService.saveData("Update", "Inventory Item Updated", "Admin");
+        
         return "redirect:/inventory/" + UrlUtil.encodeUrlPathSegment(item.getItemId().toString(),
                 httpServletRequest);
     }
@@ -99,6 +105,8 @@ public class InventoryItemController {
         // Item will not be deleted from the database. Instead inventoryOnHand field will be set to zero. 
         item.setInventoryOnHand(0);
         itemService.save(item);
+        
+        auditLogService.saveData("Delete", "Inventory On Hand is set to 0", "Admin");
         
         item = itemService.findById(id);
         uiModel.addAttribute("item", item);
@@ -136,6 +144,7 @@ public class InventoryItemController {
         logger.info("Inventory Item id: " + item.getItemId());
 
         itemService.save(item);
+        auditLogService.saveData("Create", "Inventory item is created", "Admin");
         return "redirect:/inventory/";
     }
 
@@ -200,6 +209,11 @@ public class InventoryItemController {
     @Autowired
     public void setSupplierService(SupplierService supplierService) {
         this.supplierService = supplierService;
+    }
+    
+    @Autowired
+    public void setAuditLogService(AuditLogService auditService) {
+        this.auditLogService = auditService;
     }
 
     @Autowired
