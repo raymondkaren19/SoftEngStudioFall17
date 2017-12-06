@@ -97,6 +97,7 @@ test-connection-staging-tomcat-and-mysql-:
  image: mysql:5.7
  script:
   - apt-get update && apt-get -y install curl
+  - TOMCAT_HOST=$(ip route show | awk '/default/ {print $3}')
   - curl --fail "http://tomcat:${TOMCAT_PASSWORD}@${TOMCAT_HOST}:8888/manager/status/all"
   - mysql -u $MYSQL_USER_STAGING -p$MYSQL_PASS_STAGING -h $STAGING_HOST
  environment:
