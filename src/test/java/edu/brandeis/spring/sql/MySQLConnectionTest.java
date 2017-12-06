@@ -27,7 +27,17 @@ public class MySQLConnectionTest extends TestCase  {
             // Only run on local machine
             if(System.getenv("CI") == null)
             {
-             initAndConnect("root","mysql", "localhost" );   
+             // These should match the password in the data source
+             // While not ideal these are root:mysql
+             // If you want to override these, you can use the following global env variables.
+             // https://stackoverflow.com/questions/13046624/how-to-permanently-export-a-variable-in-linux
+             //https://stackoverflow.com/questions/22502759/mac-os-x-10-9-setting-permanent-environment-variables
+             // Alternatibly you can set some varibles in your IDE so you can use the IDE's terminal
+             // https://stackoverflow.com/questions/11823233/how-to-set-environment-variable-in-netbeans
+                
+             String username = System.getenv("MYSQLUSER") == null ? "root" : System.getenv("MYSQLUSER") ;
+             String password = System.getenv("MYSQLPASS") == null ? "mysql" : System.getenv("MYSQLPASS") ;
+             initAndConnect(username, password, "localhost" );   
             }
 	}
 
