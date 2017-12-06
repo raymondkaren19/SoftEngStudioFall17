@@ -9,7 +9,6 @@ import junit.framework.TestCase;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
-import org.junit.Assume;
 
 
 // Test the local conection of the mysql instance
@@ -20,12 +19,6 @@ public class MySQLConnectionLocalhostTest extends TestCase {
     protected String connectionParameters = "?useSSL=false";
     protected Connection con;
     protected String printColWidth = "30";
-
-    @Override
-    protected void setUp() {
-        // Only run on local machine
-        Assume.assumeTrue(System.getenv("CI") == null);
-    }
 
     public void test() {
         if (System.getenv("CI") == null) {

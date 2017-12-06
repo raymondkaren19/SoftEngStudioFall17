@@ -60,7 +60,6 @@ public class MySQLDatasourceXMLUsernameTest extends TestCase {
 
         } catch (Exception e) {
             fail("An exception was thrown while checking " + propetyName + "." + e.toString());
-
         }
 
         return false;
