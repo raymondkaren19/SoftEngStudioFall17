@@ -96,7 +96,7 @@ test-connection-staging-tomcat-and-mysql-:
  stage: test
  image: mysql:5.7
  script:
-  - apt-get install curl
+  - apt-get update && apt-get -y install curl
   - curl --fail "http://tomcat:${TOMCAT_PASSWORD}@${TOMCAT_HOST}:8888/manager/status/all"
   - mysql -u $MYSQL_USER_STAGING -p$MYSQL_PASS_STAGING -h $STAGING_HOST
  environment:
@@ -109,7 +109,7 @@ test-connection-production-tomcat-and-mysql-:
  stage: test
  image: mysql:5.7
  script:
-  - apt-get install curl
+  - apt-get update && apt-get -y install curl
   - curl --fail "http://tomcat:${TOMCAT_PASS_DEPLOYMENT}@${PRODUCTION_HOST}/manager/status/all"
   - mysql -u $MYSQL_USER_PRODUCTION -p$MYSQL_PASS_PRODUCTION -h $PRODUCTION_HOST
  environment:
