@@ -45,3 +45,4 @@ output.json #Since Android Studio 3.0
 .vscode/
 nbproject/
 *.mwb.bak
+nbactions.xml
