@@ -9,7 +9,7 @@ public class AuditLogGrid {
 	    private int totalPages;
 	    private int currentPage;
 	    private long totalRecords;
-	    private List<AuditLog> auditData;
+	    private List<AuditLog> itemData;
 
 	    public int getTotalPages() {
 	        return totalPages;
@@ -36,11 +36,11 @@ public class AuditLogGrid {
 	    }
 
 	    public List<AuditLog> getItemData() {
-	        return auditData;
+	        return itemData;
 	    }
 
 	    public void setItemData(List<AuditLog> itemData) {
-	        this.auditData = itemData;
+	        this.itemData = itemData;
 	    }
 	}
 

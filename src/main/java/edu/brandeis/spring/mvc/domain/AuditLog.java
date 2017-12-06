@@ -23,23 +23,14 @@ public class AuditLog {
     private Long id;   
 
     @Length(max = 10)
-    private String modifiedBy;
-
-    /*@CreatedDate
-    @Temporal(TIMESTAMP)
-    private Date modifiedDate;*/
+    private String modifiedBy;   
     
     private String modifiedDate;
-
-    // @Enumerated(STRING)
+    
     private String eventType;
     
     @Length(max = 10)
     private String createdBy = "Auto";   // will modify these when security is implemented
-
-    /*@CreatedDate
-    @Temporal(TIMESTAMP)
-    private Date modifiedDate;*/
     
     private String createdDate = "Today";
     

@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:jsp="http://java.sun.com/JSP/Page"
+     xmlns:c="http://java.sun.com/jsp/jstl/core"
+     xmlns:spring="http://www.springframework.org/tags"
+     version="2.0">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+
+    <spring:message code="label_audit_list" var="labelAuditList"/>
+    <spring:message code="label_audit_name" var="labelAuditEventName"/>
+    <spring:message code="label_audit_detail" var="labelAuditEventDetail"/>
+    <spring:message code="label_audit_modifiedBy" var="labelAuditModifiedBy"/>
+    <spring:message code="label_audit_mDate" var="labelAuditModifiedDate"/>
+
+    <spring:url value="/audit/" var="showAuditUrl"/>
+
+    <script type="text/javascript">
+        $(function(){
+            $("#list").jqGrid({
+                url:'${showAuditUrl}/auditlistgrid',
+                datatype: 'json',
+                mtype: 'GET',
+                colNames:['${labelAuditEventName}',
+                          '${labelAuditEventDetail}',
+                          '${labelAuditModifiedBy}',
+                          '${labelAuditModifiedDate}', ],
+                colModel :[
+                    {name:'eventType', index:'eventType', width:50},
+                    {name:'detail', index:'detail', width:100},
+                    {name:'modifiedBy', index:'modifiedBy', width:50},
+                    {name:'modifiedDate', index:'modifiedDate', width:50},
+                ],
+                jsonReader : {
+                    root:"auditData",
+                    page: "currentPage",
+                    total: "totalPages",
+                    records: "totalRecords",
+                    repeatitems: false,
+                    id: "id"
+                },
+                pager: '#pager',
+                rowNum:10,
+                rowList:[10,20,30],
+                sortname: 'eventType',
+                sortorder: 'asc',
+                viewrecords: true,
+                gridview: true,
+                height: 250,
+                width: 500,
+                caption: '${labelAuditList}',                
+            });
+        });
+    </script>
+
+    <c:if test="${not empty message}">
+        <div id="message" class="${message.type}">${message.message}</div>
+    </c:if>
+
+    <h2>${labelAuditList}</h2>
+
+    <div>
+        <table id="list"><tr><td/></tr></table>
+    </div>
+    <div id="pager"></div>
+</div>
