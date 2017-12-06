@@ -4,6 +4,8 @@ maven_build:
  script:
   - echo "Building project with maven"
   - mvn verify
+ except:
+  - schedules
 
 deploy-to-staging:
  stage: deploy
@@ -23,6 +25,8 @@ deploy-to-staging:
   url: http://$(STAGING_HOST):8888/inventorymanager-webapp/
  only:
   - master
+ except:
+  - schedules
 
 deploy-to-production:
  stage: deploy
@@ -86,3 +90,28 @@ deploy-to-sql-insert-sample-data-to-production:
  only:
   - master
  when: manual
+
+
+test-connection-staging-tomcat-and-mysql-:
+ stage: test
+ image: mysql:5.7
+ script:
+  - curl --fail "http://tomcat:${TOMCAT_PASSWORD}@${TOMCAT_HOST}:8888/manager/status/all"
+  - mysql -u $MYSQL_USER_STAGING -p$MYSQL_PASS_STAGING -h $STAGING_HOST
+ environment:
+  name: integration-test/connection-staging
+ only:
+  - master
+  - schedules
+
+test-connection-production-tomcat-and-mysql-:
+ stage: test
+ image: mysql:5.7
+ script:
+  - curl --fail "http://tomcat:${TOMCAT_PASS_DEPLOYMENT}@${PRODUCTION_HOST}/manager/status/all"
+  - mysql -u $MYSQL_USER_PRODUCTION -p$MYSQL_PASS_PRODUCTION -h $PRODUCTION_HOST
+ environment:
+  name: integration-test/connection-production
+ only:
+  - master
+  - schedules
