@@ -11,6 +11,7 @@ import org.springframework.context.MessageSource;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
+import org.springframework.security.access.prepost.PreAuthorize;
 //import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -25,7 +26,10 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.google.common.collect.Lists;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.validation.Valid;
+
 import edu.brandeis.spring.mvc.service.*;
+import edu.brandeis.spring.mvc.web.util.UrlUtil;
 
 @RequestMapping("/supplier")
 @Controller
@@ -34,6 +38,7 @@ public class SupplierController {
 
     private SupplierService supplierService;
     private MessageSource messageSource;
+    private AuditLogService auditLogService;
 
     @RequestMapping(method = RequestMethod.GET)
     public String list(Model uiModel) {
@@ -55,6 +60,37 @@ public class SupplierController {
         return "supplier/showSupplier";
     }
 
+    @PreAuthorize("isAuthenticated()")
+    @RequestMapping(value = "/{ID}", params = "form", method = RequestMethod.POST)
+    public String update(@Valid Supplier supplier, BindingResult bindingResult, Model uiModel,
+                         HttpServletRequest httpServletRequest, RedirectAttributes redirectAttributes,
+                         Locale locale) {
+        logger.info("Updating supplier: " + supplier.getID());
+        if (bindingResult.hasErrors() || null == supplier.getID()) {
+            uiModel.addAttribute("message", new Message("error",
+                    messageSource.getMessage("supplier_save_fail", new Object[]{}, locale)));
+            uiModel.addAttribute("supplier", supplier);
+            return "supplier/addSupplier";
+        }
+        uiModel.asMap().clear();
+        redirectAttributes.addFlashAttribute("message", new Message("success",
+                messageSource.getMessage("supplier_save_success", new Object[]{}, locale)));
+        supplierService.save(supplier);
+        
+        auditLogService.saveData("Update", "Supplier Updated", "Admin");
+        
+        return "redirect:/inventory/" + UrlUtil.encodeUrlPathSegment(supplier.getID().toString(),
+                httpServletRequest);
+    }
+
+    @PreAuthorize("isAuthenticated()")
+    @RequestMapping(value = "/{ID}", params = "form", method = RequestMethod.GET)
+    public String updateForm(@PathVariable("ID") Long id, Model uiModel) {
+        uiModel.addAttribute("supplier", supplierService.findById(id));
+        return "supplier/addSupplier";
+    }
+
+    @PreAuthorize("isAuthenticated()")
     @RequestMapping(params = "form", method = RequestMethod.POST)
     public String create(Supplier supplier, BindingResult bindingResult, Model uiModel, 
         HttpServletRequest httpServletRequest, RedirectAttributes redirectAttributes, 
@@ -76,6 +112,7 @@ public class SupplierController {
         return "redirect:/inventory/";
     }
 
+    @PreAuthorize("isAuthenticated()")
     @RequestMapping(params = "form", method = RequestMethod.GET)
     public String createForm(Model uiModel) {
     	Supplier supplier = new Supplier();

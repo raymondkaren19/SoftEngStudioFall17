@@ -70,11 +70,8 @@
             </tr>
         </table>
 
-        <a href="${editSupplierUrl}/${supplier.ID}?form">${labelSupplierUpdate}</a>
-<!--
-        <sec:authorize access="hasRole('ROLE_USER')">
+        <sec:authorize access="hasRole('ROLE_ADMIN')">
             <a href="${editSupplierUrl}/${supplier.ID}?form">${labelSupplierUpdate}</a>
         </sec:authorize>
--->
     </div>
 </div>

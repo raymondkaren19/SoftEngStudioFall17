@@ -20,18 +20,15 @@
     <spring:url var="loginUrl" value="/j_spring_security_check" />
 
     <h3>${menuHeaderText}</h3>
-    
-    <a href="${displayAuditUrl}"><h3>${menuDisplayAuditLog}</h3></a>
-    <a href="${addInventoryItemUrl}"><h3>${menuAddProduct}</h3></a>
-    <a href="${addSupplierUrl}"><h3>${menuAddSupplier}</h3></a>
-    
-    
-<!--
-    <sec:authorize access="hasRole('ROLE_USER')">
+        
+    <sec:authorize access="hasAnyRole('ROLE_ADMIN', 'ROLE_USER')">
+        <a href="${addInventoryItemUrl}"><h3>${menuAddProduct}</h3></a>
+    </sec:authorize>
+    <sec:authorize access="hasAnyRole('ROLE_ADMIN', 'ROLE_USER')">
         <a href="${addSupplierUrl}"><h3>${menuAddSupplier}</h3></a>
     </sec:authorize>
-    <sec:authorize access="hasRole('ROLE_USER')">
-        <a href="${addInventoryItemUrl}"><h3>${menuAddInventoryItem}</h3></a>
+    <sec:authorize access="hasRole('ROLE_ADMIN')">
+        <a href="${displayAuditUrl}"><h3>${menuDisplayAuditLog}</h3></a>
     </sec:authorize>
 
     <sec:authorize access="isAnonymous()">
@@ -55,5 +52,4 @@
             </form>
         </div>
     </sec:authorize>
--->
 </div>

@@ -82,13 +82,11 @@
             </tr>
         </table>
 
-        <a href="${editInventoryItemUrl}/${item.itemId}?form" style="margin-right:20px;">${labelInventoryItemUpdate}</a>
-        
-        <a href="${deleteInventoryItemUrl}/${item.itemId}" style="margin-right:20px;">${labelInventoryItemDelete}</a>
-<!--
-        <sec:authorize access="hasRole('ROLE_USER')">
-            <a href="${editInventoryItemUrl}/${item.itemId}?form">${labelInventoryItemUpdate}</a>
+        <sec:authorize access="hasAnyRole('ROLE_ADMIN', 'ROLE_USER')">
+            <a href="${editInventoryItemUrl}/${item.itemId}?form" style="margin-right:20px;">${labelInventoryItemUpdate}</a>
         </sec:authorize>
--->
+        <sec:authorize access="hasRole('ROLE_ADMIN')">
+            <a href="${deleteInventoryItemUrl}/${item.itemId}" style="margin-right:20px;">${labelInventoryItemDelete}</a>
+        </sec:authorize>
     </div>
 </div>

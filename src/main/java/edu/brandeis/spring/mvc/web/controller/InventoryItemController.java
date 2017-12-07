@@ -11,6 +11,7 @@ import org.springframework.context.MessageSource;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -74,6 +75,7 @@ public class InventoryItemController {
         return "inventory/showProduct";
     }
 
+    @PreAuthorize("isAuthenticated()")
     @RequestMapping(value = "/{itemId}", params = "form", method = RequestMethod.POST)
     public String update(@Valid InventoryItem item, BindingResult bindingResult, Model uiModel,
                          HttpServletRequest httpServletRequest, RedirectAttributes redirectAttributes,
@@ -96,6 +98,7 @@ public class InventoryItemController {
                 httpServletRequest);
     }
 
+    @PreAuthorize("isAuthenticated()")
     @RequestMapping(value = "delete/{itemId}",  method = RequestMethod.GET)
     public String delete(@PathVariable("itemId") Long id, Model uiModel)                         {
         logger.info("Deleting inventory item: " + id);
@@ -118,13 +121,15 @@ public class InventoryItemController {
         return "inventory/showProduct";    
         //return "redirect:/inventory/";
     }
-    
+
+    @PreAuthorize("isAuthenticated()")
     @RequestMapping(value = "/{itemId}", params = "form", method = RequestMethod.GET)
     public String updateForm(@PathVariable("itemId") Long id, Model uiModel) {
         uiModel.addAttribute("inventoryitem", itemService.findById(id));
         return "inventory/addInventoryItem";
     }
 
+    @PreAuthorize("isAuthenticated()")
     @RequestMapping(params = "form", method = RequestMethod.POST)
     public String create(InventoryItem item, BindingResult bindingResult, Model uiModel, 
         HttpServletRequest httpServletRequest, RedirectAttributes redirectAttributes, 
@@ -148,6 +153,7 @@ public class InventoryItemController {
         return "redirect:/inventory/";
     }
 
+    @PreAuthorize("isAuthenticated()")
     @RequestMapping(params = "form", method = RequestMethod.GET)
     public String createForm(Model uiModel) {
         InventoryItem item = new InventoryItem();
