@@ -7,7 +7,9 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+
 import org.hibernate.validator.constraints.NotEmpty;
+import org.hibernate.validator.constraints.Range;
 
 @Entity
 @Table(name = "InventoryItem")
@@ -27,6 +29,7 @@ public class InventoryItem {
 
     @Id
     @GeneratedValue(strategy = IDENTITY)
+    @Range(min=1, message="{validation.id.Size.message}")
     @Column(name = "ITEMID")
     public Long getItemId() {
         return itemId;
@@ -76,7 +79,7 @@ public class InventoryItem {
     	manufacturerName = manufName;
     }
 
-//    @NotEmpty(message="{validation.inventoryonhand.NotEmpty.message}")
+    @Range(min=0, message="{validation.inventoryonhand.Size.message}")
     @Column(name = "INVENTORYONHAND")
     public int getInventoryOnHand() {
         return inventoryOnHand;
@@ -96,7 +99,7 @@ public class InventoryItem {
         warehouseLocation = location;
     }
 
-//    @NotEmpty(message="{validation.reorderquantity.NotEmpty.message}")
+    @Range(min=0, message="{validation.reorderquantity.Size.message}")
     @Column(name = "REORDERQUANTITY")
     public int getReorderQuantity() {
         return reorderQuantity;
@@ -126,7 +129,6 @@ public class InventoryItem {
         backorderDate= bDate;
     }
 
-//    @NotEmpty(message="{validation.peritemretailsaleprice.NotEmpty.message}")
     @Column(name = "PERITEMRETAILSALEPRICE")
     public float getPerItemRetailSalePrice() {
         return perItemRetailSalePrice;
@@ -136,7 +138,7 @@ public class InventoryItem {
         perItemRetailSalePrice = salePrice;
     }
 
-//    @NotEmpty(message="{validation.supplierid.NotEmpty.message}")
+    @Range(min=0, message="{validation.supplierid.Size.message}")
     @Column(name = "SUPPLIERID")
     public int getSupplierId() {
         return supplierId;
