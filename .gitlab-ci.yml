@@ -103,7 +103,6 @@ test-connection-staging-tomcat-and-mysql-:
  environment:
   name: integration-test/connection-staging
  only:
-  - master
   - schedules
 
 test-connection-production-tomcat-and-mysql-:
@@ -116,5 +115,4 @@ test-connection-production-tomcat-and-mysql-:
  environment:
   name: integration-test/connection-production
  only:
-  - master
   - schedules
