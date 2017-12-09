@@ -93,7 +93,7 @@ deploy-to-sql-insert-sample-data-to-production:
 
 
 test-connection-staging-tomcat-and-mysql-:
- stage: test
+ stage: deploy
  image: mysql:5.7
  script:
   - apt-get update && apt-get -y install curl
@@ -106,7 +106,7 @@ test-connection-staging-tomcat-and-mysql-:
   - schedules
 
 test-connection-production-tomcat-and-mysql-:
- stage: test
+ stage: deploy
  image: mysql:5.7
  script:
   - apt-get update && apt-get -y install curl
