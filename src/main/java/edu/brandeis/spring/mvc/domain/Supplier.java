@@ -7,6 +7,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import org.hibernate.validator.constraints.NotEmpty;
+import org.hibernate.validator.constraints.Range;
 
 @Entity
 @Table(name = "Supplier")
@@ -24,6 +26,7 @@ public class Supplier {
 
     @Id
     @GeneratedValue(strategy = IDENTITY)
+    @Range(min=1, message="{validation.id.Size.message}")
     @Column(name = "ID")
     public Long getID() {
         return ID;
@@ -32,7 +35,7 @@ public class Supplier {
         this.ID = id;
     }
 
-//    @NotEmpty(message="{validation.itemname.NotEmpty.message}")
+    @NotEmpty(message="{validation.name.NotEmpty.message}")
     @Column(name = "NAME")
     public String getName() {
         return name;
@@ -41,7 +44,7 @@ public class Supplier {
         name = sname;
     }
     
-//    @NotEmpty(message="{validation.itemname.NotEmpty.message}")
+    @NotEmpty(message="{validation.street.NotEmpty.message}")
     @Column(name = "STREETNAME")
     public String getStreet() {
         return street;
@@ -50,7 +53,7 @@ public class Supplier {
         street = sTREETNAME;
     }
     
-//    @NotEmpty(message="{validation.itemname.NotEmpty.message}")
+    @NotEmpty(message="{validation.city.NotEmpty.message}")
     @Column(name = "CITY")
     public String getCity() {
         return city;
@@ -59,7 +62,7 @@ public class Supplier {
         city = cITY;
     }
     
-//    @NotEmpty(message="{validation.itemname.NotEmpty.message}")
+    @NotEmpty(message="{validation.state.NotEmpty.message}")
     @Column(name = "STATE")
     public String getState() {
         return state;
@@ -68,7 +71,7 @@ public class Supplier {
         state = sTATE;
     }
     
-//    @NotEmpty(message="{validation.itemname.NotEmpty.message}")
+    @NotEmpty(message="{validation.zipcode.NotEmpty.message}")
     @Column(name = "ZIPCODE")
     public String getZipcode() {
         return zipcode;
@@ -77,7 +80,7 @@ public class Supplier {
         zipcode = zIPCODE;
     }
     
-//    @NotEmpty(message="{validation.itemname.NotEmpty.message}")
+    @NotEmpty(message="{validation.phone.NotEmpty.message}")
     @Column(name = "PHONE")
     public String getPhone() {
         return phone;
@@ -86,7 +89,7 @@ public class Supplier {
         phone = pHONE;
     }
     
-//    @NotEmpty(message="{validation.itemname.NotEmpty.message}")
+    @NotEmpty(message="{validation.edi.NotEmpty.message}")
     @Column(name = "EDI")
     public String getEdi() {
         return edi;
@@ -95,7 +98,7 @@ public class Supplier {
         edi = eDI;
     }
     
-//    @NotEmpty(message="{validation.itemname.NotEmpty.message}")
+    @NotEmpty(message="{validation.payment.NotEmpty.message}")
     @Column(name = "PAYMENT")
     public String getPayment() {
         return payment;

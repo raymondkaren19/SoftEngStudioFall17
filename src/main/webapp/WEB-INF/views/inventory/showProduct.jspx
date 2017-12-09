@@ -22,8 +22,10 @@
     <spring:message code="label_inventoryitem_backorderdate" var="labelInventoryItemBackorderDate"/>
     <spring:message code="label_inventoryitem_price" var="labelInventoryItemPrice"/>
     <spring:message code="label_inventoryitem_supplierid" var="labelInventoryItemSupplier"/>
+    <spring:message code="label_inventoryitem_delete" var="labelInventoryItemDelete"/>
 
     <spring:url value="/inventory" var="editInventoryItemUrl"/>
+    <spring:url value="/inventory/delete" var="deleteInventoryItemUrl"/>
 
     <h1>${labelInventoryItemDetails}</h1>
 
@@ -80,11 +82,11 @@
             </tr>
         </table>
 
-        <a href="${editInventoryItemUrl}/${item.itemId}?form">${labelInventoryItemUpdate}</a>
-<!--
-        <sec:authorize access="hasRole('ROLE_USER')">
-            <a href="${editInventoryItemUrl}/${item.itemId}?form">${labelInventoryItemUpdate}</a>
+        <sec:authorize access="hasAnyRole('ROLE_ADMIN', 'ROLE_USER')">
+            <a href="${editInventoryItemUrl}/${item.itemId}?form" style="margin-right:20px;">${labelInventoryItemUpdate}</a>
         </sec:authorize>
--->
+        <sec:authorize access="hasRole('ROLE_ADMIN')">
+            <a href="${deleteInventoryItemUrl}/${item.itemId}" style="margin-right:20px;">${labelInventoryItemDelete}</a>
+        </sec:authorize>
     </div>
 </div>

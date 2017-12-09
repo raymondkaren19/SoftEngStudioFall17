@@ -96,6 +96,21 @@ CREATE TABLE IF NOT EXISTS `InventoryDB`.`PURCHASE_ORDERS` (
     REFERENCES `InventoryDB`.`InventoryItem` (`ItemId`));
 
 
+-- -----------------------------------------------------
+-- Table `InventoryDB`.`AUDITLOG`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `InventoryDB`.`AuditLog` (
+  `ID` INT(20) NOT NULL AUTO_INCREMENT,
+  `EventType` varchar(100) NOT NULL,
+  `Detail` varchar(100) NOT NULL,
+  `CreatedDate` varchar(100) NOT NULL,
+  `CreatedBy`  varchar(100)  NOT NULL,
+  `ModifiedDate` varchar(100) NOT NULL,
+  `ModifiedBy`  varchar(100)  NOT NULL,  
+  PRIMARY KEY (`ID`)
+);
+
+    
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;

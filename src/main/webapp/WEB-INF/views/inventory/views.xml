@@ -19,4 +19,7 @@
     <definition extends="default" name="supplier/showSupplier">
         <put-attribute name="body" value="/WEB-INF/views/inventory/showSupplier.jspx" />
     </definition>
+    <definition extends="default" name="audit/list">
+        <put-attribute name="body" value="/WEB-INF/views/inventory/auditList.jspx" />
+    </definition>
 </tiles-definitions>

@@ -3,6 +3,7 @@ package edu.brandeis.spring.mvc.web.controller;
 import java.util.List;
 import java.util.Locale;
 
+import org.joda.time.DateTime;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +11,7 @@ import org.springframework.context.MessageSource;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -28,6 +30,7 @@ import edu.brandeis.spring.mvc.service.InventoryItemGrid;
 import edu.brandeis.spring.mvc.service.InventoryItemService;
 import edu.brandeis.spring.mvc.service.Message;
 import edu.brandeis.spring.mvc.service.SupplierService;
+import edu.brandeis.spring.mvc.service.AuditLogService;
 import edu.brandeis.spring.mvc.web.util.UrlUtil;
 
 import javax.servlet.http.HttpServletRequest;
@@ -40,6 +43,7 @@ public class InventoryItemController {
 
     private InventoryItemService itemService;
     private SupplierService supplierService;
+    private AuditLogService auditLogService;
     private MessageSource messageSource;
 
     @RequestMapping(method = RequestMethod.GET)
@@ -71,6 +75,7 @@ public class InventoryItemController {
         return "inventory/showProduct";
     }
 
+    @PreAuthorize("isAuthenticated()")
     @RequestMapping(value = "/{itemId}", params = "form", method = RequestMethod.POST)
     public String update(@Valid InventoryItem item, BindingResult bindingResult, Model uiModel,
                          HttpServletRequest httpServletRequest, RedirectAttributes redirectAttributes,
@@ -86,16 +91,45 @@ public class InventoryItemController {
         redirectAttributes.addFlashAttribute("message", new Message("success",
                 messageSource.getMessage("inventoryitem_save_success", new Object[]{}, locale)));
         itemService.save(item);
+        
+        auditLogService.saveData("Update", "Inventory Item Updated", "Admin");
+        
         return "redirect:/inventory/" + UrlUtil.encodeUrlPathSegment(item.getItemId().toString(),
                 httpServletRequest);
     }
 
+    @PreAuthorize("isAuthenticated()")
+    @RequestMapping(value = "delete/{itemId}",  method = RequestMethod.GET)
+    public String delete(@PathVariable("itemId") Long id, Model uiModel)                         {
+        logger.info("Deleting inventory item: " + id);
+       
+        InventoryItem item = itemService.findById(id);
+        
+        // Item will not be deleted from the database. Instead inventoryOnHand field will be set to zero. 
+        item.setInventoryOnHand(0);
+        itemService.save(item);
+        
+        auditLogService.saveData("Delete", "Inventory On Hand is set to 0", "Admin");
+        
+        item = itemService.findById(id);
+        uiModel.addAttribute("item", item);
+
+        logger.info("Inventory supplier ID: " + item.getSupplierId());
+        Supplier supplier = supplierService.findById((long) item.getSupplierId());
+        uiModel.addAttribute("supplier", supplier);        
+                
+        return "inventory/showProduct";    
+        //return "redirect:/inventory/";
+    }
+
+    @PreAuthorize("isAuthenticated()")
     @RequestMapping(value = "/{itemId}", params = "form", method = RequestMethod.GET)
     public String updateForm(@PathVariable("itemId") Long id, Model uiModel) {
         uiModel.addAttribute("inventoryitem", itemService.findById(id));
         return "inventory/addInventoryItem";
     }
 
+    @PreAuthorize("isAuthenticated()")
     @RequestMapping(params = "form", method = RequestMethod.POST)
     public String create(InventoryItem item, BindingResult bindingResult, Model uiModel, 
         HttpServletRequest httpServletRequest, RedirectAttributes redirectAttributes, 
@@ -115,9 +149,11 @@ public class InventoryItemController {
         logger.info("Inventory Item id: " + item.getItemId());
 
         itemService.save(item);
+        auditLogService.saveData("Create", "Inventory item is created", "Admin");
         return "redirect:/inventory/";
     }
 
+    @PreAuthorize("isAuthenticated()")
     @RequestMapping(params = "form", method = RequestMethod.GET)
     public String createForm(Model uiModel) {
         InventoryItem item = new InventoryItem();
@@ -179,6 +215,11 @@ public class InventoryItemController {
     @Autowired
     public void setSupplierService(SupplierService supplierService) {
         this.supplierService = supplierService;
+    }
+    
+    @Autowired
+    public void setAuditLogService(AuditLogService auditService) {
+        this.auditLogService = auditService;
     }
 
     @Autowired
