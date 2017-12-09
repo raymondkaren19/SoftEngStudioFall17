@@ -22,7 +22,7 @@ deploy-to-staging:
   - curl -T "target/inventorymanager-webapp.war" "http://tomcat:${TOMCAT_PASSWORD}@${TOMCAT_HOST}:8888/manager/text/deploy?path=/inventorymanager-webapp&update=true"
  environment:
   name: staging
-  url: http://$(STAGING_HOST):8888/inventorymanager-webapp/
+  url: http://$STAGING_HOST:8888/inventorymanager-webapp/
  only:
   - master
  except:
@@ -42,7 +42,7 @@ deploy-to-production:
   - curl -T "target/inventorymanager-webapp.war" "http://tomcat:${TOMCAT_PASS_DEPLOYMENT}@${PRODUCTION_HOST}/manager/text/deploy?path=/&update=true"
  environment:
   name: production
-  url: http://$(PRODUCTION_HOST)/
+  url: http://$PRODUCTION_HOST/
  only:
   - master
  when: manual
