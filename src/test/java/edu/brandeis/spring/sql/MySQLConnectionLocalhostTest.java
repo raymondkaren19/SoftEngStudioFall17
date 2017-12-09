@@ -9,9 +9,11 @@ import junit.framework.TestCase;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import org.junit.Ignore;
 
 
 // Test the local conection of the mysql instance
+@Ignore
 public class MySQLConnectionLocalhostTest extends TestCase {
 
     protected String port = "3306";
