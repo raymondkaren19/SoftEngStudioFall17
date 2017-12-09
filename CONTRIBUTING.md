@@ -11,6 +11,7 @@
 * Maven
 * tomcat
 * MySQL
+* Please see the docker buildfile to see specific version.
 
 #### Communication Plan
 
@@ -18,7 +19,7 @@
 
 * Equal time for expressing ideas during meetings.
 
-* Provide feedback gracefully in a roundtable format.
+* Provide feedback gracefully in a round table format.
 
 * Order of contacting: Gitlab Issue comment -> Email -> Text Message.
 
@@ -37,27 +38,25 @@
 
 #### Stand Up
 
-* Sunday 8pm East Coast time
+* 8pm East Coast time
 
-* Thursdays 8pm East Coast time
+* Twice a week.
 
 
 #### Sprint / Schedule
 
 * Wednesday to Tuesday is the work week.
 
-* Weekends are available to pair and mob programming.
-
 * A sprint is 2 weeks.
 
 
 #### Commit Process
 
-* Small chunks, commit often, push often, create merge request often, group approval for any merge request to master. In gitlab Pull Request (PR) are called Merge Request.
+* Small chunks, commit often, push often, create merge request often, group approval for any merge request to master. In Gitlab Pull Request (PR) are called Merge Request.
 
 * All code that goes to master needs to be done via a merge request .
 
-* No rewriting the history of the master branch.
+* No rewriting the history of the master branch unless agreed by email from the rest of the team. (When we need to fix a bag merge or something similar)
 
 * Rebase/update local branches after approved merge request is merged ("pull party" after merging to master)
 
@@ -97,8 +96,10 @@
 
 ####  Release Process
 
-* Automatic release
+* Automatic release to staging after merging to master.
 
 * Follow the release document practices of archiving and reproducibility.
 
-* TODO: Fill out the details on how we are going to release.
+* First release to staging. 
+
+* Once staging has been tested to make sure it work, publish to production.

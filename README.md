@@ -10,12 +10,6 @@ Please see the [contributing guide.](CONTRIBUTING.md)
 * Safari
 
 
-#### User Types
-* Admin (ReadWrite)
-* Auditor (ReadOnly Admin)
-* User (ReadWrite)
-* Observer (Readonly User)
-
 #### Documentation
 
 * Aside from README.md and CONTRIBUTING.md, all other documentation should placed in the `/doc` folder.
