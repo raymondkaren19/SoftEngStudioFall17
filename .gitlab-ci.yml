@@ -120,6 +120,20 @@ sql-backup-of-staging:
   - master
  when: manual
 
+sql-backup-of-production:
+ stage: production
+ image: mysql:5.7
+ script:
+  - mysqldump --single-transaction -u $MYSQL_USER_PRODUCTION -p$MYSQL_PASS_PRODUCTION -h $PRODUCTION_HOST $DB_NAME > dump_file.sql
+ environment:
+  name: sql/backup-of-production
+ artifacts:
+  paths:
+   - ./*.sql
+ only:
+  - master
+ when: manual 
+
 test-connection-staging-tomcat-and-mysql-:
  stage: staging
  image: mysql:5.7
