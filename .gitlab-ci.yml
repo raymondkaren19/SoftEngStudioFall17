@@ -1,3 +1,9 @@
+stages:
+  - build
+  - test
+  - staging
+  - production
+
 maven_build:
  stage: build
  image: maven:3.3.9-jdk-8
@@ -15,7 +21,7 @@ maven_tests:
   - mvn '-Dtest=edu.brandeis.**.*Test' test
 
 deploy-to-staging:
- stage: deploy
+ stage: staging
  image: maven:3.3.9-jdk-8
  artifacts:
   paths:
@@ -37,7 +43,7 @@ deploy-to-staging:
   - schedules
 
 deploy-to-production:
- stage: deploy
+ stage: production
  image: maven:3.3.9-jdk-8
  artifacts:
   paths:
@@ -57,7 +63,7 @@ deploy-to-production:
  when: manual
 
 sql-schema-to-staging:
- stage: deploy
+ stage: staging
  image: mysql:5.7
  script:
   - mysql -u $MYSQL_USER_STAGING -p$MYSQL_PASS_STAGING -h $STAGING_HOST < ./src/main/resources/META-INF/sql/schema.sql
@@ -68,7 +74,7 @@ sql-schema-to-staging:
  when: manual
 
 sql-schema-to-production:
- stage: deploy
+ stage: production
  image: mysql:5.7
  script:
   - mysql -u $MYSQL_USER_PRODUCTION -p$MYSQL_PASS_PRODUCTION -h $PRODUCTION_HOST < ./src/main/resources/META-INF/sql/schema.sql
@@ -79,7 +85,7 @@ sql-schema-to-production:
  when: manual
 
 sql-insert-to-staging:
- stage: deploy
+ stage: staging
  image: mysql:5.7
  script:
   - mysql -u $MYSQL_USER_STAGING -p$MYSQL_PASS_STAGING -h $STAGING_HOST < ./src/main/resources/META-INF/sql/test-data.sql
@@ -90,7 +96,7 @@ sql-insert-to-staging:
  when: manual
 
 sql-insert-to-production:
- stage: deploy
+ stage: production
  image: mysql:5.7
  script:
   - mysql -u $MYSQL_USER_PRODUCTION -p$MYSQL_PASS_PRODUCTION -h $PRODUCTION_HOST < ./src/main/resources/META-INF/sql/test-data.sql
@@ -100,9 +106,22 @@ sql-insert-to-production:
   - master
  when: manual
 
+sql-backup-of-staging:
+ stage: staging
+ image: mysql:5.7
+ script:
+  - mysqldump --single-transaction -u $MYSQL_USER_STAGING -p$MYSQL_PASS_STAGING -h $STAGING_HOST $DB_NAME > dump_file.sql
+ environment:
+  name: sql/backup-of-staging:
+ artifacts:
+  paths:
+   - ./*.sql
+ only:
+  - master
+ when: manual
 
 test-connection-staging-tomcat-and-mysql-:
- stage: deploy
+ stage: staging
  image: mysql:5.7
  script:
   - apt-get update && apt-get -y install curl
@@ -115,7 +134,7 @@ test-connection-staging-tomcat-and-mysql-:
   - schedules
 
 test-connection-production-tomcat-and-mysql-:
- stage: deploy
+ stage: production
  image: mysql:5.7
  script:
   - apt-get update && apt-get -y install curl
