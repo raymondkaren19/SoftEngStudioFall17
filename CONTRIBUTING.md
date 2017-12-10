@@ -88,11 +88,17 @@
 
 * Bug should not have to wait for the next sprint but this is up to the team.
 
-#### Style
+#### Code Review
+
+* Code review is going to be required on each merge request. 
 
 * TODO: Decide on what JAVA, Javascript style we are going to use.
 
 * TODO: Decide how to enforce the style on the CI.
+
+* Each person who reviews a Merge Request / Pull Request and approves, should respond with "LGTM" (Looks Good to Me) comment. 
+
+* The "LGTM" response is needed because this will trigger an email notification. The thumbs up feature in Gitlab does not trigger emails notification. This is one of the limitation of our version of Gitlab, among others: https://about.gitlab.com/2015/07/29/feature-highlight-merge-request-approvals/
 
 ####  Release Process
 
