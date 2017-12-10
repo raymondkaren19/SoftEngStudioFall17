@@ -67,6 +67,7 @@ sql-schema-to-staging:
  image: mysql:5.7
  script:
   - mysql -u $MYSQL_USER_STAGING -p$MYSQL_PASS_STAGING -h $STAGING_HOST < ./src/main/resources/META-INF/sql/schema.sql
+  - mysqlcheck -u $MYSQL_USER_STAGING -p$MYSQL_PASS_STAGING -h $STAGING_HOST $DB_NAME
  environment:
   name: sql/schema-staging
  only:
@@ -78,6 +79,7 @@ sql-schema-to-production:
  image: mysql:5.7
  script:
   - mysql -u $MYSQL_USER_PRODUCTION -p$MYSQL_PASS_PRODUCTION -h $PRODUCTION_HOST < ./src/main/resources/META-INF/sql/schema.sql
+  - mysqlcheck -u $MYSQL_USER_PRODUCTION -p$MYSQL_PASS_PRODUCTION -h $PRODUCTION_HOST $DB_NAME
  environment:
   name: sql/schema-production
  only:
@@ -89,6 +91,7 @@ sql-insert-to-staging:
  image: mysql:5.7
  script:
   - mysql -u $MYSQL_USER_STAGING -p$MYSQL_PASS_STAGING -h $STAGING_HOST < ./src/main/resources/META-INF/sql/test-data.sql
+  - mysqlcheck -u $MYSQL_USER_STAGING -p$MYSQL_PASS_STAGING -h $STAGING_HOST $DB_NAME
  environment:
   name: sql/insert-sample-data-staging
  only:
@@ -100,6 +103,7 @@ sql-insert-to-production:
  image: mysql:5.7
  script:
   - mysql -u $MYSQL_USER_PRODUCTION -p$MYSQL_PASS_PRODUCTION -h $PRODUCTION_HOST < ./src/main/resources/META-INF/sql/test-data.sql
+  - mysqlcheck -u $MYSQL_USER_PRODUCTION -p$MYSQL_PASS_PRODUCTION -h $PRODUCTION_HOST $DB_NAME
  environment:
   name: sql/insert-sample-data-production
  only:
@@ -110,6 +114,7 @@ sql-backup-of-staging:
  stage: staging
  image: mysql:5.7
  script:
+  - mysqlcheck -u $MYSQL_USER_STAGING -p$MYSQL_PASS_STAGING -h $STAGING_HOST $DB_NAME
   - mysqldump --single-transaction -u $MYSQL_USER_STAGING -p$MYSQL_PASS_STAGING -h $STAGING_HOST $DB_NAME > dump_file.sql
  environment:
   name: sql/backup-of-staging
@@ -124,6 +129,7 @@ sql-backup-of-production:
  stage: production
  image: mysql:5.7
  script:
+  - mysqlcheck -u $MYSQL_USER_PRODUCTION -p$MYSQL_PASS_PRODUCTION -h $PRODUCTION_HOST $DB_NAME
   - mysqldump --single-transaction -u $MYSQL_USER_PRODUCTION -p$MYSQL_PASS_PRODUCTION -h $PRODUCTION_HOST $DB_NAME > dump_file.sql
  environment:
   name: sql/backup-of-production
@@ -142,6 +148,7 @@ test-connection-staging-tomcat-and-mysql-:
   - TOMCAT_HOST=$(ip route show | awk '/default/ {print $3}')
   - curl --fail "http://tomcat:${TOMCAT_PASSWORD}@${TOMCAT_HOST}:8888/manager/status/all"
   - mysql -u $MYSQL_USER_STAGING -p$MYSQL_PASS_STAGING -h $STAGING_HOST
+  - mysqlcheck -u $MYSQL_USER_STAGING -p$MYSQL_PASS_STAGING -h $STAGING_HOST $DB_NAME
  environment:
   name: integration-test/connection-staging
  only:
@@ -154,6 +161,7 @@ test-connection-production-tomcat-and-mysql-:
   - apt-get update && apt-get -y install curl
   - curl --fail "http://tomcat:${TOMCAT_PASS_DEPLOYMENT}@${PRODUCTION_HOST}/manager/status/all"
   - mysql -u $MYSQL_USER_PRODUCTION -p$MYSQL_PASS_PRODUCTION -h $PRODUCTION_HOST
+  - mysqlcheck -u $MYSQL_USER_PRODUCTION -p$MYSQL_PASS_PRODUCTION -h $PRODUCTION_HOST $DB_NAME
  environment:
   name: integration-test/connection-production
  only:
