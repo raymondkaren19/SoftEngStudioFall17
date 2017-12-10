@@ -56,7 +56,7 @@ deploy-to-production:
   - master
  when: manual
 
-deploy-to-sql-schema-to-staging:
+sql-schema-to-staging:
  stage: deploy
  image: mysql:5.7
  script:
@@ -67,7 +67,7 @@ deploy-to-sql-schema-to-staging:
   - master
  when: manual
 
-deploy-to-sql-schema-to-production:
+sql-schema-to-production:
  stage: deploy
  image: mysql:5.7
  script:
@@ -78,7 +78,7 @@ deploy-to-sql-schema-to-production:
   - master
  when: manual
 
-deploy-to-sql-insert-sample-data-to-staging:
+sql-insert-to-staging:
  stage: deploy
  image: mysql:5.7
  script:
@@ -89,7 +89,7 @@ deploy-to-sql-insert-sample-data-to-staging:
   - master
  when: manual
 
-deploy-to-sql-insert-sample-data-to-production:
+sql-insert-to-production:
  stage: deploy
  image: mysql:5.7
  script:
