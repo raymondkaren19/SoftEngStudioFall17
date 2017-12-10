@@ -9,6 +9,16 @@ Please see the [contributing guide.](CONTRIBUTING.md)
 * Firefox
 * Safari
 
+#### Deployments
+
+[Staging Environment](http://ec2-52-90-192-232.compute-1.amazonaws.com/root/SoftEngStudioFall17/environments/1) is what is currently on master. 
+
+
+
+[Production Server](http://ec2-52-90-192-232.compute-1.amazonaws.com/root/SoftEngStudioFall17/environments/2) is what our customer would see.
+
+In each of the environments you can click on "View deployment" to see the live site.
+
 
 #### Documentation
 
