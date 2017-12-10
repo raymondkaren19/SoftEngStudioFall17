@@ -112,7 +112,7 @@ sql-backup-of-staging:
  script:
   - mysqldump --single-transaction -u $MYSQL_USER_STAGING -p$MYSQL_PASS_STAGING -h $STAGING_HOST $DB_NAME > dump_file.sql
  environment:
-  name: sql/backup-of-staging:
+  name: sql/backup-of-staging
  artifacts:
   paths:
    - ./*.sql
