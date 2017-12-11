@@ -78,6 +78,7 @@ CREATE TABLE IF NOT EXISTS `InventoryDB`.`PURCHASE_ORDER_HEADER` (
 -- -----------------------------------------------------
 -- Table `InventoryDB`.`PURCHASE_ORDERS`
 -- -----------------------------------------------------
+SET sql_mode = 'NO_ZERO_DATE';
 CREATE TABLE IF NOT EXISTS `InventoryDB`.`PURCHASE_ORDERS` (
   `ID` INT(11) NOT NULL AUTO_INCREMENT,
   `PURCHASE_ORDER_ID` INT NULL DEFAULT NULL,
