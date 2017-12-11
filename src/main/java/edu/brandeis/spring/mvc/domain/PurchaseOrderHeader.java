@@ -36,10 +36,8 @@ import javax.validation.constraints.Size;
 @Table(name = "PURCHASE_ORDER_HEADER")
 public class PurchaseOrderHeader implements Serializable {
 	private Long ID;
-	private float orderTotalPrice;
-	private Set<PurchaseOrders> purchaseOrderDetails = new HashSet<PurchaseOrders>();
-	private Supplier supplier;
 	private Long supplierId;
+	private float orderTotalPrice;	
 
 
 	@Id
@@ -53,45 +51,24 @@ public class PurchaseOrderHeader implements Serializable {
 	public void setId(Long ID) {
 		this.ID = ID;
 	}
-
-	@OneToMany(mappedBy = "purchaseOrderHeader", cascade = CascadeType.ALL, fetch = FetchType.EAGER, orphanRemoval = true)
-	public Set<PurchaseOrders> getPurchaseOrderDetails() {
-		return this.purchaseOrderDetails;
-	}
-
-	@Transactional
-	public void setPurchaseOrderDetails(Set<PurchaseOrders> purchaseOrderDetails) {
-		this.purchaseOrderDetails = purchaseOrderDetails;
-	}
-
-	@Transactional
-	public void addPurchaseOrderDetails(PurchaseOrders purchaseOrderDetails) {
-		purchaseOrderDetails.setPurchaseOrderHeader(this);
-		getPurchaseOrderDetails().add(purchaseOrderDetails);
-	}
-
-	public void removePurchaseOrderDetails(PurchaseOrders purchaseOrderDetail) {
-		getPurchaseOrderDetails().remove(purchaseOrderDetail);
-	}
-	
-	@ManyToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name = "SUPPLIER_ID")
-	public Supplier getSupplier() {
-		return this.supplier;
-	}
-
-	public void setSupplier(Supplier supplier) {
-		this.supplier = supplier;
-	}
-	
+		
 	@Range(min = 1, message = "{validation.id.Size.message}")
 	@Column(name = "SUPPLIER_ID")
 	public Long getSupplierId() {
 		return supplierId;
 	}
 
-	public void setItemId(Long itemId) {
-		this.supplierId = itemId;
+	public void setSupplierId(Long supplierId) {
+		this.supplierId = supplierId;
+	}
+
+	@Column(name = "ORDER_TOTAL_PRICE")
+	public float getOrderTotalPrice() {
+		return orderTotalPrice;
+	}
+
+	public void setOrderTotalPrice(float orderTotalPrice) {
+		this.orderTotalPrice = orderTotalPrice;
 	}
 
 }

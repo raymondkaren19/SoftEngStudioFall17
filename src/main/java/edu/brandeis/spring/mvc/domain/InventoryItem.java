@@ -26,7 +26,7 @@ public class InventoryItem {
     private String backorderDate;
     private float perItemRetailSalePrice; 
     private int supplierId;
-    private Set<PurchaseOrders> purchaseOrders= new HashSet<PurchaseOrders>();
+   
     
     @Id
     @GeneratedValue(strategy = IDENTITY)
@@ -149,24 +149,5 @@ public class InventoryItem {
     	supplierId = sId;
     }
     
-    @OneToMany(mappedBy = "inventoryItem", cascade = CascadeType.ALL, fetch = FetchType.EAGER, orphanRemoval = true)
-  	public Set<PurchaseOrders> getPurchaseOrders() {
-  		return this.purchaseOrders;
-  	}
-
-  	@Transactional
-  	public void setPurchaseOrders(Set<PurchaseOrders> purchaseOrders) {
-  		this.purchaseOrders = purchaseOrders;
-  	}
-
-  	@Transactional
-  	public void addPurchaseOrders(PurchaseOrders purchaseOrders) {
-  		purchaseOrders.setInventoryItem(this);
-  		getPurchaseOrders().add(purchaseOrders);
-  	}
-
-  	public void removePurchaseOrders(PurchaseOrders purchaseOrders) {
-  		getPurchaseOrders().remove(purchaseOrders);
-  	}
 
 }

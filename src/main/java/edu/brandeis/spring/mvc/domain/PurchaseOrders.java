@@ -32,11 +32,10 @@ import javax.validation.constraints.Size;
 @Table(name = "PURCHASE_ORDERS")
 public class PurchaseOrders implements Serializable {
 	private Long ID;
-	private PurchaseOrderHeader purchaseOrderHeader;
-	private InventoryItem inventoryItem;
+	private Long purchaseOrderId;
 	private Long itemId;
 	private int qtyOrdered;
-	private Date deliveryDate;
+	private String deliveryDate;
 	private float unitPrice;
 
 	@Id
@@ -51,27 +50,18 @@ public class PurchaseOrders implements Serializable {
 		this.ID = ID;
 	}
 
-	@ManyToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name = "PURCHASE_ORDER_ID")
-	public PurchaseOrderHeader getPurchaseOrderHeader() {
-		return this.purchaseOrderHeader;
-	}
-
-	public void setPurchaseOrderHeader(PurchaseOrderHeader purchaseOrderHeader) {
-		this.purchaseOrderHeader = purchaseOrderHeader;
-	}
-
-	@ManyToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name = "ITEM_ID")
-	public InventoryItem getInventoryItem() {
-		return this.inventoryItem;
-	}
-
-	public void setInventoryItem(InventoryItem inventoryItem) {
-		this.inventoryItem = inventoryItem;
-	}
 	
-	@Range(min = 1, message = "{validation.id.Size.message}")
+	@Range(min = 0, message = "{validation.id.Size.message}")
+	@Column(name = "PURCHASE_ORDER_ID")
+	public Long getPurchaseOrderId() {
+		return purchaseOrderId;
+	}
+
+	public void setPurchaseOrderId(Long purchaseOrderId) {
+		this.purchaseOrderId = purchaseOrderId;
+	}
+
+	@Range(min = 0, message = "{validation.id.Size.message}")
 	@Column(name = "ITEM_ID")
 	public Long getItemId() {
 		return itemId;
@@ -90,14 +80,13 @@ public class PurchaseOrders implements Serializable {
 		this.qtyOrdered = qtyOrdered;
 
 	}
-
-	@Temporal(TemporalType.DATE)
+	
 	@Column(name = "DELIVERY_DATE")
-	public Date getDeliveryDate() {
+	public String getDeliveryDate() {
 		return this.deliveryDate;
 	}
 
-	public void setDeliveryDate(Date deliveryDate) {
+	public void setDeliveryDate(String deliveryDate) {
 		this.deliveryDate = deliveryDate;
 	}
 
@@ -110,11 +99,8 @@ public class PurchaseOrders implements Serializable {
 		this.unitPrice = unitPrice;
 	}
 
-	@Override
-	public String toString() {
-		return "PurchaseOrders [id=" + ID + ", purchaseOrderHeader=" + purchaseOrderHeader + ", inventoryItem=" + inventoryItem
-				+ ", qtyOrdered=" + qtyOrdered + ", deliveryDate=" + deliveryDate + ", unitPrice=" + unitPrice + "]";
-	}
+	
+	
 
 
 

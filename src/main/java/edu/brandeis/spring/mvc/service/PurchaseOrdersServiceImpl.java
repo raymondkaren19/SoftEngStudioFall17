@@ -40,7 +40,7 @@ public class PurchaseOrdersServiceImpl implements PurchaseOrdersService {
     }
 
     @Autowired
-    public void setInventoryItemRepository(PurchaseOrdersRepository purchaseOrdersRepository) {
+    public void setPurchaseOrdersRepository(PurchaseOrdersRepository purchaseOrdersRepository) {
         this.purchaseOrdersRepository = purchaseOrdersRepository;
     }
 

@@ -41,7 +41,7 @@ public class PurchaseOrderHeaderServiceImpl implements PurchaseOrderHeaderServic
     }
 
     @Autowired
-    public void setPurchaseOrderHeaderRepository(PurchaseOrderHeader purchaseOrderHeader) {
+    public void setPurchaseOrderHeaderRepository(PurchaseOrderHeaderRepository purchaseOrderHeaderRepository) {
         this.purchaseOrderHeaderRepository = purchaseOrderHeaderRepository;
     }
 

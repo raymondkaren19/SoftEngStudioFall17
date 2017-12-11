@@ -30,8 +30,7 @@ public class Supplier {
     private String edi;
     private String payment;
     private String incoterms;
-    private Set<PurchaseOrderHeader> purchaseOrderHeader = new HashSet<PurchaseOrderHeader>();
-
+ 
     @Id
     @GeneratedValue(strategy = IDENTITY)
     @Range(min=1, message="{validation.id.Size.message}")
@@ -123,23 +122,5 @@ public class Supplier {
         incoterms = iNCOTERMS;
     }
     
-    @OneToMany(mappedBy = "supplier", cascade = CascadeType.ALL, fetch = FetchType.EAGER, orphanRemoval = true)
-   	public Set<PurchaseOrderHeader> getPurchaseOrderHeader() {
-   		return this.purchaseOrderHeader;
-   	}
-
-   	@Transactional
-   	public void purchaseOrderHeader(Set<PurchaseOrderHeader> purchaseOrderHeader) {
-   		this.purchaseOrderHeader = purchaseOrderHeader;
-   	}
-
-   	@Transactional
-   	public void addPurchaseOrders(PurchaseOrderHeader purchaseOrderHeader) {
-   		purchaseOrderHeader.setSupplier(this);
-   		getPurchaseOrderHeader().add(purchaseOrderHeader);
-   	}
-
-   	public void removePurchaseOrders(PurchaseOrderHeader purchaseOrderHeader) {
-   		getPurchaseOrderHeader().remove(purchaseOrderHeader);
-   	}
+   
 }
