@@ -31,7 +31,7 @@
                     {name:'modifiedDate', index:'modifiedDate', width:50},
                 ],
                 jsonReader : {
-                    root:"auditData",
+                    root:"itemData",
                     page: "currentPage",
                     total: "totalPages",
                     records: "totalRecords",

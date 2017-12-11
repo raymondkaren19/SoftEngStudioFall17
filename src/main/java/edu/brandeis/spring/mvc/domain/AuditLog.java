@@ -82,7 +82,7 @@ public class AuditLog {
     @NotEmpty(message="{validation.itemname.NotEmpty.message}")
     @Column(name = "CreatedBy")    
     public String getCreatedBy() {
-        return modifiedBy;
+        return createdBy;
     }
 
     public void setCreatedBy(String createdBy) {
@@ -92,7 +92,7 @@ public class AuditLog {
     @NotEmpty(message="{validation.itemname.NotEmpty.message}")
     @Column(name = "CreatedDate")
     public String getCreatedDate() {
-        return modifiedDate;
+        return createdDate;
     }
 
     public void setCreatedDate(String createdDate) {
