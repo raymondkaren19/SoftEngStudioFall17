@@ -154,12 +154,11 @@ sql-restore-backup-staging:
   - FIlENAME=dump_file.sql
   - echo "Backup id is $SQL_BACKUP_JOB_ID"
   - curl --fail -o $FIlENAME "http://ec2-52-90-192-232.compute-1.amazonaws.com/api/v4/projects/1/jobs/$SQL_BACKUP_JOB_ID/artifacts/$FIlENAME?private_token=$TOKEN_API_GITLABCI"
-  - mysql -u $MYSQL_USER_PRODUCTION -p$MYSQL_PASS_PRODUCTION -h $PRODUCTION_HOST < ./$FIlENAME
+  - mysql -u $MYSQL_USER_PRODUCTION -p$MYSQL_PASS_PRODUCTION -h $PRODUCTION_HOST $DB_NAME < ./$FIlENAME
   - mysqlcheck -u $MYSQL_USER_STAGING -p$MYSQL_PASS_STAGING -h $STAGING_HOST $DB_NAME
  environment:
   name: sql/restore-staging
  only:
-  - master
   - triggers
 
 test-connection-staging-tomcat-and-mysql-:
