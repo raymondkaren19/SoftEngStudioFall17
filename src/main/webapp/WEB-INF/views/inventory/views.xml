@@ -13,6 +13,9 @@
     <definition extends="default" name="inventory/addInventoryItem">
         <put-attribute name="body" value="/WEB-INF/views/inventory/addInventoryItem.jspx" />
     </definition>
+    <definition extends="default" name="supplier/list">
+        <put-attribute name="body" value="/WEB-INF/views/inventory/listSuppliers.jspx" />
+    </definition>
     <definition extends="default" name="supplier/addSupplier">
         <put-attribute name="body" value="/WEB-INF/views/inventory/addSupplier.jspx" />
     </definition>
@@ -21,5 +24,8 @@
     </definition>
     <definition extends="default" name="audit/list">
         <put-attribute name="body" value="/WEB-INF/views/inventory/auditList.jspx" />
+    </definition>
+    <definition extends="default" name="orders/list">
+        <put-attribute name="body" value="/WEB-INF/views/inventory/listPurchaseOrders.jspx" />
     </definition>
 </tiles-definitions>
