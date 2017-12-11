@@ -140,6 +140,23 @@ sql-backup-of-production:
   - master
  when: manual 
 
+#Please provide a $SQL_BACKUP_JOB_ID when calling this from the REST API.
+sql-restore-backup-staging:
+ stage: staging
+ image: mysql:5.7
+ script:
+  - apt-get update && apt-get -y install curl
+  - FIlENAME=dump_file.sql  
+  - HEADER
+  - curl -o $SQL_BACKUP_JOB_ID-$FIlENAME --header "JOB-TOKEN :$CI_JOB_TOKEN" "http://ec2-52-90-192-232.compute-1.amazonaws.com/api/v4/projects/1/jobs/$SQL_BACKUP_JOB_ID/artifacts/$FIlENAME"
+  - mysql -u $MYSQL_USER_PRODUCTION -p$MYSQL_PASS_PRODUCTION -h $PRODUCTION_HOST < ./$SQL_BACKUP_JOB_ID-$FIlENAME
+  - mysqlcheck -u $MYSQL_USER_STAGING -p$MYSQL_PASS_STAGING -h $STAGING_HOST $DB_NAME
+ environment:
+  name: sql/restore-staging
+ only:
+  - master
+ when: manual  
+
 test-connection-staging-tomcat-and-mysql-:
  stage: staging
  image: mysql:5.7
