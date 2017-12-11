@@ -3,7 +3,6 @@ package edu.brandeis.spring.mvc.web.controller;
 import java.util.List;
 import java.util.Locale;
 
-import org.joda.time.DateTime;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,17 +23,12 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.google.common.collect.Lists;
 
-import edu.brandeis.spring.mvc.domain.InventoryItem;
 import edu.brandeis.spring.mvc.domain.PurchaseOrderHeader;
 import edu.brandeis.spring.mvc.domain.PurchaseOrders;
-import edu.brandeis.spring.mvc.domain.Supplier;
-import edu.brandeis.spring.mvc.service.InventoryItemGrid;
-import edu.brandeis.spring.mvc.service.InventoryItemService;
 import edu.brandeis.spring.mvc.service.Message;
 import edu.brandeis.spring.mvc.service.PurchaseOrderHeaderGrid;
 import edu.brandeis.spring.mvc.service.PurchaseOrderHeaderService;
 import edu.brandeis.spring.mvc.service.PurchaseOrdersService;
-import edu.brandeis.spring.mvc.service.SupplierService;
 import edu.brandeis.spring.mvc.service.AuditLogService;
 import edu.brandeis.spring.mvc.web.util.UrlUtil;
 
@@ -53,23 +47,19 @@ public class PurchaseOrderHeaderController {
 
     @RequestMapping(method = RequestMethod.GET)
     public String list(Model uiModel) {
-        logger.info("Listing purchase order headers and purchase orders");
+        logger.info("Listing purchase order headers");
 
         List<PurchaseOrderHeader> header = purchaseOrderHeaderService.findAll();
-        uiModel.addAttribute("header", header);
-
-        List<PurchaseOrders> purchaseOrders = purchaseOrdersService.findAll();
-        uiModel.addAttribute("purchaseOrders", purchaseOrders);
+        uiModel.addAttribute("Headers", header);
 
         logger.info("No. of headers: " + header.size());
-        logger.info("No. of purchase orders: " + purchaseOrders.size());
 
         return "header/list";
         
     }
 
-    @RequestMapping(value = "/{headerId}", method = RequestMethod.GET)
-    public String show(@PathVariable("headerId") Long id, Model uiModel) {
+    @RequestMapping(value = "/{ID}", method = RequestMethod.GET)
+    public String show(@PathVariable("ID") Long id, Model uiModel) {
         PurchaseOrderHeader header = purchaseOrderHeaderService.findById(id);
         uiModel.addAttribute("header", header);
 
@@ -81,7 +71,7 @@ public class PurchaseOrderHeaderController {
     }
 
     @PreAuthorize("isAuthenticated()")
-    @RequestMapping(value = "/{headerId}", params = "form", method = RequestMethod.POST)
+    @RequestMapping(value = "/{ID}", params = "form", method = RequestMethod.POST)
     public String update(@Valid PurchaseOrderHeader header, BindingResult bindingResult, Model uiModel,
                          HttpServletRequest httpServletRequest, RedirectAttributes redirectAttributes,
                          Locale locale) {
@@ -105,8 +95,8 @@ public class PurchaseOrderHeaderController {
 
     
     @PreAuthorize("isAuthenticated()")
-    @RequestMapping(value = "/{headerId}", params = "form", method = RequestMethod.GET)
-    public String updateForm(@PathVariable("headerId") Long id, Model uiModel) {
+    @RequestMapping(value = "/{ID}", params = "form", method = RequestMethod.GET)
+    public String updateForm(@PathVariable("ID") Long id, Model uiModel) {
         uiModel.addAttribute("header", purchaseOrderHeaderService.findById(id));
         return "header/addHeader";
     }
@@ -147,12 +137,12 @@ public class PurchaseOrderHeaderController {
     @ResponseBody  
     @RequestMapping(value = "/headerlistgrid", method = RequestMethod.GET, produces="application/json")
     public PurchaseOrderHeaderGrid listGrid(@RequestParam(value = "page", required = false) Integer page,
-                                      @RequestParam(value = "rows", required = false) Integer rows,
-                                      @RequestParam(value = "sidx", required = false) String sortBy,
-                                      @RequestParam(value = "sord", required = false) String order) {
+                                            @RequestParam(value = "rows", required = false) Integer rows,
+                                            @RequestParam(value = "sidx", required = false) String sortBy,
+                                            @RequestParam(value = "sord", required = false) String order) {
 
-        logger.info("Listing items for grid with page: {}, rows: {}", page, rows);
-        logger.info("Listing items for grid with sort: {}, order: {}", sortBy, order);
+        logger.info("Listing headers for grid with page: {}, rows: {}", page, rows);
+        logger.info("Listing headers for grid with sort: {}, order: {}", sortBy, order);
 
         // Process order by
         Sort sort = null;

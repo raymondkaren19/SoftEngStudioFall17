@@ -3,7 +3,6 @@ package edu.brandeis.spring.mvc.service;
 import java.util.List;
 
 import edu.brandeis.spring.mvc.domain.PurchaseOrderHeader;
-import edu.brandeis.spring.mvc.domain.Supplier;
 
 public class PurchaseOrderHeaderGrid {
     private int totalPages;

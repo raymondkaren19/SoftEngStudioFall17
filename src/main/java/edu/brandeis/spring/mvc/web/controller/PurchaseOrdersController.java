@@ -59,8 +59,8 @@ public class PurchaseOrdersController {
         List<InventoryItem> items = itemService.findAll();
         uiModel.addAttribute("inventoryitems", items);
 
-        logger.info("No. of suppliers: " + purchaseOrders.size());
-        logger.info("No. of purchase orders: " + items.size());
+        logger.info("No. of orders: " + purchaseOrders.size());
+        logger.info("No. of items: " + items.size());
 
         return "orders/list";
         
