@@ -12,6 +12,7 @@ maven_build:
   - mvn compile
  except:
   - schedules
+  - triggers
 
 maven_tests:
  stage: test
@@ -19,6 +20,9 @@ maven_tests:
  script:
   - echo "Testing project with maven"
   - mvn '-Dtest=edu.brandeis.**.*Test' test
+ except:
+  - schedules
+  - triggers
 
 deploy-to-staging:
  stage: staging
@@ -41,6 +45,7 @@ deploy-to-staging:
   - master
  except:
   - schedules
+  - triggers
 
 deploy-to-production:
  stage: production
@@ -123,7 +128,7 @@ sql-backup-of-staging:
    - ./*.sql
  only:
   - master
- when: manual
+  - triggers
 
 sql-backup-of-production:
  stage: production
@@ -138,7 +143,7 @@ sql-backup-of-production:
    - ./*.sql
  only:
   - master
- when: manual 
+  - triggers
 
 #Please provide a $SQL_BACKUP_JOB_ID when calling this from the REST API.
 sql-restore-backup-staging:
@@ -155,7 +160,7 @@ sql-restore-backup-staging:
   name: sql/restore-staging
  only:
   - master
- when: manual  
+  - triggers
 
 test-connection-staging-tomcat-and-mysql-:
  stage: staging
@@ -170,6 +175,7 @@ test-connection-staging-tomcat-and-mysql-:
   name: integration-test/connection-staging
  only:
   - schedules
+  - triggers
 
 test-connection-production-tomcat-and-mysql-:
  stage: production
@@ -183,3 +189,4 @@ test-connection-production-tomcat-and-mysql-:
   name: integration-test/connection-production
  only:
   - schedules
+  - triggers
