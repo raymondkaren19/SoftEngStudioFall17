@@ -2,13 +2,20 @@ package edu.brandeis.spring.mvc.domain;
 
 import static javax.persistence.GenerationType.IDENTITY;
 
+import java.util.HashSet;
+import java.util.Set;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import org.hibernate.validator.constraints.NotEmpty;
 import org.hibernate.validator.constraints.Range;
+import org.springframework.transaction.annotation.Transactional;
 
 @Entity
 @Table(name = "SUPPLIER")
@@ -23,6 +30,7 @@ public class Supplier {
     private String edi;
     private String payment;
     private String incoterms;
+    private Set<PurchaseOrderHeader> purchaseOrderHeader = new HashSet<PurchaseOrderHeader>();
 
     @Id
     @GeneratedValue(strategy = IDENTITY)
@@ -114,4 +122,24 @@ public class Supplier {
     public void setIncoterms(String iNCOTERMS) {
         incoterms = iNCOTERMS;
     }
+    
+    @OneToMany(mappedBy = "supplier", cascade = CascadeType.ALL, fetch = FetchType.EAGER, orphanRemoval = true)
+   	public Set<PurchaseOrderHeader> getPurchaseOrderHeader() {
+   		return this.purchaseOrderHeader;
+   	}
+
+   	@Transactional
+   	public void purchaseOrderHeader(Set<PurchaseOrderHeader> purchaseOrderHeader) {
+   		this.purchaseOrderHeader = purchaseOrderHeader;
+   	}
+
+   	@Transactional
+   	public void addPurchaseOrders(PurchaseOrderHeader purchaseOrderHeader) {
+   		purchaseOrderHeader.setSupplier(this);
+   		getPurchaseOrderHeader().add(purchaseOrderHeader);
+   	}
+
+   	public void removePurchaseOrders(PurchaseOrderHeader purchaseOrderHeader) {
+   		getPurchaseOrderHeader().remove(purchaseOrderHeader);
+   	}
 }

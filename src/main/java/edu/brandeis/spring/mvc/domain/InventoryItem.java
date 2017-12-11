@@ -1,15 +1,15 @@
 package edu.brandeis.spring.mvc.domain;
 
 import static javax.persistence.GenerationType.IDENTITY;
-import javax.persistence.*;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import java.util.HashSet;
+import java.util.Set;
+
+import javax.persistence.*;
 
 import org.hibernate.validator.constraints.NotEmpty;
 import org.hibernate.validator.constraints.Range;
+import org.springframework.transaction.annotation.Transactional;
 
 @Entity
 @Table(name = "InventoryItem")
@@ -26,7 +26,8 @@ public class InventoryItem {
     private String backorderDate;
     private float perItemRetailSalePrice; 
     private int supplierId;
-
+    private Set<PurchaseOrders> purchaseOrders= new HashSet<PurchaseOrders>();
+    
     @Id
     @GeneratedValue(strategy = IDENTITY)
     @Range(min=1, message="{validation.id.Size.message}")
@@ -147,5 +148,25 @@ public class InventoryItem {
     public void setSupplierId(int sId) {
     	supplierId = sId;
     }
+    
+    @OneToMany(mappedBy = "inventoryItem", cascade = CascadeType.ALL, fetch = FetchType.EAGER, orphanRemoval = true)
+  	public Set<PurchaseOrders> getPurchaseOrders() {
+  		return this.purchaseOrders;
+  	}
+
+  	@Transactional
+  	public void setPurchaseOrders(Set<PurchaseOrders> purchaseOrders) {
+  		this.purchaseOrders = purchaseOrders;
+  	}
+
+  	@Transactional
+  	public void addPurchaseOrders(PurchaseOrders purchaseOrders) {
+  		purchaseOrders.setInventoryItem(this);
+  		getPurchaseOrders().add(purchaseOrders);
+  	}
+
+  	public void removePurchaseOrders(PurchaseOrders purchaseOrders) {
+  		getPurchaseOrders().remove(purchaseOrders);
+  	}
 
 }
