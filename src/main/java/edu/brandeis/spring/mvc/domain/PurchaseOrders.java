@@ -81,6 +81,7 @@ public class PurchaseOrders implements Serializable {
 
 	}
 	
+	@NotEmpty(message="{validation.itemname.NotEmpty.message}")
 	@Column(name = "DELIVERY_DATE")
 	public String getDeliveryDate() {
 		return this.deliveryDate;
@@ -90,6 +91,7 @@ public class PurchaseOrders implements Serializable {
 		this.deliveryDate = deliveryDate;
 	}
 
+	@NotEmpty(message="{validation.itemname.NotEmpty.message}")
 	@Column(name = "UNIT_PRICE")
 	public float getUnitPrice() {
 		return unitPrice;
