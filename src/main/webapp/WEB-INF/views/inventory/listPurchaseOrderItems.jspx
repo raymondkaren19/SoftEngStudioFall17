@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:jsp="http://java.sun.com/JSP/Page"
+     xmlns:c="http://java.sun.com/jsp/jstl/core"
+     xmlns:spring="http://www.springframework.org/tags"
+     version="2.0">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+
+    <spring:message code="label_purchaseorderitem_list" var="labelPurchaseOrderItemList"/>
+    <spring:message code="label_purchaseorderitem_poid" var="labelPurchaseOrderItemPoId"/>
+    <spring:message code="label_purchaseorderitem_itemid" var="labelPurchaseOrderItemItemId"/>
+    <spring:message code="label_purchaseorderitem_quantity" var="labelPurchaseOrderItemQuantity"/>
+    <spring:message code="label_purchaseorderitem_delivery" var="labelPurchaseOrderItemDelivery"/>
+    <spring:message code="label_purchaseorderitem_price" var="labelPurchaseOrderItemPrice"/>
+
+    <spring:url value="/orders/" var="showPurchaseOrderItemUrl"/>
+
+    <script type="text/javascript">
+        $(function(){
+            $("#orderslist").jqGrid({
+                url:'${showPurchaseOrderItemUrl}/orderslistgrid',
+                datatype: 'json',
+                mtype: 'GET',
+                colNames:['${labelPurchaseOrderItemPoId}',
+                          '${labelPurchaseOrderItemItemId}',
+                          '${labelPurchaseOrderItemQuantity}',
+                          '${labelPurchaseOrderItemDelivery}',
+                          '${labelPurchaseOrderItemPrice}', ],
+                colModel :[
+                    {name:'purchaseOrderId', index:'purchaseOrderId', width:50},
+                    {name:'itemId', index:'itemId', width:50},
+                    {name:'qtyOrdered', index:'qtyOrdered', width:50},
+                    {name:'deliveryDate', index:'deliveryDate', width:50},
+                    {name:'unitPrice', index:'unitPrice', width:50},
+                ],
+                jsonReader : {
+                    root:"purchaseOrdersData",
+                    page: "currentPage",
+                    total: "totalPages",
+                    records: "totalRecords",
+                    repeatitems: false,
+                    id: "ID"
+                },
+                pager: '#orderspager',
+                rowNum:10,
+                rowList:[10,20,30],
+                sortname: 'ID',
+                sortorder: 'asc',
+                viewrecords: true,
+                gridview: true,
+                height: 250,
+                width: 500,
+                caption: '${labelPurchaseOrderItemList}',
+                onSelectRow: function(id){
+                    document.location.href ="${showPurchaseOrderUrl}/" + id;
+                }
+            });
+        });
+    </script>
+
+    <c:if test="${not empty message}">
+        <div id="message" class="${message.type}">${message.message}</div>
+    </c:if>
+
+    <h2>${labelPurchaseOrderItemList}</h2>
+
+    <div>
+        <table id="orderslist"><tr><td/></tr></table>
+        <div id="orderspager"></div>
+    </div>
+
+</div>

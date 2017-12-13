@@ -2,13 +2,20 @@ package edu.brandeis.spring.mvc.domain;
 
 import static javax.persistence.GenerationType.IDENTITY;
 
+import java.util.HashSet;
+import java.util.Set;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import org.hibernate.validator.constraints.NotEmpty;
 import org.hibernate.validator.constraints.Range;
+import org.springframework.transaction.annotation.Transactional;
 
 @Entity
 @Table(name = "SUPPLIER")
@@ -23,7 +30,7 @@ public class Supplier {
     private String edi;
     private String payment;
     private String incoterms;
-
+ 
     @Id
     @GeneratedValue(strategy = IDENTITY)
     @Range(min=1, message="{validation.id.Size.message}")
@@ -114,4 +121,6 @@ public class Supplier {
     public void setIncoterms(String iNCOTERMS) {
         incoterms = iNCOTERMS;
     }
+    
+   
 }

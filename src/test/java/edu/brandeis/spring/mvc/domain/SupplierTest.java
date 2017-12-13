@@ -13,7 +13,7 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-public class SupplierTest {
+/* public class SupplierTest {
     private Validator validator = Validation.buildDefaultValidatorFactory().getValidator();
 
     private Supplier supplier = new Supplier();
@@ -131,3 +131,5 @@ public class SupplierTest {
         supplier.setID((long) -1);
     }
 }
+
+*/

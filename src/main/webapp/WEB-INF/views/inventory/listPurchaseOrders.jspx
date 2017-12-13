@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:jsp="http://java.sun.com/JSP/Page"
+     xmlns:c="http://java.sun.com/jsp/jstl/core"
+     xmlns:spring="http://www.springframework.org/tags"
+     version="2.0">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+
+    <spring:message code="label_purchaseorder_list" var="labelPurchaseOrderList"/>
+    <spring:message code="label_purchaseorder_id" var="labelPurchaseOrderId"/>
+    <spring:message code="label_purchaseorder_supplier" var="labelPurchaseOrderSupplier"/>
+    <spring:message code="label_purchaseorder_total" var="labelPurchaseOrderTotal"/>
+
+    <spring:url value="/header/" var="showPurchaseOrderUrl"/>
+
+    <script type="text/javascript">
+        $(function(){
+            $("#headerlist").jqGrid({
+                url:'${showPurchaseOrderUrl}/headerlistgrid',
+                datatype: 'json',
+                mtype: 'GET',
+                colNames:['${labelPurchaseOrderId}',
+                          '${labelPurchaseOrderSupplier}',
+                          '${labelPurchaseOrderTotal}', ],
+                colModel :[
+                    {name:'id', index:'id', width:85},
+                    {name:'supplierId', index:'supplierId', width:85},
+                    {name:'orderTotalPrice', index:'orderTotalPrice', width:85},
+                ],
+                jsonReader : {
+                    root:"purchaseOrderHeaderData",
+                    page: "currentPage",
+                    total: "totalPages",
+                    records: "totalRecords",
+                    repeatitems: false,
+                    id: "ID"
+                },
+                pager: '#headerpager',
+                rowNum:10,
+                rowList:[10,20,30],
+                sortname: 'ID',
+                sortorder: 'asc',
+                viewrecords: true,
+                gridview: true,
+                height: 250,
+                width: 500,
+                caption: '${labelPurchaseOrderList}',
+                onSelectRow: function(id){
+                    document.location.href ="${showPurchaseOrderUrl}/" + id;
+                }
+            });
+        });
+    </script>
+
+    <c:if test="${not empty message}">
+        <div id="message" class="${message.type}">${message.message}</div>
+    </c:if>
+
+    <h2>${labelPurchaseOrderList}</h2>
+
+    <div>
+        <table id="headerlist"><tr><td/></tr></table>
+        <div id="headerpager"></div>
+    </div>
+
+</div>
