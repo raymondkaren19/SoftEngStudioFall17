@@ -23,7 +23,7 @@
                           '${labelPurchaseOrderSupplier}',
                           '${labelPurchaseOrderTotal}', ],
                 colModel :[
-                    {name:'ID', index:'ID', width:85},
+                    {name:'id', index:'id', width:85},
                     {name:'supplierId', index:'supplierId', width:85},
                     {name:'orderTotalPrice', index:'orderTotalPrice', width:85},
                 ],

@@ -28,4 +28,7 @@
     <definition extends="default" name="header/list">
         <put-attribute name="body" value="/WEB-INF/views/inventory/listPurchaseOrders.jspx" />
     </definition>
+    <definition extends="default" name="header/showHeader">
+        <put-attribute name="body" value="/WEB-INF/views/inventory/showPurchaseOrder.jspx" />
+    </definition>
 </tiles-definitions>

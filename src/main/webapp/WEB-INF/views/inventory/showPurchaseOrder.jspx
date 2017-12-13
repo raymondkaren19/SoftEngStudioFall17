@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:jsp="http://java.sun.com/JSP/Page"
+     xmlns:c="http://java.sun.com/jsp/jstl/core"
+     xmlns:spring="http://www.springframework.org/tags"
+     xmlns:form="http://www.springframework.org/tags/form"
+     xmlns:joda="http://www.joda.org/joda/time/tags"
+     xmlns:sec="http://www.springframework.org/security/tags"
+     version="2.0">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+
+    <spring:message code="label_purchaseorder_details" var="labelPurchaseOrderDetails"/>
+    <spring:message code="label_purchaseorder_update" var="labelPurchaseOrderUpdate"/>
+    <spring:message code="label_purchaseorder_id" var="labelPurchaseOrderId"/>
+    <spring:message code="label_purchaseorder_supplier" var="labelPurchaseOrderSupplier"/>
+    <spring:message code="label_purchaseorder_total" var="labelPurchaseOrderTotal"/>
+
+    <spring:url value="/header" var="editPurchaseOrderUrl"/>
+
+    <h1>${labelPurchaseOrderDetails}</h1>
+
+    <div id="purchaseOrderDetails">
+
+        <c:if test="${not empty message}">
+            <div id="message" class="${message.type}">${message.message}</div>
+        </c:if>
+
+        <table>
+            <tr>
+                <td>${labelPurchaseOrderId}</td>
+                <td>${order.ID}</td>
+            </tr>
+            <tr>
+                <td>${labelPurchaseOrderSupplier}</td>
+                <td>${supplier.name}</td>
+            </tr>
+            <tr>
+                <td>${labelPurchaseOrderTotal}</td>
+                <td>${order.orderTotalPrice}</td>
+            </tr>
+        </table>
+<!--
+        <sec:authorize access="hasAnyRole('ROLE_ADMIN', 'ROLE_USER')">
+            <a href="${editPurchaseOrderUrl}/${header.ID}?form" style="margin-right:20px;">${labelPurchaseOrderUpdate}</a>
+        </sec:authorize>
+-->
+
+    </div>
+</div>

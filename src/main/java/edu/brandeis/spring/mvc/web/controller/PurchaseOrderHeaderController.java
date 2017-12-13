@@ -25,10 +25,12 @@ import com.google.common.collect.Lists;
 
 import edu.brandeis.spring.mvc.domain.PurchaseOrderHeader;
 import edu.brandeis.spring.mvc.domain.PurchaseOrders;
+import edu.brandeis.spring.mvc.domain.Supplier;
 import edu.brandeis.spring.mvc.service.Message;
 import edu.brandeis.spring.mvc.service.PurchaseOrderHeaderGrid;
 import edu.brandeis.spring.mvc.service.PurchaseOrderHeaderService;
 import edu.brandeis.spring.mvc.service.PurchaseOrdersService;
+import edu.brandeis.spring.mvc.service.SupplierService;
 import edu.brandeis.spring.mvc.service.AuditLogService;
 import edu.brandeis.spring.mvc.web.util.UrlUtil;
 
@@ -42,6 +44,7 @@ public class PurchaseOrderHeaderController {
 
     private PurchaseOrderHeaderService purchaseOrderHeaderService;
     private PurchaseOrdersService purchaseOrdersService;
+    private SupplierService supplierService;
     private AuditLogService auditLogService;
     private MessageSource messageSource;
 
@@ -60,12 +63,11 @@ public class PurchaseOrderHeaderController {
 
     @RequestMapping(value = "/{ID}", method = RequestMethod.GET)
     public String show(@PathVariable("ID") Long id, Model uiModel) {
-        PurchaseOrderHeader header = purchaseOrderHeaderService.findById(id);
-        uiModel.addAttribute("header", header);
-
-        logger.info("Purchase order ID: " + header.getId());
-        PurchaseOrders order = purchaseOrdersService.findById((long) header.getId());
+        PurchaseOrderHeader order = purchaseOrderHeaderService.findById(id);
         uiModel.addAttribute("order", order);
+
+        Supplier supplier = supplierService.findById(order.getSupplierId());
+        uiModel.addAttribute("supplier", supplier);
 
         return "header/showHeader";
     }
@@ -75,8 +77,8 @@ public class PurchaseOrderHeaderController {
     public String update(@Valid PurchaseOrderHeader header, BindingResult bindingResult, Model uiModel,
                          HttpServletRequest httpServletRequest, RedirectAttributes redirectAttributes,
                          Locale locale) {
-        logger.info("Updating inventory item: " + header.getId());
-        if (bindingResult.hasErrors() || null == header.getId()) {
+        logger.info("Updating inventory item: " + header.getID());
+        if (bindingResult.hasErrors() || null == header.getID()) {
             uiModel.addAttribute("message", new Message("error",
                     messageSource.getMessage("header_save_fail", new Object[]{}, locale)));
             uiModel.addAttribute("header", header);
@@ -89,7 +91,7 @@ public class PurchaseOrderHeaderController {
         
         auditLogService.saveData("Update", "Purchase Order Header Updated", "Admin");
         
-        return "redirect:/header/" + UrlUtil.encodeUrlPathSegment(header.getId().toString(),
+        return "redirect:/header/" + UrlUtil.encodeUrlPathSegment(header.getID().toString(),
                 httpServletRequest);
     }
 
@@ -118,7 +120,7 @@ public class PurchaseOrderHeaderController {
         redirectAttributes.addFlashAttribute("message", new Message("success",
                 messageSource.getMessage("header_save_success", new Object[]{}, locale)));
 
-        logger.info("Header id: " + header.getId());
+        logger.info("Header id: " + header.getID());
 
         purchaseOrderHeaderService.save(header);
         auditLogService.saveData("Create", "Purchase Order Header has been created", "Admin");
@@ -189,6 +191,11 @@ public class PurchaseOrderHeaderController {
         this.purchaseOrdersService = purchaseOrdersService;
     }
     
+    @Autowired
+    public void setSupplierService(SupplierService supplierService) {
+        this.supplierService = supplierService;
+    }
+
     @Autowired
     public void setAuditLogService(AuditLogService auditService) {
         this.auditLogService = auditService;
