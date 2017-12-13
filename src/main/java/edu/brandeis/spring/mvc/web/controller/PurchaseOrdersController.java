@@ -51,19 +51,13 @@ public class PurchaseOrdersController {
 
     @RequestMapping(method = RequestMethod.GET)
     public String list(Model uiModel) {
-        logger.info("Listing purchase orders and items");
+        logger.info("Listing purchase order items");
 
-        List<PurchaseOrders> purchaseOrders = purchaseOrdersService.findAll();
-        uiModel.addAttribute("purchaseOrders", purchaseOrders);
-
-        List<InventoryItem> items = itemService.findAll();
-        uiModel.addAttribute("inventoryitems", items);
-
-        logger.info("No. of orders: " + purchaseOrders.size());
-        logger.info("No. of items: " + items.size());
+        List<PurchaseOrders> orders = purchaseOrdersService.findAll();
+        uiModel.addAttribute("Orders", orders);
+        logger.info("No. of items: " + orders.size());
 
         return "orders/list";
-        
     }
 
     @RequestMapping(value = "/{orderId}", method = RequestMethod.GET)
@@ -83,8 +77,8 @@ public class PurchaseOrdersController {
     public String update(@Valid PurchaseOrders order, BindingResult bindingResult, Model uiModel,
                          HttpServletRequest httpServletRequest, RedirectAttributes redirectAttributes,
                          Locale locale) {
-        logger.info("Updating purchase order: " + order.getId());
-        if (bindingResult.hasErrors() || null == order.getId()) {
+        logger.info("Updating purchase order: " + order.getID());
+        if (bindingResult.hasErrors() || null == order.getID()) {
             uiModel.addAttribute("message", new Message("error",
                     messageSource.getMessage("purhcaseorders_save_fail", new Object[]{}, locale)));
             uiModel.addAttribute("order", order);
@@ -142,12 +136,12 @@ public class PurchaseOrdersController {
         return "inventory/addOrder";
     }
 
-    @ResponseBody  
+    @ResponseBody
     @RequestMapping(value = "/orderslistgrid", method = RequestMethod.GET, produces="application/json")
     public PurchaseOrdersGrid listGrid(@RequestParam(value = "page", required = false) Integer page,
-                                      @RequestParam(value = "rows", required = false) Integer rows,
-                                      @RequestParam(value = "sidx", required = false) String sortBy,
-                                      @RequestParam(value = "sord", required = false) String order) {
+                                       @RequestParam(value = "rows", required = false) Integer rows,
+                                       @RequestParam(value = "sidx", required = false) String sortBy,
+                                       @RequestParam(value = "sord", required = false) String order) {
 
         logger.info("Listing orders for grid with page: {}, rows: {}", page, rows);
         logger.info("Listing orders for grid with sort: {}, order: {}", sortBy, order);
@@ -182,7 +176,9 @@ public class PurchaseOrdersController {
         ordersGrid.setTotalPages(ordersPage.getTotalPages());
         ordersGrid.setTotalRecords(ordersPage.getTotalElements());
 
-        ordersGrid.setOrdersData(Lists.newArrayList(ordersPage.iterator()));
+        logger.info("Elements: " + ordersPage.getTotalElements());
+
+        ordersGrid.setPurchaseOrdersData(Lists.newArrayList(ordersPage.iterator()));
 
         return ordersGrid;
     }

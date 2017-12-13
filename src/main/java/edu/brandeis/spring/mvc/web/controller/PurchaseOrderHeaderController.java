@@ -69,6 +69,10 @@ public class PurchaseOrderHeaderController {
         Supplier supplier = supplierService.findById(order.getSupplierId());
         uiModel.addAttribute("supplier", supplier);
 
+        List<PurchaseOrders> orders = purchaseOrdersService.findByPurchaseOrderId(order.getID());
+        uiModel.addAttribute("Orders", orders);
+        logger.info("No. of items: " + orders.size());
+
         return "header/showHeader";
     }
 

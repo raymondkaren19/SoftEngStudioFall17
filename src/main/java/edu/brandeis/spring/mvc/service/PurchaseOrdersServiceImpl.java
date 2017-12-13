@@ -1,5 +1,6 @@
 package edu.brandeis.spring.mvc.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,6 +27,20 @@ public class PurchaseOrdersServiceImpl implements PurchaseOrdersService {
     @Transactional(readOnly=true)
     public List<PurchaseOrders> findAll() {
         return Lists.newArrayList(purchaseOrdersRepository.findAll());
+    }
+
+    @Override
+    @Transactional(readOnly=true)
+    public List<PurchaseOrders> findByPurchaseOrderId(Long id) {
+        ArrayList<PurchaseOrders> allOrders = Lists.newArrayList(purchaseOrdersRepository.findAll());
+        ArrayList<PurchaseOrders> foundOrders = new ArrayList<PurchaseOrders>();
+
+        for (PurchaseOrders purchaseOrder : allOrders) {
+            if (purchaseOrder.getPurchaseOrderId() == id)
+                foundOrders.add(purchaseOrder);
+        }
+
+        return foundOrders;
     }
 
     @Override

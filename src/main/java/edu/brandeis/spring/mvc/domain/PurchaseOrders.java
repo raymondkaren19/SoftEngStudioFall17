@@ -42,11 +42,11 @@ public class PurchaseOrders implements Serializable {
 	@GeneratedValue(strategy = IDENTITY)
 	@Range(min = 1, message = "{validation.id.Size.message}")
 	@Column(name = "ID")
-	public Long getId() {
+	public Long getID() {
 		return ID;
 	}
 
-	public void setId(Long ID) {
+	public void setID(Long ID) {
 		this.ID = ID;
 	}
 

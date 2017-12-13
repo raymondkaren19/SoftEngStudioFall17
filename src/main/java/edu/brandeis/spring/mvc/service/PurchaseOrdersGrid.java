@@ -39,7 +39,7 @@ public class PurchaseOrdersGrid {
         return purchaseOrdersData;
     }
 
-    public void setOrdersData(List<PurchaseOrders> purchaseOrdersData) {
+    public void setPurchaseOrdersData(List<PurchaseOrders> purchaseOrdersData) {
         this.purchaseOrdersData = purchaseOrdersData;
     }
 }

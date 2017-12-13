@@ -9,6 +9,7 @@ import edu.brandeis.spring.mvc.domain.PurchaseOrders;
 
 public interface PurchaseOrdersService {
     List<PurchaseOrders> findAll();
+    List<PurchaseOrders> findByPurchaseOrderId(Long id);
     PurchaseOrders findById(Long id);
     PurchaseOrders save(PurchaseOrders purchaseOrders);
     Page<PurchaseOrders> findAllByPage(Pageable pageable);
