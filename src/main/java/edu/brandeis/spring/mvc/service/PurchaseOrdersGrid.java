@@ -35,7 +35,7 @@ public class PurchaseOrdersGrid {
         this.totalRecords = totalRecords;
     }
 
-    public List<PurchaseOrders> getOrdersData() {
+    public List<PurchaseOrders> getPurchaseOrdersData() {
         return purchaseOrdersData;
     }
 
