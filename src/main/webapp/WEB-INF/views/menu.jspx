@@ -10,11 +10,13 @@
     <spring:message code="menu_header_text" var="menuHeaderText"/>
     <spring:message code="menu_add_supplier" var="menuAddSupplier"/>
     <spring:message code="menu_add_product" var="menuAddProduct"/>
+    <spring:message code="menu_add_purchase_order" var="menuAddPurchaseOrder"/>
     <spring:message code="menu_display_purchase_order" var="menuDisplayPurchaseOrder"/>
     <spring:message code="menu_audit_log" var="menuDisplayAuditLog"/>
     
     <spring:url value="/supplier?form" var="addSupplierUrl"/>
     <spring:url value="/inventory?form" var="addInventoryItemUrl"/>
+    <spring:url value="/orders?form" var="addPurchaseOrderUrl"/>
     <spring:url value="/header" var="displayPurchaseOrderUrl"/>
     <spring:url value="/audit" var="displayAuditUrl"/>
 
@@ -28,6 +30,9 @@
     </sec:authorize>
     <sec:authorize access="hasAnyRole('ROLE_ADMIN', 'ROLE_USER')">
         <a href="${addSupplierUrl}"><h3>${menuAddSupplier}</h3></a>
+    </sec:authorize>
+    <sec:authorize access="hasAnyRole('ROLE_ADMIN', 'ROLE_USER')">
+        <a href="${addPurchaseOrderUrl}"><h3>${menuAddPurchaseOrder}</h3></a>
     </sec:authorize>
     <sec:authorize access="hasAnyRole('ROLE_ADMIN', 'ROLE_USER')">
         <a href="${displayPurchaseOrderUrl}"><h3>${menuDisplayPurchaseOrder}</h3></a>

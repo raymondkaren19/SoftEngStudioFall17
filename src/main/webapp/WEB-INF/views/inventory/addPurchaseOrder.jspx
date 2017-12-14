@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+
+<div xmlns:jsp="http://java.sun.com/JSP/Page"
+     xmlns:c="http://java.sun.com/jsp/jstl/core"
+     xmlns:spring="http://www.springframework.org/tags"
+     xmlns:form="http://www.springframework.org/tags/form"
+     version="2.0">
+
+    <script type="text/javascript">
+        $(function(){
+            $("#inventorytDescription").ckeditor(
+                    {
+                        toolbar : 'Basic',
+                        uiColor : '#CCCCCC'
+                    }
+            );
+        });
+    </script>
+
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+
+    <spring:message code="label_purchaseorder_new" var="labelPurchaseOrderNew"/>
+    <spring:message code="label_purchaseorder_update" var="labelPurchaseOrderUpdate"/>
+    <spring:message code="label_purchaseorder_id" var="labelPurchaseOrderId"/>
+    <spring:message code="label_purchaseorder_supplier" var="labelPurchaseOrderSupplier"/>
+    <spring:message code="label_purchaseorder_total" var="labelPurchaseOrderTotal"/>
+    <spring:message code="label_purchaseorderitem_list" var="labelPurchaseOrderItemList"/>
+    <spring:message code="label_purchaseorderitem_details" var="labelPurchaseOrderItemDetails"/>
+    <spring:message code="label_purchaseorderitem_poid" var="labelPurchaseOrderItemPoId"/>
+    <spring:message code="label_purchaseorderitem_itemid" var="labelPurchaseOrderItemItemId"/>
+    <spring:message code="label_purchaseorderitem_quantity" var="labelPurchaseOrderItemQuantity"/>
+    <spring:message code="label_purchaseorderitem_delivery" var="labelPurchaseOrderItemDelivery"/>
+    <spring:message code="label_purchaseorderitem_price" var="labelPurchaseOrderItemPrice"/>
+
+    <spring:eval expression="order.ID == null ? labelPurchaseOrderNew:labelPurchaseOrderUpdate"
+                 var="formTitle"/>
+
+    <h1>${formTitle}</h1>
+
+    <div id="purchaseOrderHeaderUpdate">
+        <form:form modelAttribute="order" id="purchaseOrderUpdateForm" method="post"
+                   enctype="multipart/form-data">
+
+            <c:if test="${not empty message}">
+                <div id="message" class="${message.type}">${message.message}</div>
+            </c:if>
+
+            <form:label path="itemId">
+                ${labelPurchaseOrderItemItemId}*
+            </form:label>
+            <form:input path="itemId" />
+            <div>
+                <form:errors path="itemId" cssClass="error" />
+            </div>
+            <p/>
+
+            <form:label path="qtyOrdered">
+                ${labelPurchaseOrderItemQuantity}*
+            </form:label>
+            <form:input path="qtyOrdered" />
+            <div>
+                <form:errors path="qtyOrdered" cssClass="error" />
+            </div>
+            <p/>
+
+            <form:label path="deliveryDate">
+                ${labelPurchaseOrderItemDelivery}*
+            </form:label>
+            <form:input path="deliveryDate" />
+            <div>
+                <form:errors path="qtyOrdered" cssClass="error" />
+            </div>
+            <p/>
+
+            <form:label path="unitPrice">
+                ${labelPurchaseOrderItemPrice}*
+            </form:label>
+            <form:input path="unitPrice" />
+            <div>
+                <form:errors path="unitPrice" cssClass="error" />
+            </div>
+            <p/>
+
+            <button type="submit" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only">
+                <span class="ui-button-text">Save</span>
+            </button>
+            <button type="reset" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only">
+                <span class="ui-button-text">Reset</span>
+            </button>
+        </form:form>
+
+    </div>
+</div>

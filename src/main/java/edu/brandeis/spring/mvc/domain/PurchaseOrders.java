@@ -56,7 +56,6 @@ public class PurchaseOrders implements Serializable {
 	public Long getPurchaseOrderId() {
 		return purchaseOrderId;
 	}
-
 	public void setPurchaseOrderId(Long purchaseOrderId) {
 		this.purchaseOrderId = purchaseOrderId;
 	}
@@ -66,7 +65,6 @@ public class PurchaseOrders implements Serializable {
 	public Long getItemId() {
 		return itemId;
 	}
-
 	public void setItemId(Long itemId) {
 		this.itemId = itemId;
 	}
@@ -75,7 +73,6 @@ public class PurchaseOrders implements Serializable {
 	public int getQtyOrdered() {
 		return this.qtyOrdered;
 	}
-
 	public void setQtyOrdered(int qtyOrdered) {
 		this.qtyOrdered = qtyOrdered;
 
@@ -86,17 +83,15 @@ public class PurchaseOrders implements Serializable {
 	public String getDeliveryDate() {
 		return this.deliveryDate;
 	}
-
 	public void setDeliveryDate(String deliveryDate) {
 		this.deliveryDate = deliveryDate;
 	}
 
-	@NotEmpty(message="{validation.itemname.NotEmpty.message}")
+	@Range(min = 0, message="{validation.unitprice.Size.message}")
 	@Column(name = "UNIT_PRICE")
 	public float getUnitPrice() {
 		return unitPrice;
 	}
-
 	public void setUnitPrice(float unitPrice) {
 		this.unitPrice = unitPrice;
 	}
