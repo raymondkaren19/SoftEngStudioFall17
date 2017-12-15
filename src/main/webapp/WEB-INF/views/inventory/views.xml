@@ -37,4 +37,7 @@
     <definition extends="default" name="orders/addOrder">
         <put-attribute name="body" value="/WEB-INF/views/inventory/addPurchaseOrder.jspx" />
     </definition>
+     <definition extends="default" name="report/list">
+        <put-attribute name="body" value="/WEB-INF/views/inventory/reportList.jspx" />
+    </definition>
 </tiles-definitions>

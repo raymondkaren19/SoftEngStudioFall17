@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:jsp="http://java.sun.com/JSP/Page"
+     xmlns:c="http://java.sun.com/jsp/jstl/core"
+     xmlns:spring="http://www.springframework.org/tags"
+     version="2.0">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+   
+   <spring:message code="label_report_list" var="labelReportList"/>
+    <spring:message code="label_inventory" var="labelInventoryReport"/>
+    <spring:message code="label_PO" var="labelPOReport"/>
+    
+    <spring:url value="/report/inventory" var="showInventoryReportUrl"/>  
+    <spring:url value="/report/purchaseOrder" var="showPurchaseOrdersReportUrl"/>  
+    
+
+    <h2>${labelReportList}</h2>
+
+    <div>
+        <a href="${showInventoryReportUrl}"><h3>${labelInventoryReport}</h3></a>
+        <a href="${showPurchaseOrdersReportUrl}"><h3>${labelPOReport}</h3></a>
+    </div>
+    <div id="pager"></div>
+</div>
