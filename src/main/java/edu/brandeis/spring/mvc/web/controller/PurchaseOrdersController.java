@@ -9,6 +9,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -25,11 +26,13 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.google.common.collect.Lists;
 
 import edu.brandeis.spring.mvc.domain.InventoryItem;
+import edu.brandeis.spring.mvc.domain.PurchaseOrderHeader;
 import edu.brandeis.spring.mvc.domain.PurchaseOrders;
 import edu.brandeis.spring.mvc.domain.Supplier;
 import edu.brandeis.spring.mvc.service.InventoryItemGrid;
 import edu.brandeis.spring.mvc.service.InventoryItemService;
 import edu.brandeis.spring.mvc.service.Message;
+import edu.brandeis.spring.mvc.service.PurchaseOrderHeaderService;
 import edu.brandeis.spring.mvc.service.PurchaseOrdersGrid;
 import edu.brandeis.spring.mvc.service.PurchaseOrdersService;
 import edu.brandeis.spring.mvc.service.SupplierService;
@@ -44,6 +47,7 @@ import javax.validation.Valid;
 public class PurchaseOrdersController {
     private final Logger logger = LoggerFactory.getLogger(PurchaseOrdersController.class);
     
+    private PurchaseOrderHeaderService purchaseOrderHeaderService;
     private PurchaseOrdersService purchaseOrdersService;
     private InventoryItemService itemService;
     private AuditLogService auditLogService;
@@ -117,13 +121,20 @@ public class PurchaseOrdersController {
             return "orders/addOrder";
         }
         uiModel.asMap().clear();
+
         redirectAttributes.addFlashAttribute("message", new Message("success",
                 messageSource.getMessage("purchaseorders_save_success", new Object[]{}, locale)));
 
-        logger.info("Purchase order id: " + order.getItemId());
+        PurchaseOrderHeader header = new PurchaseOrderHeader();
+        header.setSupplierId((long) itemService.findById(order.getItemId()).getSupplierId());
+        header.setOrderTotalPrice(order.getUnitPrice() * order.getQtyOrdered());
+        purchaseOrderHeaderService.save(header);
 
+        order.setPurchaseOrderId(header.getID());
         purchaseOrdersService.save(order);
+
         auditLogService.saveData("Create", "Purchase order is created", "Admin");
+
         return "redirect:/inventory/";
     }
 
@@ -133,7 +144,7 @@ public class PurchaseOrdersController {
         PurchaseOrders order = new PurchaseOrders();
         uiModel.addAttribute("order", order);
 
-        return "inventory/addOrder";
+        return "orders/addOrder";
     }
 
     @ResponseBody
@@ -167,7 +178,8 @@ public class PurchaseOrdersController {
             pageRequest = new PageRequest(page - 1, rows);
         }
 
-        Page<PurchaseOrders> ordersPage = purchaseOrdersService.findAllByPage(pageRequest);
+        List<PurchaseOrders> pageContent = purchaseOrdersService.findByPurchaseOrderId();
+        Page<PurchaseOrders> ordersPage = new PageImpl<PurchaseOrders>(pageContent, pageRequest, pageContent.size());
 
         // Construct the grid data that will return as JSON data
         PurchaseOrdersGrid ordersGrid = new PurchaseOrdersGrid();
@@ -183,6 +195,11 @@ public class PurchaseOrdersController {
         return ordersGrid;
     }
 
+    
+    @Autowired
+    public void setPurchaseOrderHeaderService(PurchaseOrderHeaderService purchaseOrderHeaderService) {
+        this.purchaseOrderHeaderService = purchaseOrderHeaderService;
+    }
     
     @Autowired
     public void setPurchaseOrdersService(PurchaseOrdersService purchaseOrdersService) {
@@ -204,4 +221,5 @@ public class PurchaseOrdersController {
     public void setMessageSource(MessageSource messageSource) {
         this.messageSource = messageSource;
     }
+    
 }
