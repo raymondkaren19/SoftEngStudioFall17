@@ -209,6 +209,11 @@
 			<artifactId>mockito-all</artifactId>
 			<version>${mockito-all.version}</version>
 		</dependency>
+		<dependency>
+		   <groupId>net.sf.jasperreports</groupId>
+		   <artifactId>jasperreports</artifactId>
+		   <version>6.4.1</version>
+		</dependency>
 	</dependencies>
     <build>
         <finalName>inventorymanager-webapp</finalName>
