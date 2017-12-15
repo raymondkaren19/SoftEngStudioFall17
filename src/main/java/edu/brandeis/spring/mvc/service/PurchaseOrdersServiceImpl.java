@@ -22,6 +22,7 @@ import edu.brandeis.spring.mvc.domain.PurchaseOrders;
 @Service("purchaseOrdersService")
 public class PurchaseOrdersServiceImpl implements PurchaseOrdersService {
     private PurchaseOrdersRepository purchaseOrdersRepository;
+    private long purchaseOrderId;
 
     @Override
     @Transactional(readOnly=true)
@@ -31,12 +32,12 @@ public class PurchaseOrdersServiceImpl implements PurchaseOrdersService {
 
     @Override
     @Transactional(readOnly=true)
-    public List<PurchaseOrders> findByPurchaseOrderId(Long id) {
+    public List<PurchaseOrders> findByPurchaseOrderId() {
         ArrayList<PurchaseOrders> allOrders = Lists.newArrayList(purchaseOrdersRepository.findAll());
         ArrayList<PurchaseOrders> foundOrders = new ArrayList<PurchaseOrders>();
 
         for (PurchaseOrders purchaseOrder : allOrders) {
-            if (purchaseOrder.getPurchaseOrderId() == id)
+            if (purchaseOrder.getPurchaseOrderId() == purchaseOrderId)
                 foundOrders.add(purchaseOrder);
         }
 
@@ -63,6 +64,11 @@ public class PurchaseOrdersServiceImpl implements PurchaseOrdersService {
     @Transactional(readOnly=true)
     public Page<PurchaseOrders> findAllByPage(Pageable pageable) {
         return purchaseOrdersRepository.findAll(pageable);
+    }   
+
+    @Override
+    public void setPurchaseOrderId(long id) {
+        this.purchaseOrderId = id;
     }   
 
 }

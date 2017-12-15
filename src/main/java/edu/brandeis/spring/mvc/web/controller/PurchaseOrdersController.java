@@ -9,6 +9,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -177,7 +178,8 @@ public class PurchaseOrdersController {
             pageRequest = new PageRequest(page - 1, rows);
         }
 
-        Page<PurchaseOrders> ordersPage = purchaseOrdersService.findAllByPage(pageRequest);
+        List<PurchaseOrders> pageContent = purchaseOrdersService.findByPurchaseOrderId();
+        Page<PurchaseOrders> ordersPage = new PageImpl<PurchaseOrders>(pageContent, pageRequest, pageContent.size());
 
         // Construct the grid data that will return as JSON data
         PurchaseOrdersGrid ordersGrid = new PurchaseOrdersGrid();
@@ -219,4 +221,5 @@ public class PurchaseOrdersController {
     public void setMessageSource(MessageSource messageSource) {
         this.messageSource = messageSource;
     }
+    
 }
