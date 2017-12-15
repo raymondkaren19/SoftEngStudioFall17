@@ -24,6 +24,7 @@
 
     <spring:url value="/header" var="editPurchaseOrderUrl"/>
     <spring:url value="/orders/" var="showPurchaseOrderItemUrl"/>
+    <spring:url value="/inventory/" var="showInventoryItemUrl"/>
 
     <script type="text/javascript">
         $(function(){
@@ -62,7 +63,7 @@
                 width: 500,
                 caption: '${labelPurchaseOrderItemList}',
                 onSelectRow: function(id){
-                    document.location.href ="${showPurchaseOrderUrl}/" + id;
+                    document.location.href ="${showInventoryItemUrl}/" + id;
                 }
             });
         });
