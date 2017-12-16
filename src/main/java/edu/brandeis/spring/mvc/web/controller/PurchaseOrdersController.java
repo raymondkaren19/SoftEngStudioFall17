@@ -82,25 +82,30 @@ public class PurchaseOrdersController {
                          HttpServletRequest httpServletRequest, RedirectAttributes redirectAttributes,
                          Locale locale) {
         logger.info("Updating purchase order: " + order.getID());
+
         if (bindingResult.hasErrors() || null == order.getID()) {
             uiModel.addAttribute("message", new Message("error",
-                    messageSource.getMessage("purhcaseorders_save_fail", new Object[]{}, locale)));
+                    messageSource.getMessage("purchaseorders_save_fail", new Object[]{}, locale)));
             uiModel.addAttribute("order", order);
             return "orders/addOrder";
         }
-        
-           
         uiModel.asMap().clear();
+
+        PurchaseOrderHeader header = purchaseOrderHeaderService.findById(order.getPurchaseOrderId());
+        header.setOrderTotalPrice(order.getUnitPrice() * order.getQtyOrdered());
+        header.setSupplierId((long) itemService.findById(order.getItemId()).getSupplierId());
+        purchaseOrderHeaderService.save(header);
+
         redirectAttributes.addFlashAttribute("message", new Message("success",
                 messageSource.getMessage("purchaseorders_save_success", new Object[]{}, locale)));
         purchaseOrdersService.save(order);        
         auditLogService.saveData("Update", "Purchase Order Updated", "Admin");
         
-        return "redirect:/orders/" + UrlUtil.encodeUrlPathSegment(order.getItemId().toString(),
+        return "redirect:/header/" + UrlUtil.encodeUrlPathSegment(header.getID().toString(),
                 httpServletRequest);
     }
 
-     @PreAuthorize("isAuthenticated()")
+    @PreAuthorize("isAuthenticated()")
     @RequestMapping(value = "/{orderId}", params = "form", method = RequestMethod.GET)
     public String updateForm(@PathVariable("orderId") Long id, Model uiModel) {
         uiModel.addAttribute("order", purchaseOrdersService.findById(id));

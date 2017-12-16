@@ -38,13 +38,16 @@
 
     <h1>${formTitle}</h1>
 
-    <div id="purchaseOrderHeaderUpdate">
+    <div id="purchaseOrderUpdate">
         <form:form modelAttribute="order" id="purchaseOrderUpdateForm" method="post"
                    enctype="multipart/form-data">
 
             <c:if test="${not empty message}">
                 <div id="message" class="${message.type}">${message.message}</div>
             </c:if>
+
+            <form:hidden path="ID"/>
+            <form:hidden path="purchaseOrderId"/>
 
             <form:label path="itemId">
                 ${labelPurchaseOrderItemItemId}*
