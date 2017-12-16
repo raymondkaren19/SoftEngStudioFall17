@@ -115,7 +115,7 @@ sql-insert-to-production:
   - master
  when: manual
 
- sql-destroy-db-staging:
+sql-destroy-db-staging:
  stage: staging
  image: mysql:5.7
  script:
