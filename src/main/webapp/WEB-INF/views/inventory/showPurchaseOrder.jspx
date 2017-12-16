@@ -22,7 +22,7 @@
     <spring:message code="label_purchaseorderitem_delivery" var="labelPurchaseOrderItemDelivery"/>
     <spring:message code="label_purchaseorderitem_price" var="labelPurchaseOrderItemPrice"/>
 
-    <spring:url value="/header" var="editPurchaseOrderUrl"/>
+    <spring:url value="/orders" var="editPurchaseOrderUrl"/>
     <spring:url value="/orders/" var="showPurchaseOrderItemUrl"/>
     <spring:url value="/inventory/" var="showInventoryItemUrl"/>
 
@@ -63,7 +63,7 @@
                 width: 500,
                 caption: '${labelPurchaseOrderItemList}',
                 onSelectRow: function(id){
-                    document.location.href ="${showInventoryItemUrl}/" + id;
+                    document.location.href ="${showInventoryItemUrl}/" + $('#orderslist').jqGrid('getCell',id,'itemId');
                 }
             });
         });
@@ -99,11 +99,8 @@
             <div id="orderspager"></div>
         </div>
 
-<!--
-        <sec:authorize access="hasAnyRole('ROLE_ADMIN', 'ROLE_USER')">
-            <a href="${editPurchaseOrderUrl}/${header.ID}?form" style="margin-right:20px;">${labelPurchaseOrderUpdate}</a>
+        <sec:authorize access="hasAnyRole('ROLE_ADMIN')">
+            <a href="${editPurchaseOrderUrl}/${firstOrder.ID}?form" style="margin-right:20px;">${labelPurchaseOrderUpdate}</a>
         </sec:authorize>
--->
-
     </div>
 </div>

@@ -52,7 +52,7 @@
                 width: 500,
                 caption: '${labelPurchaseOrderItemList}',
                 onSelectRow: function(id){
-                    document.location.href ="${showPurchaseOrderUrl}/" + id;
+                    document.location.href ="${showPurchaseOrderUrl}/" + $('#orderslist').jqGrid('getCell',id,'itemId');
                 }
             });
         });

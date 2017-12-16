@@ -71,8 +71,11 @@ public class PurchaseOrderHeaderController {
 
         purchaseOrdersService.setPurchaseOrderId(id);
         List<PurchaseOrders> orders = purchaseOrdersService.findByPurchaseOrderId();
+        PurchaseOrders firstOrder = orders.get(0);
         uiModel.addAttribute("Orders", orders);
+        uiModel.addAttribute("firstOrder", firstOrder);
         logger.info("No. of items: " + orders.size());
+        logger.info("First order ID: " + firstOrder.getID());
 
         return "header/showHeader";
     }

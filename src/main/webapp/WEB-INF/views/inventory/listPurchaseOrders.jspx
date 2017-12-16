@@ -46,7 +46,7 @@
                 width: 500,
                 caption: '${labelPurchaseOrderList}',
                 onSelectRow: function(id){
-                    document.location.href ="${showPurchaseOrderUrl}/" + id;
+                    document.location.href ="${showPurchaseOrderUrl}/" + $('#headerlist').jqGrid('getCell',id,'id');
                 }
             });
         });

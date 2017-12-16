@@ -172,6 +172,11 @@ public class SupplierController {
     }
 
     @Autowired
+    public void setAuditLogServiceService(AuditLogService auditLogService) {
+        this.auditLogService = auditLogService;
+    }
+
+    @Autowired
     public void setMessageSource(MessageSource messageSource) {
         this.messageSource = messageSource;
     }
