@@ -136,6 +136,17 @@ sql-insert-to-production:
   - master
  when: manual
 
+sql-destroy-db-staging:
+ stage: staging
+ image: mysql:5.7
+ script:
+  - mysql -u $MYSQL_USER_STAGING -p$MYSQL_PASS_STAGING -h $STAGING_HOST -e "DROP DATABASE $DB_NAME;"
+ environment:
+  name: sql/destroy-db-staging
+ only:
+  - master
+ when: manual
+
 sql-backup-of-staging:
  stage: staging
  image: mysql:5.7
