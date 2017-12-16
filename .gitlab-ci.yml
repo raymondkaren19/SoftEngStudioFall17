@@ -126,6 +126,17 @@ sql-destroy-db-staging:
   - master
  when: manual
 
+sql-destroy-db-production:
+ stage: production
+ image: mysql:5.7
+ script:
+  - mysql -u $MYSQL_USER_PRODUCTION -p$MYSQL_PASS_PRODUCTION -h $PRODUCTION_HOST -e "DROP DATABASE $DB_NAME;"
+ environment:
+  name: sql/destroy-db-production
+ only:
+  - master
+ when: manual
+
 sql-backup-of-staging:
  stage: staging
  image: mysql:5.7
