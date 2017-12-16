@@ -145,7 +145,17 @@ sql-backup-of-production:
   - master
   - triggers
 
-#Please provide a $SQL_BACKUP_JOB_ID when calling this from the REST API.
+
+# We are going to trigger this API using a combo of authenticated request and non authenticated triggers.
+# Authenticated calls:
+# Set the SQL_RESTORE_CLIENT_SECRET : This is going to be a random generated token that can be set securely. This is random and it changes. 
+# Set the SQL_RESTORE_TARGET: This will choose which server should be restored. Staging | Production 
+# TRIGGER: Non authenticated.
+# Send the SQL_RESTORE_CLIENT_SECRET & SQL_RESTORE_TARGET variables in the clear. 
+# Authenticated calls:
+# Reset SQL_RESTORE_CLIENT_SECRET & SQL_RESTORE_TARGET to random values. 
+
+Please upadte $SQL_BACKUP_JOB_ID when calling this from the REST API.
 sql-restore-backup-staging:
  stage: staging
  image: mysql:5.7
@@ -160,6 +170,8 @@ sql-restore-backup-staging:
   name: sql/restore-staging
  only:
   - triggers
+  - master 
+ when: manual
 
 test-connection-staging-tomcat-and-mysql-:
  stage: staging
