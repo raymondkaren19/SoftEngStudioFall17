@@ -62,6 +62,7 @@
     </script>
 
     <script type="text/javascript">
+
         $(function(){
             $("#supplierlist").jqGrid({
                 url:'${showSuppliersUrl}/supplierlistgrid',
@@ -96,12 +97,51 @@
                 width: 500,
                 caption: '${labelSupplierList}',
                 onSelectRow: function(id){
-                    document.location.href ="${showSuppliersUrl}/" + id;
+  
+                    //var name = ret.NAME;
+                    processClick(id);
+                    
+     
                 }
             });
         });
-    </script>
+        function processClick(value) {
 
+        	var wholeVal = "Test = ";
+        	//var table = document.getElementById("#supplierList");
+        	//var myTableArray = [];
+
+        	//$("table#supplierList tr").each(function() {
+        	    //var arrayOfThisRow = [];
+        	//    var tableData = $(this).find('td');
+        	 //   if (tableData.length > 0) {
+        	 //       tableData.each(function() { 
+        	  //      	wholeVal = wholeVal + "-" + $(this).text(); 
+        	  //      });
+        	        
+        	//    }
+        	//});
+        	//for (var i = 0;var row= table.rows[i];i++) {
+        		//if ((i+1) == value) {
+        	     	
+        	//		for (var j = 0;var col= row.cells[j];j++) {
+        	//			wholeVal = wholeVal + "=";//col;
+        	//		}
+        			
+        		//}
+        	//}
+        	
+        	document.getElementById("alertId").innerHTML = wholeVal;
+
+  	
+        }
+
+        	
+        		          
+        
+        
+    </script>
+<div id="alertId">NEW BUILD</div>
     <c:if test="${not empty message}">
         <div id="message" class="${message.type}">${message.message}</div>
     </c:if>
