@@ -1,6 +1,8 @@
 package edu.brandeis.spring.mvc.web.controller;
 
+
 import java.text.ParseException;
+import java.io.UnsupportedEncodingException;
 import java.util.List;
 import java.util.Locale;
 
@@ -13,6 +15,10 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -29,6 +35,7 @@ import com.google.common.collect.Lists;
 import edu.brandeis.spring.mvc.domain.InventoryItem;
 import edu.brandeis.spring.mvc.domain.PurchaseOrderHeader;
 import edu.brandeis.spring.mvc.domain.PurchaseOrders;
+import edu.brandeis.spring.mvc.domain.PurchaseOrdersList;
 import edu.brandeis.spring.mvc.domain.Supplier;
 import edu.brandeis.spring.mvc.service.InventoryItemGrid;
 import edu.brandeis.spring.mvc.service.InventoryItemService;
@@ -76,6 +83,39 @@ public class PurchaseOrdersController {
         uiModel.addAttribute("item", item);
 
         return "orders/showOrders";
+    }
+    
+    // Download mapping for XML file as a list of Purchase Orders.
+    @RequestMapping(value = "downloadXml", method = RequestMethod.GET)
+   	public ResponseEntity<PurchaseOrdersList> handle(HttpServletRequest request, HttpServletResponse response) throws UnsupportedEncodingException {
+
+   	    PurchaseOrdersList xmlToDownload = new PurchaseOrdersList();
+   	    xmlToDownload.setPurchaseOrders(purchaseOrdersService.findAll());
+
+   	    HttpHeaders responseHeaders = new HttpHeaders();
+   	    responseHeaders.setContentType(MediaType.APPLICATION_OCTET_STREAM);
+   	    responseHeaders.set("Content-Disposition", "attachment;filename=PurchaseOrdersList.xml");
+   	    responseHeaders.setCacheControl("public");
+   	    responseHeaders.setPragma("public");
+   	    
+   	   return new ResponseEntity<PurchaseOrdersList>(xmlToDownload, responseHeaders, HttpStatus.CREATED);
+    }
+  
+    // Download mapping for text file as a list of Purchase Orders.
+    
+    @RequestMapping(value = "downloadText", method = RequestMethod.GET)
+   	public ResponseEntity<PurchaseOrdersList> handleText(HttpServletRequest request, HttpServletResponse response) throws UnsupportedEncodingException {
+// Generate Purchase Orders list.
+   	    PurchaseOrdersList textToDownload = new PurchaseOrdersList();
+   	    textToDownload.setPurchaseOrders(purchaseOrdersService.findAll());
+
+   	    HttpHeaders responseHeaders = new HttpHeaders();
+   	    responseHeaders.setContentType(MediaType.TEXT_PLAIN);
+   	    responseHeaders.set("Content-Disposition", "attachment;filename=PurchaseOrdersList.txt");
+   	    responseHeaders.setCacheControl("public");
+   	    responseHeaders.setPragma("public");
+   	    
+   	   return new ResponseEntity<PurchaseOrdersList>(textToDownload, responseHeaders, HttpStatus.CREATED);
     }
 
     @PreAuthorize("isAuthenticated()")

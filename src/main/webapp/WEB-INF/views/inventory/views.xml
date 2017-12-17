@@ -4,6 +4,7 @@
         "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
 
 <tiles-definitions>
+<<<<<<< 30f8a586e8aa8965aeb55c77e7577fab50765a01
     <definition extends="default" name="inventory/list">
         <put-attribute name="body" value="/WEB-INF/views/inventory/list.jspx" />
     </definition>
@@ -40,4 +41,13 @@
      <definition extends="default" name="report/list">
         <put-attribute name="body" value="/WEB-INF/views/inventory/reportList.jspx" />
     </definition>
+    	</definition>
+	<definition extends="default" name="orders/downloadXml">
+		<put-attribute name="body"
+			value="/WEB-INF/views/inventory/listPurchaseOrders.jspx" />
+	</definition>
+	<definition extends="default" name="orders/downloadText">
+		<put-attribute name="body"
+			value="/WEB-INF/views/inventory/listPurchaseOrders.jspx" />
+	</definition>
 </tiles-definitions>

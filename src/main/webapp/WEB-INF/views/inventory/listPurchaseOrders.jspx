@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <div xmlns:jsp="http://java.sun.com/JSP/Page"
-     xmlns:c="http://java.sun.com/jsp/jstl/core"
+     xmlns:c="http://java.sun.com/jsp/jstl/core_rt"
      xmlns:spring="http://www.springframework.org/tags"
      version="2.0">
+     
+     
     <jsp:directive.page contentType="text/html;charset=UTF-8"/>
     <jsp:output omit-xml-declaration="yes"/>
 
@@ -10,8 +12,14 @@
     <spring:message code="label_purchaseorder_id" var="labelPurchaseOrderId"/>
     <spring:message code="label_purchaseorder_supplier" var="labelPurchaseOrderSupplier"/>
     <spring:message code="label_purchaseorder_total" var="labelPurchaseOrderTotal"/>
+    <spring:message code="label_purchaseorder_downloadXml" var="labelPurchaseOrderDownloadXml"/>
+    <spring:message code="label_purchaseorder_downloadText" var="labelPurchaseOrderDownloadText"/>
+    <spring:message code="menu_header_text_download" var="menuHeaderTextDownload"/>
 
     <spring:url value="/header/" var="showPurchaseOrderUrl"/>
+     <spring:url value="/orders/downloadXml" var="downloadXml"/>
+     <spring:url value="/orders/downloadText" var="downloadText"/>
+    
 
     <script type="text/javascript">
         $(function(){
@@ -46,7 +54,7 @@
                 width: 500,
                 caption: '${labelPurchaseOrderList}',
                 onSelectRow: function(id){
-                    document.location.href ="${showPurchaseOrderUrl}/" + $('#headerlist').jqGrid('getCell',id,'id');
+                    document.location.href ="${showPurchaseOrderUrl}/" + id;
                 }
             });
         });
@@ -55,10 +63,20 @@
     <c:if test="${not empty message}">
         <div id="message" class="${message.type}">${message.message}</div>
     </c:if>
+    
+<h2>${labelPurchaseOrderList}</h2>
+ 
+<div style="text-align:right"> 
+<h2>${menuHeaderTextDownload}</h2>
+</div>  
+<div style="text-align:right">   
+    <a href="${downloadXml}"><h5>${labelPurchaseOrderDownloadXml}</h5></a>
+    <a href="${downloadText}"><h5>${labelPurchaseOrderDownloadText}</h5></a>
+</div>
 
-    <h2>${labelPurchaseOrderList}</h2>
-
-    <div>
+   
+     
+        <div>
         <table id="headerlist"><tr><td/></tr></table>
         <div id="headerpager"></div>
     </div>
