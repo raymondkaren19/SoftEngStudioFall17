@@ -14,6 +14,8 @@
     <spring:message code="menu_display_purchase_order" var="menuDisplayPurchaseOrder"/>
     <spring:message code="menu_audit_log" var="menuDisplayAuditLog"/>
     <spring:message code="menu_report" var="menuDisplayReport"/>
+    <spring:message code="menu_reorder" var="menuDisplayReorder"/>
+    
     
     <spring:url value="/supplier?form" var="addSupplierUrl"/>
     <spring:url value="/inventory?form" var="addInventoryItemUrl"/>
@@ -21,7 +23,9 @@
     <spring:url value="/header" var="displayPurchaseOrderUrl"/>
     <spring:url value="/audit" var="displayAuditUrl"/>
     <spring:url value="/report" var="displayReportUrl"/>
-
+    
+    <spring:url value="/orders/reorders" var="displayReorderUrl"/>
+    
     <spring:message code="label_login" var="labelLogin"/>
     <spring:url var="loginUrl" value="/j_spring_security_check" />
 
@@ -44,6 +48,9 @@
     </sec:authorize>
      <sec:authorize access="hasRole('ROLE_ADMIN')">
         <a href="${displayReportUrl}"><h3>${menuDisplayReport}</h3></a>
+    </sec:authorize>    
+     <sec:authorize access="hasRole('ROLE_ADMIN')">
+        <a href="${displayReorderUrl}"><h3>${menuDisplayReorder}</h3></a>
     </sec:authorize>
 
     <sec:authorize access="isAnonymous()">

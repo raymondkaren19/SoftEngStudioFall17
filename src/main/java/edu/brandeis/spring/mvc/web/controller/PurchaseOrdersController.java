@@ -1,5 +1,6 @@
 package edu.brandeis.spring.mvc.web.controller;
 
+import java.text.ParseException;
 import java.util.List;
 import java.util.Locale;
 
@@ -40,6 +41,7 @@ import edu.brandeis.spring.mvc.service.AuditLogService;
 import edu.brandeis.spring.mvc.web.util.UrlUtil;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 
 @RequestMapping("/orders")
@@ -141,6 +143,40 @@ public class PurchaseOrdersController {
         auditLogService.saveData("Create", "Purchase order is created", "Admin");
 
         return "redirect:/inventory/";
+    }
+    
+    @PreAuthorize("isAuthenticated()")
+    @RequestMapping(value = "/reorders",  method = RequestMethod.GET)
+    public String GenerateReorders(HttpServletRequest request,HttpServletResponse response) throws ParseException {
+       // uiModel.addAttribute("order", purchaseOrdersService.findById(id));
+    	
+    	logger.info("generating re-orders");
+    	
+    	List<InventoryItem> allItems = itemService.findAll();
+    	
+    	for(InventoryItem item: allItems)
+    	{
+    		if (item.getInventoryOnHand() > 0 && item.getInventoryOnHand() <= item.getReorderQuantity())
+    		{
+    			logger.info("generating re-order for item {}", item.getItemName());
+    			
+    			PurchaseOrderHeader header = new PurchaseOrderHeader();
+    	        header.setSupplierId((long) item.getSupplierId());
+    	        header.setOrderTotalPrice(item.getPerItemRetailSalePrice() * item.getReorderQuantity());
+    	        purchaseOrderHeaderService.save(header);
+
+    	        PurchaseOrders order = new PurchaseOrders();
+    	        order.setItemId(item.getItemId());
+    	        order.setDeliveryDate("01/23/18");
+    	        order.setQtyOrdered(item.getReorderQuantity());
+    	        order.setPurchaseOrderId(header.getID());
+    	        purchaseOrdersService.save(order);
+
+    	        auditLogService.saveData("Create", "Purchase order is created for "+ item.getItemName(), "Admin");
+    			
+    		}
+    	}
+    	return "orders/list";
     }
 
     @PreAuthorize("isAuthenticated()")

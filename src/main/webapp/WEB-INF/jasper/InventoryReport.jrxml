@@ -25,14 +25,14 @@
             <text><![CDATA[Manufacturer Name]]></text>
     </staticText>
     <staticText>
-            <reportElement x="274" y="5" width="100" height="20"/>
+            <reportElement x="274" y="5" width="120" height="20"/>
             <textElement>
                     <font isBold="true"/>
             </textElement>
             <text><![CDATA[Inventory On Hand ]]></text>
     </staticText>
     <staticText>
-            <reportElement x="426" y="5" width="100" height="20"/>
+            <reportElement x="446" y="5" width="100" height="20"/>
             <textElement>
                     <font isBold="true"/>
             </textElement>
@@ -55,12 +55,12 @@
             <textFieldExpression><![CDATA[$F{manufacturerName}]]></textFieldExpression>
     </textField>
     <textField>
-            <reportElement x="274" y="7" width="100" height="20"/>
+            <reportElement x="274" y="7" width="120" height="20"/>
             <textElement/>
             <textFieldExpression><![CDATA[$F{inventoryOnHand}]]></textFieldExpression>
     </textField>
     <textField>
-            <reportElement x="426" y="7" width="100" height="20"/>
+            <reportElement x="446" y="7" width="100" height="20"/>
             <textElement/>
             <textFieldExpression><![CDATA[$F{perItemRetailSalePrice}]]></textFieldExpression>
     </textField>
