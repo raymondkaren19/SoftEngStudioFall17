@@ -40,13 +40,4 @@
      <definition extends="default" name="report/list">
         <put-attribute name="body" value="/WEB-INF/views/inventory/reportList.jspx" />
     </definition>
-    	</definition>
-	<definition extends="default" name="orders/downloadXml">
-		<put-attribute name="body"
-			value="/WEB-INF/views/inventory/listPurchaseOrders.jspx" />
-	</definition>
-	<definition extends="default" name="orders/downloadText">
-		<put-attribute name="body"
-			value="/WEB-INF/views/inventory/listPurchaseOrders.jspx" />
-	</definition>
 </tiles-definitions>
