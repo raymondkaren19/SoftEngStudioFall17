@@ -68,11 +68,13 @@
                 url:'${showSuppliersUrl}/supplierlistgrid',
                 datatype: 'json',
                 mtype: 'GET',
-                colNames:['${labelSupplierName}',
+                colNames:['ID',
+                	      '${labelSupplierName}',
                           '${labelSupplierCity}',
                           '${labelSupplierState}',
                           '${labelSupplierPhone}', ],
                 colModel :[
+                	{name:'id', index:'id', width:50},
                     {name:'name', index:'name', width:100},
                     {name:'city', index:'city', width:50},
                     {name:'state', index:'state', width:50},
@@ -96,50 +98,15 @@
                 height: 250,
                 width: 500,
                 caption: '${labelSupplierList}',
-                onSelectRow: function(id){
-  
-                    //var name = ret.NAME;
+                onSelectRow: function(id){        
                     processClick(id);
-                    
-     
                 }
             });
         });
-        function processClick(value) {
-
-        	var wholeVal = "Test = ";
-        	//var table = document.getElementById("#supplierList");
-        	//var myTableArray = [];
-
-        	//$("table#supplierList tr").each(function() {
-        	    //var arrayOfThisRow = [];
-        	//    var tableData = $(this).find('td');
-        	 //   if (tableData.length > 0) {
-        	 //       tableData.each(function() { 
-        	  //      	wholeVal = wholeVal + "-" + $(this).text(); 
-        	  //      });
-        	        
-        	//    }
-        	//});
-        	//for (var i = 0;var row= table.rows[i];i++) {
-        		//if ((i+1) == value) {
-        	     	
-        	//		for (var j = 0;var col= row.cells[j];j++) {
-        	//			wholeVal = wholeVal + "=";//col;
-        	//		}
-        			
-        		//}
-        	//}
-        	
+        function processClick(id) {
+        	var wholeVal = $("#supplierList").children().children("#" + id).first().children().first().text();
         	document.getElementById("alertId").innerHTML = wholeVal;
-
-  	
-        }
-
-        	
-        		          
-        
-        
+        } 
     </script>
 <div id="alertId">NEW BUILD</div>
     <c:if test="${not empty message}">
