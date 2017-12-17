@@ -44,7 +44,9 @@ public class AuditLog {
         this.eventType = event;
         this.detail = detail;
         this.modifiedBy =  username;
+        this.createdBy = username;
         this.modifiedDate =  DateTime.now().toString();
+        createdDate = DateTime.now().toString();
     }
 
     @Id

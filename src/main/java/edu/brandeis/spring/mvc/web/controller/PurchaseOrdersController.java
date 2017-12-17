@@ -176,7 +176,7 @@ public class PurchaseOrdersController {
     			
     		}
     	}
-    	return "orders/list";
+    	return "header/list";
     }
 
     @PreAuthorize("isAuthenticated()")

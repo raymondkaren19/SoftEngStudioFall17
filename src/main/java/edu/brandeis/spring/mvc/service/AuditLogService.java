@@ -13,4 +13,5 @@ public interface AuditLogService {
     AuditLog save(AuditLog aLog);
     void saveData(String event, String detail, String modifiedBy);
     Page<AuditLog> findAllByPage(Pageable pageable);
+    void SetLoggedInUsername(String name);
 }
