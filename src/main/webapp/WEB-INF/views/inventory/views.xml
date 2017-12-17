@@ -4,40 +4,59 @@
         "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
 
 <tiles-definitions>
-    <definition extends="default" name="inventory/list">
-        <put-attribute name="body" value="/WEB-INF/views/inventory/list.jspx" />
-    </definition>
-    <definition extends="default" name="inventory/showProduct">
-        <put-attribute name="body" value="/WEB-INF/views/inventory/showProduct.jspx" />
-    </definition>
-    <definition extends="default" name="inventory/addInventoryItem">
-        <put-attribute name="body" value="/WEB-INF/views/inventory/addInventoryItem.jspx" />
-    </definition>
-    <definition extends="default" name="supplier/list">
-        <put-attribute name="body" value="/WEB-INF/views/inventory/listSuppliers.jspx" />
-    </definition>
-    <definition extends="default" name="supplier/addSupplier">
-        <put-attribute name="body" value="/WEB-INF/views/inventory/addSupplier.jspx" />
-    </definition>
-    <definition extends="default" name="supplier/showSupplier">
-        <put-attribute name="body" value="/WEB-INF/views/inventory/showSupplier.jspx" />
-    </definition>
-    <definition extends="default" name="audit/list">
-        <put-attribute name="body" value="/WEB-INF/views/inventory/auditList.jspx" />
-    </definition>
-    <definition extends="default" name="header/list">
-        <put-attribute name="body" value="/WEB-INF/views/inventory/listPurchaseOrders.jspx" />
-    </definition>
-    <definition extends="default" name="header/showHeader">
-        <put-attribute name="body" value="/WEB-INF/views/inventory/showPurchaseOrder.jspx" />
-    </definition>
-    <definition extends="default" name="orders/list">
-        <put-attribute name="body" value="/WEB-INF/views/inventory/listPurchaseOrderItems.jspx" />
-    </definition>
-    <definition extends="default" name="orders/addOrder">
-        <put-attribute name="body" value="/WEB-INF/views/inventory/addPurchaseOrder.jspx" />
-    </definition>
-     <definition extends="default" name="report/list">
-        <put-attribute name="body" value="/WEB-INF/views/inventory/reportList.jspx" />
-    </definition>
+	<definition extends="default" name="inventory/list">
+		<put-attribute name="body" value="/WEB-INF/views/inventory/list.jspx" />
+	</definition>
+	<definition extends="default" name="inventory/showProduct">
+		<put-attribute name="body"
+			value="/WEB-INF/views/inventory/showProduct.jspx" />
+	</definition>
+	<definition extends="default" name="inventory/addInventoryItem">
+		<put-attribute name="body"
+			value="/WEB-INF/views/inventory/addInventoryItem.jspx" />
+	</definition>
+	<definition extends="default" name="supplier/list">
+		<put-attribute name="body"
+			value="/WEB-INF/views/inventory/listSuppliers.jspx" />
+	</definition>
+	<definition extends="default" name="supplier/addSupplier">
+		<put-attribute name="body"
+			value="/WEB-INF/views/inventory/addSupplier.jspx" />
+	</definition>
+	<definition extends="default" name="supplier/showSupplier">
+		<put-attribute name="body"
+			value="/WEB-INF/views/inventory/showSupplier.jspx" />
+	</definition>
+	<definition extends="default" name="audit/list">
+		<put-attribute name="body"
+			value="/WEB-INF/views/inventory/auditList.jspx" />
+	</definition>
+	<definition extends="default" name="header/list">
+		<put-attribute name="body"
+			value="/WEB-INF/views/inventory/listPurchaseOrders.jspx" />
+	</definition>
+	<definition extends="default" name="header/showHeader">
+		<put-attribute name="body"
+			value="/WEB-INF/views/inventory/showPurchaseOrder.jspx" />
+	</definition>
+	<definition extends="default" name="orders/list">
+		<put-attribute name="body"
+			value="/WEB-INF/views/inventory/listPurchaseOrderItems.jspx" />
+	</definition>
+	<definition extends="default" name="orders/addOrder">
+		<put-attribute name="body"
+			value="/WEB-INF/views/inventory/addPurchaseOrder.jspx" />
+	</definition>
+	<definition extends="default" name="report/list">
+		<put-attribute name="body"
+			value="/WEB-INF/views/inventory/reportList.jspx" />
+	</definition>
+	<definition extends="default" name="orders/downloadXml">
+		<put-attribute name="body"
+			value="/WEB-INF/views/inventory/listPurchaseOrders.jspx" />
+	</definition>
+	<definition extends="default" name="orders/downloadText">
+		<put-attribute name="body"
+			value="/WEB-INF/views/inventory/listPurchaseOrders.jspx" />
+	</definition>
 </tiles-definitions>
