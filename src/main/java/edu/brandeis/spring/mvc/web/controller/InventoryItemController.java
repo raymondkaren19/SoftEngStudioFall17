@@ -12,6 +12,8 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -34,6 +36,7 @@ import edu.brandeis.spring.mvc.service.AuditLogService;
 import edu.brandeis.spring.mvc.web.util.UrlUtil;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 @RequestMapping("/inventory")
@@ -47,7 +50,22 @@ public class InventoryItemController {
     private MessageSource messageSource;
 
     @RequestMapping(method = RequestMethod.GET)
-    public String list(Model uiModel) {
+    public String list(Model uiModel, HttpSession httpSession ) {
+    	
+    	
+    	Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+
+    	if (principal instanceof UserDetails) {
+    		String username = ((UserDetails)principal).getUsername();
+    		auditLogService.SetLoggedInUsername(username);
+    		logger.info("Userdetails -  username = " + username);
+    	} else {
+    		String username = principal.toString();
+    		logger.info(" username = " + username);
+    		auditLogService.SetLoggedInUsername(username);
+    	}
+    	    	
+        
         logger.info("Listing items and suppliers");
 
         List<InventoryItem> items = itemService.findAll();

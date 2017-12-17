@@ -23,6 +23,8 @@ import edu.brandeis.spring.mvc.domain.Supplier;
 
 public class AuditLogServiceImpl implements AuditLogService{
 	private AuditLogRepository auditRepository;
+	
+	private String username = "Default";
 
     @Override
     @Transactional(readOnly=true)
@@ -44,7 +46,7 @@ public class AuditLogServiceImpl implements AuditLogService{
     @Override
     public void saveData(String event, String detail, String modifiedBy)
     {
-    	AuditLog log = new AuditLog(event,detail, modifiedBy);
+    	AuditLog log = new AuditLog(event,detail, username);
     	save(log);
     			
     }
@@ -58,6 +60,11 @@ public class AuditLogServiceImpl implements AuditLogService{
     @Transactional(readOnly=true)
     public Page<AuditLog> findAllByPage(Pageable pageable) {
         return auditRepository.findAll(pageable);
+    }
+    
+    public void SetLoggedInUsername(String name)
+    {
+    	username = name;
     }
 
 }
