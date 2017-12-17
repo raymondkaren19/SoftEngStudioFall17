@@ -19,6 +19,16 @@ Please see the [contributing guide.](CONTRIBUTING.md)
 
 In each of the environments you can click on "View deployment" to see the live site.
 
+#### Production server Logs.
+
+- Currently we keep track of the logs on the production server by setting up an automatic cron job which upload the logs every minute. See #90 
+
+- MySQL:  
+http://ec2-52-90-192-232.compute-1.amazonaws.com/ci-bot/logs-production-mysql
+
+- TomCat:  
+http://ec2-52-90-192-232.compute-1.amazonaws.com/ci-bot/logs-production-tomcat
+
 
 #### Documentation
 
