@@ -11,6 +11,7 @@
     <spring:message code="label_inventoryitem_manufacturer" var="labelInventoryItemManufacturer"/>
     <spring:message code="label_inventoryitem_inventory" var="labelInventoryItemInventory"/>
     <spring:message code="label_inventoryitem_price" var="labelInventoryItemPrice"/>
+    <spring:message code="label_supplier_id" var="labelSupplierId"/>
     <spring:message code="label_supplier_list" var="labelSupplierList"/>
     <spring:message code="label_supplier_name" var="labelSupplierName"/>
     <spring:message code="label_supplier_city" var="labelSupplierCity"/>
@@ -68,7 +69,7 @@
                 url:'${showSuppliersUrl}/supplierlistgrid',
                 datatype: 'json',
                 mtype: 'GET',
-                colNames:['ID',
+                colNames:['${labelSupplierId}',
                 	      '${labelSupplierName}',
                           '${labelSupplierCity}',
                           '${labelSupplierState}',
@@ -86,7 +87,7 @@
                     total: "totalPages",
                     records: "totalRecords",
                     repeatitems: false,
-                    id: "ID"
+                    id: "id"
                 },
                 pager: '#supplierpager',
                 rowNum:10,
@@ -99,16 +100,12 @@
                 width: 500,
                 caption: '${labelSupplierList}',
                 onSelectRow: function(id){        
-                    processClick(id);
+                    document.location.href ="${showSuppliersUrl}/" + id;
                 }
             });
         });
-        function processClick(id) {
-        	var wholeVal = $("#supplierList").children().children("#" + id).first().children().first().text();
-        	document.getElementById("alertId").innerHTML = wholeVal;
-        } 
     </script>
-<div id="alertId">NEW BUILD</div>
+
     <c:if test="${not empty message}">
         <div id="message" class="${message.type}">${message.message}</div>
     </c:if>
@@ -119,6 +116,7 @@
         <table id="itemlist"><tr><td/></tr></table>
         <div id="itempager"></div>
     </div>
+    
 
     <h2>${labelSupplierList}</h2>
 
