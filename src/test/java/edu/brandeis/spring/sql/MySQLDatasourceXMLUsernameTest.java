@@ -17,7 +17,7 @@ public class MySQLDatasourceXMLUsernameTest extends TestCase {
     public void test() {
         String path = "./src/main/resources/META-INF/spring/datasource-tx-jpa.xml";
 
-        if (findValue(path, "password", "mysql")) {
+        if (findValue(path, "password", "root")) {
             // continue
         } else {
             fail("Passwords do not match on Datasource");
